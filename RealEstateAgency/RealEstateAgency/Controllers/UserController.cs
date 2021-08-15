@@ -9,27 +9,10 @@ using System.Threading.Tasks;
 
 namespace RealEstateAgency.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class UserController : BaseReadController<Model.User, Model.UserSearchObject>
     {
-        private readonly IUserService _service;
-
-        public UserController(IUserService service)
+        public UserController(IUserService service) : base(service)
         {
-            _service = service;
         }
-
-        [HttpGet]
-        public IList<Model.User> Get()
-        {
-            return _service.Get();
-        }
-
-        //[HttpPost]
-        //public User Insert([FromBody] KorisniciInsertRequest request)
-        //{
-        //    return _service.Insert(request);
-        //}
     }
 }

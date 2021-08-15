@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RealEstateAgency.Database;
+using RealEstateAgency.Filters;
 using RealEstateAgency.Services;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,10 @@ namespace RealEstateAgency
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.AddControllers();
+            services.AddControllers(x =>
+            {
+                x.Filters.Add<ErrorFilter>();
+            });
             services.AddSwaggerGen();
 
             services.AddDbContext<RealEstateAgencyContext>(options =>

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RealEstateAgency.Services;
 using RealEstateAgency.Database;
 using System;
 using System.Collections.Generic;
@@ -7,21 +8,39 @@ using System.Threading.Tasks;
 
 namespace RealEstateAgency.Services
 {
-    public class UserService : IUserService
+    public class UserService : BaseReadService<Model.User, Database.User, Model.UserSearchObject>, IUserService
     {
-        public RealEstateAgencyContext Context { get; set; }
-
-        private readonly IMapper _mapper;
-
-        public UserService(RealEstateAgencyContext context, IMapper mapper)
+        public UserService(RealEstateAgencyContext context, IMapper mapper) : base(context, mapper)
         {
-            Context = context;
-            _mapper = mapper;
         }
 
-        public List<Model.User> Get()
+        public override IEnumerable<Model.User> Get(Model.UserSearchObject search = null)
         {
-            return Context.Users.Select(x => _mapper.Map<Model.User>(x)).ToList();
+            var entity = Context.Set<Database.User>().AsQueryable();
+
+            if(!string.IsNullOrWhiteSpace(search.UserName))
+            {
+                entity = entity.Where(x => x.UserName.Contains(search.UserName));
+            }
+            if (!string.IsNullOrWhiteSpace(search.FirstName))
+            {
+                entity = entity.Where(x => x.FirstName.Contains(search.FirstName));
+            }
+            if (!string.IsNullOrWhiteSpace(search.LastName))
+            {
+                entity = entity.Where(x => x.LastName.Contains(search.LastName));
+            }
+            if (!string.IsNullOrWhiteSpace(search.Email))
+            {
+                entity = entity.Where(x => x.Email.Contains(search.Email));
+            }
+            if (!string.IsNullOrWhiteSpace(search.PhoneNumber))
+            {
+                entity = entity.Where(x => x.PhoneNumber.Contains(search.PhoneNumber));
+            }
+
+            var list = entity.ToList();
+            return _mapper.Map<List<Model.User>>(list);
         }
     }
 }
