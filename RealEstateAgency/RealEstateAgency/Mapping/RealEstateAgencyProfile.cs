@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using RealEstateAgency.Database;
+using RealEstateAgency.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,8 @@ namespace RealEstateAgency.Mapping
     {
         public RealEstateAgencyProfile()
         {
-            CreateMap<Database.User, Model.User>();
+            CreateMap<User, Model.User>().ReverseMap();
+            CreateMap<Country, CountryInsertRequest>().ReverseMap();
         }
     }
 }
