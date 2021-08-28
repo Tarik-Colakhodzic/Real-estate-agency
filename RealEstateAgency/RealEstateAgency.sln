@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstateAgency", "RealEstateAgency\RealEstateAgency.csproj", "{0ECBCC91-7A6E-4579-99EA-1892012C0084}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateAgency.Model", "RealEstateAgency.Model\RealEstateAgency.Model.csproj", "{1E7AF537-D78E-4F23-ADBA-08FA938969F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstateAgency.Model", "RealEstateAgency.Model\RealEstateAgency.Model.csproj", "{1E7AF537-D78E-4F23-ADBA-08FA938969F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{6D8FC7B5-A35F-49E4-BACE-65FFE4AB6BCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateAgency.WinUI", "RealEstateAgency.WinUI\RealEstateAgency.WinUI.csproj", "{CD78D2EA-388F-4889-B66F-9999C479B723}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{1E7AF537-D78E-4F23-ADBA-08FA938969F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E7AF537-D78E-4F23-ADBA-08FA938969F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E7AF537-D78E-4F23-ADBA-08FA938969F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD78D2EA-388F-4889-B66F-9999C479B723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD78D2EA-388F-4889-B66F-9999C479B723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD78D2EA-388F-4889-B66F-9999C479B723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD78D2EA-388F-4889-B66F-9999C479B723}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD78D2EA-388F-4889-B66F-9999C479B723} = {6D8FC7B5-A35F-49E4-BACE-65FFE4AB6BCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB1AB28E-6EAB-4D37-95E1-045A836E6F43}
