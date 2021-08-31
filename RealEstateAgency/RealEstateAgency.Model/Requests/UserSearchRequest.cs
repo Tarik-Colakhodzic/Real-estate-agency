@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RealEstateAgency.Model
 {
-    public class UserSearchObject
+    public class UserSearchRequest
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

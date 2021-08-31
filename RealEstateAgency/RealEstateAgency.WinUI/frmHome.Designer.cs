@@ -31,11 +31,12 @@ namespace RealEstateAgency.WinUI
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.displayUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +51,22 @@ namespace RealEstateAgency.WinUI
             this.menuStrip.Size = new System.Drawing.Size(843, 28);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
+            // 
+            // usersToolStripMenuItem
+            // 
+            this.usersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayUsersToolStripMenuItem,
+            this.addUserToolStripMenuItem});
+            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.usersToolStripMenuItem.Text = "Users";
+            // 
+            // displayUsersToolStripMenuItem
+            // 
+            this.displayUsersToolStripMenuItem.Name = "displayUsersToolStripMenuItem";
+            this.displayUsersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.displayUsersToolStripMenuItem.Text = "Display users";
+            this.displayUsersToolStripMenuItem.Click += new System.EventHandler(this.displayUsersToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -69,20 +86,12 @@ namespace RealEstateAgency.WinUI
             this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
             this.toolStripStatusLabel.Text = "Status";
             // 
-            // usersToolStripMenuItem
+            // addUserToolStripMenuItem
             // 
-            this.usersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.displayUsersToolStripMenuItem});
-            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
-            this.usersToolStripMenuItem.Text = "Users";
-            // 
-            // displayUsersToolStripMenuItem
-            // 
-            this.displayUsersToolStripMenuItem.Name = "displayUsersToolStripMenuItem";
-            this.displayUsersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.displayUsersToolStripMenuItem.Text = "Display users";
-            this.displayUsersToolStripMenuItem.Click += new System.EventHandler(this.displayUsersToolStripMenuItem_Click);
+            this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addUserToolStripMenuItem.Text = "Add user";
+            this.addUserToolStripMenuItem.Click += new System.EventHandler(this.addUserToolStripMenuItem_Click);
             // 
             // frmHome
             // 
@@ -114,6 +123,7 @@ namespace RealEstateAgency.WinUI
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem displayUsersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addUserToolStripMenuItem;
     }
 }
 

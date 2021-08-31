@@ -120,4 +120,7 @@
   <data name="ApiUrl" xml:space="preserve">
     <value>https://localhost:44316/</value>
   </data>
+  <data name="Validation_RequiredField" xml:space="preserve">
+    <value>Obavezno polje!</value>
+  </data>
 </root>

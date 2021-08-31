@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace RealEstateAgency.Services
 {
-    public class UserService : BaseReadService<Model.User, Database.User, Model.UserSearchObject>, IUserService
+    public class UserService : BaseCRUDService<Model.User, Database.User, Model.UserSearchRequest, Model.Requests.UserInsertRequest, Model.Requests.UserInsertRequest>, IUserService
     {
         public UserService(RealEstateAgencyContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override IEnumerable<Model.User> Get(Model.UserSearchObject search = null)
+        public override IEnumerable<Model.User> Get(Model.UserSearchRequest search = null)
         {
             var entity = Context.Set<Database.User>().AsQueryable();
 

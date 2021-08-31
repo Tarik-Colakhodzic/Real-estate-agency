@@ -107,6 +107,14 @@ namespace RealEstateAgency.WinUI
         {
             frmDisplayUsers frm = new frmDisplayUsers();
             frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUsersDetails frm = new frmUsersDetails();
+            frm.MdiParent = this;
             frm.Show();
         }
     }

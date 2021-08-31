@@ -56,12 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIService.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +69,12 @@
     </Compile>
     <Compile Include="User\frmDisplayUsers.Designer.cs">
       <DependentUpon>frmDisplayUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\frmUsersDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\frmUsersDetails.Designer.cs">
+      <DependentUpon>frmUsersDetails.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
@@ -91,6 +91,9 @@
     </Compile>
     <EmbeddedResource Include="User\frmDisplayUsers.resx">
       <DependentUpon>frmDisplayUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\frmUsersDetails.resx">
+      <DependentUpon>frmUsersDetails.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

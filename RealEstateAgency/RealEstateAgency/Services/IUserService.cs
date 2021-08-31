@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RealEstateAgency.Services
 {
-    public interface IUserService : IReadService<Model.User, Model.UserSearchObject>
+    public interface IUserService : ICRUDService<Model.User, Model.UserSearchRequest, Model.Requests.UserInsertRequest, Model.Requests.UserInsertRequest>
     {
     }
 }
