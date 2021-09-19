@@ -81,6 +81,7 @@ namespace RealEstateAgency.WinUI.User
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(290, 22);
             this.txtLastName.TabIndex = 2;
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtLastName_Validating);
             // 
             // label3
             // 
@@ -97,6 +98,7 @@ namespace RealEstateAgency.WinUI.User
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(290, 22);
             this.txtEmail.TabIndex = 4;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // label4
             // 
@@ -113,6 +115,7 @@ namespace RealEstateAgency.WinUI.User
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(290, 22);
             this.txtPhoneNumber.TabIndex = 6;
+            this.txtPhoneNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhoneNumber_Validating);
             // 
             // label5
             // 
@@ -129,6 +132,7 @@ namespace RealEstateAgency.WinUI.User
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(290, 22);
             this.txtUsername.TabIndex = 8;
+            this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
             // 
             // label6
             // 
@@ -146,6 +150,7 @@ namespace RealEstateAgency.WinUI.User
             this.txtPassword.Size = new System.Drawing.Size(290, 22);
             this.txtPassword.TabIndex = 10;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
             // 
             // label7
             // 
@@ -163,6 +168,7 @@ namespace RealEstateAgency.WinUI.User
             this.txtConfirmedPassword.Size = new System.Drawing.Size(290, 22);
             this.txtConfirmedPassword.TabIndex = 12;
             this.txtConfirmedPassword.UseSystemPasswordChar = true;
+            this.txtConfirmedPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmedPassword_Validating);
             // 
             // btnSave
             // 

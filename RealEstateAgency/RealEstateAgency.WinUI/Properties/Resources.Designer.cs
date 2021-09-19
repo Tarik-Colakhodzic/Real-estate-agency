@@ -70,6 +70,51 @@ namespace RealEstateAgency.WinUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unesite ispravan email!.
+        /// </summary>
+        public static string Validation_EmailField {
+            get {
+                return ResourceManager.GetString("Validation_EmailField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimalan broj slova je:.
+        /// </summary>
+        public static string Validation_MinLengthField {
+            get {
+                return ResourceManager.GetString("Validation_MinLengthField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polja nisu jednaka!.
+        /// </summary>
+        public static string Validation_NotEqualFields {
+            get {
+                return ResourceManager.GetString("Validation_NotEqualFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Šifra mora sadržavati 8 znakova i uključiti 3 od 4 sljedeća pravila: Velika slova (A-Z), mala slova (a-z), brojeve (0-9) i specijalne znakove (e.g. !@#$%^&amp;*)&quot;.
+        /// </summary>
+        public static string Validation_PasswordStrength {
+            get {
+                return ResourceManager.GetString("Validation_PasswordStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unesite ispravan broj telefona!.
+        /// </summary>
+        public static string Validation_PhoneNumber {
+            get {
+                return ResourceManager.GetString("Validation_PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obavezno polje!.
         /// </summary>
         public static string Validation_RequiredField {

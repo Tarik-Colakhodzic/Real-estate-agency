@@ -120,6 +120,21 @@
   <data name="ApiUrl" xml:space="preserve">
     <value>https://localhost:44316/</value>
   </data>
+  <data name="Validation_EmailField" xml:space="preserve">
+    <value>Unesite ispravan email!</value>
+  </data>
+  <data name="Validation_MinLengthField" xml:space="preserve">
+    <value>Minimalan broj slova je:</value>
+  </data>
+  <data name="Validation_NotEqualFields" xml:space="preserve">
+    <value>Polja nisu jednaka!</value>
+  </data>
+  <data name="Validation_PasswordStrength" xml:space="preserve">
+    <value>Šifra mora sadržavati 8 znakova i uključiti 3 od 4 sljedeća pravila: Velika slova (A-Z), mala slova (a-z), brojeve (0-9) i specijalne znakove (e.g. !@#$%^&amp;*)"</value>
+  </data>
+  <data name="Validation_PhoneNumber" xml:space="preserve">
+    <value>Unesite ispravan broj telefona!</value>
+  </data>
   <data name="Validation_RequiredField" xml:space="preserve">
     <value>Obavezno polje!</value>
   </data>

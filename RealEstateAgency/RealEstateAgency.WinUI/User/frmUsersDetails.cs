@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -40,24 +41,64 @@ namespace RealEstateAgency.WinUI.User
             //clbUloge.DisplayMember = "Naziv";
         }
 
-        private void txtFirstName_Validating(object sender, CancelEventArgs e)
-        {
-            if(string.IsNullOrEmpty(txtFirstName.Text))
-            {
-                errorProvider.SetError(txtFirstName, Properties.Resources.Validation_RequiredField);
-                e.Cancel = true;
-            }
-            else
-            {
-                errorProvider.SetError(txtFirstName, null);
-            }
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if(this.ValidateChildren())
             {
+                MessageBox.Show("Operacija uspješno izvršena");
+            }
+        }
 
+        private void txtFirstName_Validating(object sender, CancelEventArgs e)
+        {
+            Validator.ValidateRequiredField(errorProvider, txtFirstName);
+        }
+
+        private void txtLastName_Validating(object sender, CancelEventArgs e)
+        {
+            Validator.ValidateRequiredField(errorProvider, txtLastName);
+        }
+
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+            Validator.ValidateEmail(errorProvider, txtEmail);
+        }
+
+        private void txtPhoneNumber_Validating(object sender, CancelEventArgs e)
+        {
+            //Validator.ValidateRequiredField(errorProvider, txtPhoneNumber);
+            //Validator.ValidatePhoneNumber(errorProvider, txtPhoneNumber);
+        }
+
+        private void txtUsername_Validating(object sender, CancelEventArgs e)
+        {
+            Validator.ValidateMinLength(errorProvider, txtUsername, 3);
+        }
+
+        private void txtPassword_Validating(object sender, CancelEventArgs e)
+        {
+            Regex rgx = new Regex(@"^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$");
+            if(!rgx.IsMatch(txtPassword.Text))
+            {
+                errorProvider.SetError(txtPassword, Properties.Resources.Validation_PasswordStrength);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtPassword, null);
+            }
+        }
+
+        private void txtConfirmedPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if(txtPassword.Text != txtConfirmedPassword.Text)
+            {
+                errorProvider.SetError(txtConfirmedPassword, Properties.Resources.Validation_NotEqualFields);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtConfirmedPassword, null);
             }
         }
     }
