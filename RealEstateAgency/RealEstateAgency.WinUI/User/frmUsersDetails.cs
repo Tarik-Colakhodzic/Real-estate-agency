@@ -13,6 +13,7 @@ namespace RealEstateAgency.WinUI.User
 {
     public partial class frmUsersDetails : Form
     {
+        private readonly APIService _service = new APIService("User");
         private Model.User _user;
 
         public frmUsersDetails(Model.User user = null)
@@ -30,7 +31,7 @@ namespace RealEstateAgency.WinUI.User
                 txtLastName.Text = _user.LastName;
                 txtEmail.Text = _user.Email;
                 txtPhoneNumber.Text = _user.PhoneNumber;
-                txtUsername.Text = _user.UserName;
+                txtUsername.Text = _user.Username;
             }
         }
 
@@ -41,11 +42,28 @@ namespace RealEstateAgency.WinUI.User
             //clbUloge.DisplayMember = "Naziv";
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             if(this.ValidateChildren())
             {
+                var request = new Model.Requests.UserInsertRequest();
+                request.Email = txtEmail.Text;
+                request.PhoneNumber = txtPhoneNumber.Text;
+                request.FirstName = txtFirstName.Text;
+                request.LastName = txtLastName.Text;
+                request.Username = txtUsername.Text;
+                request.Password = txtPassword.Text;
+                request.ConfirmedPassword = txtConfirmedPassword.Text;
+                if (_user == null)
+                {
+                    await _service.Insert<Model.User>(request);
+                }
+                else
+                {
+                    await _service.Update<Model.User>(_user.Id, request);
+                }
                 MessageBox.Show("Operacija uspješno izvršena");
+                this.Close();
             }
         }
 

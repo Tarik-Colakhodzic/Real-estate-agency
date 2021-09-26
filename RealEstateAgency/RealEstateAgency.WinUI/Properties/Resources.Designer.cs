@@ -61,7 +61,7 @@ namespace RealEstateAgency.WinUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://localhost:44316/.
+        ///   Looks up a localized string similar to https://localhost:44316/api/.
         /// </summary>
         public static string ApiUrl {
             get {
