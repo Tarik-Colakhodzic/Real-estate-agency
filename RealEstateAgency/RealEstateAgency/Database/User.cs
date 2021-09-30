@@ -15,5 +15,6 @@ namespace RealEstateAgency.Database
         public string UserName { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
+        public virtual ICollection<UserRoles> UserRoles { get; set; }
     }
 }

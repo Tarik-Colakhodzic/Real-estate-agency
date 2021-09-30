@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +9,8 @@ namespace RealEstateAgency.WinUI.User
 {
     public partial class frmUsersDetails : Form
     {
-        private readonly APIService _service = new APIService("User");
+        private readonly APIService _userService = new APIService("User");
+        private readonly APIService _rolesService = new APIService("Role");
         private Model.User _user;
 
         public frmUsersDetails(Model.User user = null)
@@ -37,9 +34,9 @@ namespace RealEstateAgency.WinUI.User
 
         private async Task LoadUloge()
         {
-            //var uloge = await ulogeService.GetAll<List<Uloge>>();
-            //clbUloge.DataSource = uloge;
-            //clbUloge.DisplayMember = "Naziv";
+            var roles = await _rolesService.GetAll<List<Model.Role>>();
+            //clbRoles.DataSource = roles;
+            //clbRoles.DisplayMember = "Name";
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -56,11 +53,11 @@ namespace RealEstateAgency.WinUI.User
                 request.ConfirmedPassword = txtConfirmedPassword.Text;
                 if (_user == null)
                 {
-                    await _service.Insert<Model.User>(request);
+                    await _userService.Insert<Model.User>(request);
                 }
                 else
                 {
-                    await _service.Update<Model.User>(_user.Id, request);
+                    await _userService.Update<Model.User>(_user.Id, request);
                 }
                 MessageBox.Show("Operacija uspješno izvršena");
                 this.Close();
