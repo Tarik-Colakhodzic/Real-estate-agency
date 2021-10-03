@@ -26,6 +26,6 @@ namespace RealEstateAgency.Model.Requests
         [Compare("Password")]
         public string ConfirmedPassword { get; set; }
         //public bool? Status { get; set; }
-        //public List<int> Roles { get; set; } = new List<int>();
+        public List<int> Roles { get; set; } = new List<int>();
     }
 }

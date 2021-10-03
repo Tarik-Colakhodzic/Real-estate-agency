@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,14 +36,18 @@ namespace RealEstateAgency.WinUI.User
         private async Task LoadUloge()
         {
             var roles = await _rolesService.GetAll<List<Model.Role>>();
-            //clbRoles.DataSource = roles;
-            //clbRoles.DisplayMember = "Name";
+            clbRoles.DataSource = roles;
+            clbRoles.DisplayMember = "Name";
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            if(this.ValidateChildren())
+            if (this.ValidateChildren())
             {
+
+                var roleList = clbRoles.CheckedItems.Cast<Model.Role>();
+                var roleIds = roleList.Select(x => x.Id).ToList();
+
                 var request = new Model.Requests.UserInsertRequest();
                 request.Email = txtEmail.Text;
                 request.PhoneNumber = txtPhoneNumber.Text;
@@ -51,6 +56,8 @@ namespace RealEstateAgency.WinUI.User
                 request.Username = txtUsername.Text;
                 request.Password = txtPassword.Text;
                 request.ConfirmedPassword = txtConfirmedPassword.Text;
+                request.Roles = roleIds;
+
                 if (_user == null)
                 {
                     await _userService.Insert<Model.User>(request);

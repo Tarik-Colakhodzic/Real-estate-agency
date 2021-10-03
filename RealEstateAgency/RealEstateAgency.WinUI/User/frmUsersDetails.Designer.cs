@@ -46,6 +46,7 @@ namespace RealEstateAgency.WinUI.User
             this.txtConfirmedPassword = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clbRoles = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,7 +173,7 @@ namespace RealEstateAgency.WinUI.User
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(232, 484);
+            this.btnSave.Location = new System.Drawing.Point(474, 426);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(96, 38);
             this.btnSave.TabIndex = 16;
@@ -184,11 +185,20 @@ namespace RealEstateAgency.WinUI.User
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // clbRoles
+            // 
+            this.clbRoles.FormattingEnabled = true;
+            this.clbRoles.Location = new System.Drawing.Point(370, 45);
+            this.clbRoles.Name = "clbRoles";
+            this.clbRoles.Size = new System.Drawing.Size(220, 123);
+            this.clbRoles.TabIndex = 17;
+            // 
             // frmUsersDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 547);
+            this.ClientSize = new System.Drawing.Size(619, 509);
+            this.Controls.Add(this.clbRoles);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtConfirmedPassword);
@@ -231,5 +241,6 @@ namespace RealEstateAgency.WinUI.User
         private System.Windows.Forms.TextBox txtConfirmedPassword;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.CheckedListBox clbRoles;
     }
 }
