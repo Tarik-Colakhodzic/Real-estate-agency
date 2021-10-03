@@ -63,18 +63,18 @@ namespace RealEstateAgency.WinUI.User
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(38, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 17);
+            this.label1.Size = new System.Drawing.Size(30, 17);
             this.label1.TabIndex = 1;
-            this.label1.Text = "First name";
+            this.label1.Text = "Ime";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(38, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 17);
+            this.label2.Size = new System.Drawing.Size(59, 17);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Last name";
+            this.label2.Text = "Prezime";
             // 
             // txtLastName
             // 
@@ -106,9 +106,9 @@ namespace RealEstateAgency.WinUI.User
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(38, 212);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 17);
+            this.label4.Size = new System.Drawing.Size(88, 17);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Phone number";
+            this.label4.Text = "Broj telefona";
             // 
             // txtPhoneNumber
             // 
@@ -123,9 +123,9 @@ namespace RealEstateAgency.WinUI.User
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(38, 279);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 17);
+            this.label5.Size = new System.Drawing.Size(99, 17);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Username";
+            this.label5.Text = "Korisničko ime";
             // 
             // txtUsername
             // 
@@ -140,9 +140,9 @@ namespace RealEstateAgency.WinUI.User
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(38, 346);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 17);
+            this.label6.Size = new System.Drawing.Size(57, 17);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Password";
+            this.label6.Text = "Lozinka";
             // 
             // txtPassword
             // 
@@ -158,9 +158,9 @@ namespace RealEstateAgency.WinUI.User
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(38, 411);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(120, 17);
+            this.label7.Size = new System.Drawing.Size(105, 17);
             this.label7.TabIndex = 13;
-            this.label7.Text = "Confirm password";
+            this.label7.Text = "Potvrda lozinke";
             // 
             // txtConfirmedPassword
             // 
@@ -177,7 +177,7 @@ namespace RealEstateAgency.WinUI.User
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(96, 38);
             this.btnSave.TabIndex = 16;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Sačuvaj";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -215,7 +215,7 @@ namespace RealEstateAgency.WinUI.User
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFirstName);
             this.Name = "frmUsersDetails";
-            this.Text = "frmUsersDetails";
+            this.Text = "Detalji korisnika";
             this.Load += new System.EventHandler(this.frmUsersDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

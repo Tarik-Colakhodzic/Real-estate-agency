@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using RealEstateAgency.Services;
 using RealEstateAgency.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using RealEstateAgency.Model.Requests;
 using RealEstateAgency.Filters;
 using System.Security.Cryptography;
@@ -12,35 +10,23 @@ using System.Text;
 
 namespace RealEstateAgency.Services
 {
-    public class UserService : BaseCRUDService<Model.User, Database.User, Model.UserSearchRequest, Model.Requests.UserInsertRequest, Model.Requests.UserInsertRequest>, IUserService
+    public class UserService : BaseCRUDService<Model.User, Database.User, Model.SimpleSearchRequest, Model.Requests.UserInsertRequest, Model.Requests.UserInsertRequest>, IUserService
     {
         public UserService(RealEstateAgencyContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public override IEnumerable<Model.User> Get(Model.UserSearchRequest search = null)
+        public override IEnumerable<Model.User> Get(Model.SimpleSearchRequest search = null)
         {
             var entity = Context.Set<Database.User>().AsQueryable();
 
-            if(!string.IsNullOrWhiteSpace(search.UserName))
+            if(!string.IsNullOrWhiteSpace(search.SearchText))
             {
-                entity = entity.Where(x => x.UserName.Contains(search.UserName));
-            }
-            if (!string.IsNullOrWhiteSpace(search.FirstName))
-            {
-                entity = entity.Where(x => x.FirstName.Contains(search.FirstName));
-            }
-            if (!string.IsNullOrWhiteSpace(search.LastName))
-            {
-                entity = entity.Where(x => x.LastName.Contains(search.LastName));
-            }
-            if (!string.IsNullOrWhiteSpace(search.Email))
-            {
-                entity = entity.Where(x => x.Email.Contains(search.Email));
-            }
-            if (!string.IsNullOrWhiteSpace(search.PhoneNumber))
-            {
-                entity = entity.Where(x => x.PhoneNumber.Contains(search.PhoneNumber));
+                entity = entity.Where(x => x.FirstName.Contains(search.SearchText)
+                    || x.LastName.Contains(search.SearchText)
+                    || x.UserName.Contains(search.SearchText)
+                    || x.Email.Contains(search.SearchText)
+                    || x.PhoneNumber.Contains(search.SearchText));
             }
 
             var list = entity.ToList();
@@ -73,7 +59,6 @@ namespace RealEstateAgency.Services
             Context.SaveChanges();
 
             return _mapper.Map<Model.User>(entity);
-
         }
 
         public static string GenerateSalt()

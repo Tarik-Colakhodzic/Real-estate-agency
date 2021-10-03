@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RealEstateAgency.Controllers
 {
-    public class UserController : BaseCRUDController<Model.User, Model.UserSearchRequest, Model.Requests.UserInsertRequest, Model.Requests.UserInsertRequest>
+    public class UserController : BaseCRUDController<Model.User, Model.SimpleSearchRequest, Model.Requests.UserInsertRequest, Model.Requests.UserInsertRequest>
     {
         public UserController(IUserService service) : base(service)
         {
