@@ -19,14 +19,25 @@ namespace RealEstateAgency.WinUI.User
         {
             var searchObject = new SimpleSearchRequest
             {
-                SearchText = txtSearch.Text
+                SearchText = txtSearch.Text,
+                IncludeList = new string[] 
+                { 
+                    EntityNames.UserRoles
+                },
             };
             dgvUsers.DataSource = await _serviceUsers.GetAll<List<Model.User>>(searchObject);
         }
 
         private async void frmDisplayUsers_Load(object sender, EventArgs e)
         {
-            dgvUsers.DataSource = await _serviceUsers.GetAll<List<Model.User>>();
+            var searchObject = new SimpleSearchRequest
+            {
+                IncludeList = new string[]
+                {
+                    EntityNames.UserRoles
+                },
+            };
+            dgvUsers.DataSource = await _serviceUsers.GetAll<List<Model.User>>(searchObject);
         }
 
         private void dgvUsers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

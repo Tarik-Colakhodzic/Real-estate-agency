@@ -7,6 +7,7 @@ using RealEstateAgency.Model.Requests;
 using RealEstateAgency.Filters;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace RealEstateAgency.Services
 {
@@ -27,6 +28,14 @@ namespace RealEstateAgency.Services
                     || x.UserName.Contains(search.SearchText)
                     || x.Email.Contains(search.SearchText)
                     || x.PhoneNumber.Contains(search.SearchText));
+            }
+
+            if (search?.IncludeList?.Length > 0)
+            {
+                foreach (var item in search.IncludeList)
+                {
+                    entity = entity.Include(item);
+                }
             }
 
             var list = entity.ToList();
@@ -58,6 +67,29 @@ namespace RealEstateAgency.Services
 
             Context.SaveChanges();
 
+            return _mapper.Map<Model.User>(entity);
+        }
+
+        public override Model.User Update(int id, UserInsertRequest request)
+        {
+            var entity = Context.Users.Include(x => x.UserRoles).FirstOrDefault(x => x.Id == id);
+            _mapper.Map(request, entity);
+            Context.Users.Update(entity);
+
+            var userRoleIdsToRemove = entity.UserRoles.Select(x => x.RoleId).Except(request.Roles).ToList();
+            var userRolesToRemove = entity.UserRoles.Where(x => userRoleIdsToRemove.Any(y => y == x.RoleId)).ToList();
+
+            var userRoleIdsToInsert = request.Roles.Except(entity.UserRoles.Select(x => x.RoleId));
+            foreach (var role in userRoleIdsToInsert)
+            {
+                Database.UserRoles userRoles = new UserRoles();
+                userRoles.UserId = entity.Id;
+                userRoles.RoleId = role;
+
+                Context.UsersRoles.Add(userRoles);
+            }
+            Context.UsersRoles.RemoveRange(userRolesToRemove);
+            Context.SaveChanges();
             return _mapper.Map<Model.User>(entity);
         }
 

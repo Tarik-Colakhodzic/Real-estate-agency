@@ -36,7 +36,24 @@ namespace RealEstateAgency.WinUI.User
         private async Task LoadUloge()
         {
             var roles = await _rolesService.GetAll<List<Model.Role>>();
-            clbRoles.DataSource = roles;
+            if (_user != null)
+            {
+                foreach (var item in roles)
+                {
+                    if (_user.UserRoles.Any(x => x.RoleId == item.Id))
+                    {
+                        clbRoles.Items.Add(item, true);
+                    }
+                    else
+                    {
+                        clbRoles.Items.Add(item, false);
+                    }
+                }
+            }
+            else
+            {
+                clbRoles.DataSource = roles;
+            }
             clbRoles.DisplayMember = "Name";
         }
 

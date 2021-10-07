@@ -16,6 +16,7 @@ namespace RealEstateAgency.Mapping
             CreateMap<Country, CountryInsertRequest>().ReverseMap();
             CreateMap<Model.Requests.UserInsertRequest, Database.User>().ReverseMap();
             CreateMap<Model.Role, Database.Role>().ReverseMap();
+            CreateMap<Model.UserRoles, Database.UserRoles>().ReverseMap();
         }
     }
 }
