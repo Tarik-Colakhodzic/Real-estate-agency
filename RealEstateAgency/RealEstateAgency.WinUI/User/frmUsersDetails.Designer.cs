@@ -215,6 +215,7 @@ namespace RealEstateAgency.WinUI.User
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFirstName);
             this.Name = "frmUsersDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalji korisnika";
             this.Load += new System.EventHandler(this.frmUsersDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
