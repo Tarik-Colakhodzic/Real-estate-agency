@@ -53,8 +53,8 @@ namespace RealEstateAgency.Services
                 throw new UserException("Lozinka nije ispravna");
             }
 
-            entity.PasswordHash = GenerateSalt();
-            entity.PasswordSalt = GenerateHash(entity.PasswordHash, request.Password);
+            entity.PasswordSalt = GenerateSalt();
+            entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
 
             Context.SaveChanges();
 
