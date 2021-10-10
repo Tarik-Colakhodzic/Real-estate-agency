@@ -8,6 +8,7 @@ using RealEstateAgency.Filters;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace RealEstateAgency.Services
 {
@@ -17,6 +18,7 @@ namespace RealEstateAgency.Services
         {
         }
 
+        //TODO async await dodati na svim metodama
         public override IEnumerable<Model.User> Get(Model.SimpleSearchRequest search = null)
         {
             var entity = Context.Set<Database.User>().AsQueryable();
@@ -90,6 +92,25 @@ namespace RealEstateAgency.Services
             }
             Context.UsersRoles.RemoveRange(userRolesToRemove);
             Context.SaveChanges();
+            return _mapper.Map<Model.User>(entity);
+        }
+
+        public async Task<Model.User> Login(string username, string password)
+        {
+            var entity = await Context.Users.Include("UserRoles.Role").FirstOrDefaultAsync(x => x.UserName == username);
+
+            if (entity == null)
+            {
+                throw new UserException("Pogrešan username ili password");
+            }
+
+            var hash = GenerateHash(entity.PasswordSalt, password);
+
+            if (hash != entity.PasswordHash)
+            {
+                throw new UserException("Pogrešan username ili password");
+            }
+
             return _mapper.Map<Model.User>(entity);
         }
 
