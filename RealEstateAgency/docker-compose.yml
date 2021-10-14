@@ -1,0 +1,33 @@
+version: '3'
+services:
+#mssql docker
+  realestate-sql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=RealEstate2021
+      - MSSQL_PID=Developer
+    ports:
+      - 1433:1433
+    networks:
+      - realestatenet
+
+  realestate-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=realestate-sql,1433;Database=RealEstate;User=sa;Password=RealEstate2021;ConnectRetryCount=0
+    ports:
+      - 5010:5010
+    networks:
+      - realestatenet      
+    links:
+      - realestate-sql
+    depends_on:
+      - realestate-sql
+      
+networks:
+  realestatenet:
+    driver: bridge      

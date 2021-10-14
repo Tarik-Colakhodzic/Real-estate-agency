@@ -33,8 +33,8 @@ namespace RealEstateAgency
                     Email = "admin@gmail.com",
                     PhoneNumber = "060 000 000",
                     UserName = "Administrator",
-                    PasswordHash = "Admin",
-                    PasswordSalt = "Admin"
+                    PasswordHash = "lR1OXReev+1K6c7/yJx9wKXOi9k=",
+                    PasswordSalt = "tyHlAlf9hHcYibxHpG01xA=="
                 });
             }
             if(!context.Users.Any(x => x.UserName == "Agent"))
@@ -46,8 +46,8 @@ namespace RealEstateAgency
                     Email = "agent@gmail.com",
                     PhoneNumber = "060 000 000",
                     UserName = "Agent",
-                    PasswordHash = "Agent",
-                    PasswordSalt = "Agent"
+                    PasswordHash = "qylkRtl9+mOd8UOsa4UN/VR2iNc=",
+                    PasswordSalt = "5MmCglFy/ezYLsx6QSKVlA=="
                 });
             }
             context.SaveChanges();
