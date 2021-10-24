@@ -1,4 +1,4 @@
-# Real-estate-agency
+# Real-estate-agency-api
 Seminarski rad iz predmeta Razvoj softvera II na temu agencije za nektrenine.
 
 * DOCKER SQL IMAGE https://hub.docker.com/_/microsoft-mssql-server
