@@ -7,7 +7,7 @@ namespace RealEstateAgency.WinUI.User
 {
     public partial class frmDisplayUsers : Form
     {
-        APIService _serviceUsers = new APIService("User");
+        private APIService _serviceUsers = new APIService("User");
 
         public frmDisplayUsers()
         {
@@ -20,8 +20,8 @@ namespace RealEstateAgency.WinUI.User
             var searchObject = new SimpleSearchRequest
             {
                 SearchText = txtSearch.Text,
-                IncludeList = new string[] 
-                { 
+                IncludeList = new string[]
+                {
                     EntityNames.UserRoles
                 },
             };

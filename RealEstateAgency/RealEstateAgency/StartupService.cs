@@ -11,7 +11,8 @@ namespace RealEstateAgency
             //TODO popuniti podatke za sve tabele
             context.Database.Migrate();
 
-            if(!context.Roles.Any(x => x.Name == "Administrator"))
+            //ROLES
+            if (!context.Roles.Any(x => x.Name == "Administrator"))
             {
                 context.Roles.Add(new Role { Name = "Administrator" });
             }
@@ -21,6 +22,7 @@ namespace RealEstateAgency
             }
             context.SaveChanges();
 
+            //USERS
             var adminRoleId = context.Roles.First(x => x.Name == "Administrator").Id;
             var agentRoleId = context.Roles.First(x => x.Name == "Agent").Id;
 
@@ -52,6 +54,7 @@ namespace RealEstateAgency
             }
             context.SaveChanges();
 
+            //USERROLES
             var adminUserId = context.Users.First(x => x.UserName == "Administrator").Id;
             var agentUserId = context.Users.First(x => x.UserName == "Agent").Id;
 
@@ -69,6 +72,140 @@ namespace RealEstateAgency
                 {
                     RoleId = agentRoleId,
                     UserId = agentUserId
+                });
+            }
+            context.SaveChanges();
+
+            //Country
+            if(!context.Countries.Any(x => x.Name == "Bosna i Hercegovina"))
+            {
+                context.Countries.Add(new Country
+                {
+                    Name = "Bosna i Hercegovina"
+                });
+            }
+            if (!context.Countries.Any(x => x.Name == "Hrvatska"))
+            {
+                context.Countries.Add(new Country
+                {
+                    Name = "Hrvatska"
+                });
+            }
+            if (!context.Countries.Any(x => x.Name == "Crna Gora"))
+            {
+                context.Countries.Add(new Country
+                {
+                    Name = "Crna Gora"
+                });
+            }
+            context.SaveChanges();
+
+            //City
+            var bosnaIHercegovinaId = context.Countries.First(x => x.Name == "Bosna i Hercegovina").Id;
+            var hrvatskaId = context.Countries.First(x => x.Name == "Hrvatska").Id;
+            var crnaGoraId = context.Countries.First(x => x.Name == "Crna Gora").Id;
+
+            if (!context.Cities.Any(x => x.Name == "Mostar"))
+            {
+                context.Cities.Add(new City
+                {
+                    Name = "Mostar",
+                    CountryId = bosnaIHercegovinaId
+                });
+            }
+            if (!context.Cities.Any(x => x.Name == "Sarajevo"))
+            {
+                context.Cities.Add(new City
+                {
+                    Name = "Sarajevo",
+                    CountryId = bosnaIHercegovinaId
+                });
+            }
+            if (!context.Cities.Any(x => x.Name == "Tuzla"))
+            {
+                context.Cities.Add(new City
+                {
+                    Name = "Tuzla",
+                    CountryId = bosnaIHercegovinaId
+                });
+            }
+            if (!context.Cities.Any(x => x.Name == "Makarska"))
+            {
+                context.Cities.Add(new City
+                {
+                    Name = "Makarska",
+                    CountryId = hrvatskaId
+                });
+            }
+            if (!context.Cities.Any(x => x.Name == "Split"))
+            {
+                context.Cities.Add(new City
+                {
+                    Name = "Split",
+                    CountryId = hrvatskaId
+                });
+            }
+            if (!context.Cities.Any(x => x.Name == "Budva"))
+            {
+                context.Cities.Add(new City
+                {
+                    Name = "Budva",
+                    CountryId = crnaGoraId
+                });
+            }
+            context.SaveChanges();
+
+            //OfferType
+            if(!context.OfferTypes.Any(x => x.Name == "Prodaja"))
+            {
+                context.OfferTypes.Add(new OfferType
+                {
+                    Name = "Prodaja"
+                });
+            }
+            if (!context.OfferTypes.Any(x => x.Name == "Izdavanje"))
+            {
+                context.OfferTypes.Add(new OfferType
+                {
+                    Name = "Izdavanje"
+                });
+            }
+            context.SaveChanges();
+
+            //Category
+            if (!context.Categories.Any(x => x.Name == "Stan"))
+            {
+                context.Categories.Add(new Category
+                {
+                    Name = "Stan"
+                });
+            }
+            if (!context.Categories.Any(x => x.Name == "Kuća"))
+            {
+                context.Categories.Add(new Category
+                {
+                    Name = "Kuća"
+                });
+            }
+            if (!context.Categories.Any(x => x.Name == "Zemljište"))
+            {
+                context.Categories.Add(new Category
+                {
+                    Name = "Zemljište"
+                });
+            }
+            if (!context.Categories.Any(x => x.Name == "Poslovni prostor"))
+            {
+                context.Categories.Add(new Category
+                {
+                    Name = "Poslovni prostor"
+                });
+            }
+            if (!context.Categories.Any(x => x.Name == "Apartman"))
+            {
+                context.Categories.Add(new Category
+                {
+                    Name = "Apartman"
                 });
             }
             context.SaveChanges();

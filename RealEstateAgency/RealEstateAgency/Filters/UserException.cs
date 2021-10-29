@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RealEstateAgency.Filters
 {
@@ -9,7 +6,6 @@ namespace RealEstateAgency.Filters
     {
         public UserException(string message) : base(message)
         {
-
         }
     }
 }

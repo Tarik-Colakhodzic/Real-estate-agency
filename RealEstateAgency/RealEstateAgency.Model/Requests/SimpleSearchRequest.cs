@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RealEstateAgency.Model
+﻿namespace RealEstateAgency.Model
 {
     public class SimpleSearchRequest
     {

@@ -1,7 +1,7 @@
-﻿using RealEstateAgency.Services;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateAgency.Services;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
 
 namespace RealEstateAgency.Controllers
 {
@@ -16,7 +16,6 @@ namespace RealEstateAgency.Controllers
         {
             _service = service;
         }
-
 
         [HttpGet]
         public virtual IEnumerable<T> Get([FromQuery] TSearch search)

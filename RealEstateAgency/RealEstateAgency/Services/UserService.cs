@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RealEstateAgency.Database;
+using RealEstateAgency.Filters;
+using RealEstateAgency.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RealEstateAgency.Model.Requests;
-using RealEstateAgency.Filters;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace RealEstateAgency.Services
@@ -23,7 +23,7 @@ namespace RealEstateAgency.Services
         {
             var entity = Context.Set<Database.User>().AsQueryable();
 
-            if(!string.IsNullOrWhiteSpace(search.SearchText))
+            if (!string.IsNullOrWhiteSpace(search.SearchText))
             {
                 entity = entity.Where(x => x.FirstName.Contains(search.SearchText)
                     || x.LastName.Contains(search.SearchText)
@@ -120,6 +120,7 @@ namespace RealEstateAgency.Services
             (new RNGCryptoServiceProvider()).GetBytes(buf);
             return Convert.ToBase64String(buf);
         }
+
         public static string GenerateHash(string salt, string password)
         {
             byte[] src = Convert.FromBase64String(salt);

@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using RealEstateAgency.Database;
-using RealEstateAgency.Services;
+﻿using RealEstateAgency.Services;
 
 namespace RealEstateAgency.Controllers
 {

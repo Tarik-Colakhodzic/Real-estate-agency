@@ -86,7 +86,6 @@
     <Compile Include="User\frmUsersDetails.Designer.cs">
       <DependentUpon>frmUsersDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\Role.cs" />
     <Compile Include="Validator.cs" />
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>

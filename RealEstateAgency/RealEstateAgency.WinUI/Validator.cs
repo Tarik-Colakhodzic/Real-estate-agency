@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RealEstateAgency.WinUI
@@ -16,10 +11,10 @@ namespace RealEstateAgency.WinUI
 
         public static bool ValidateRequiredField(ErrorProvider errorProvider, TextBox textBox, CancelEventArgs e = null)
         {
-            if(string.IsNullOrEmpty(textBox.Text))
+            if (string.IsNullOrEmpty(textBox.Text))
             {
                 errorProvider.SetError(textBox, RequiredField);
-                if(e != null)
+                if (e != null)
                 {
                     e.Cancel = true;
                 }

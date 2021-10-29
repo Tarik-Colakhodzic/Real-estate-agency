@@ -23,7 +23,7 @@ namespace RealEstateAgency.WinUI.User
         private async void frmUsersDetails_Load(object sender, EventArgs e)
         {
             await LoadUloge();
-            if(_user != null)
+            if (_user != null)
             {
                 txtFirstName.Text = _user.FirstName;
                 txtLastName.Text = _user.LastName;
@@ -61,7 +61,6 @@ namespace RealEstateAgency.WinUI.User
         {
             if (this.ValidateChildren())
             {
-
                 var roleList = clbRoles.CheckedItems.Cast<Model.Role>();
                 var roleIds = roleList.Select(x => x.Id).ToList();
 
@@ -117,7 +116,7 @@ namespace RealEstateAgency.WinUI.User
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
             Regex rgx = new Regex(@"^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$");
-            if(!rgx.IsMatch(txtPassword.Text))
+            if (!rgx.IsMatch(txtPassword.Text))
             {
                 errorProvider.SetError(txtPassword, Properties.Resources.Validation_PasswordStrength);
                 e.Cancel = true;
@@ -130,7 +129,7 @@ namespace RealEstateAgency.WinUI.User
 
         private void txtConfirmedPassword_Validating(object sender, CancelEventArgs e)
         {
-            if(txtPassword.Text != txtConfirmedPassword.Text)
+            if (txtPassword.Text != txtConfirmedPassword.Text)
             {
                 errorProvider.SetError(txtConfirmedPassword, Properties.Resources.Validation_NotEqualFields);
                 e.Cancel = true;

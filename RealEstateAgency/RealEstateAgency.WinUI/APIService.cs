@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Flurl.Http;
+using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RealEstateAgency.Model;
-using RealEstateAgency.WinUI.Properties;
-using Flurl.Http;
 
 namespace RealEstateAgency.WinUI
 {
@@ -22,6 +20,7 @@ namespace RealEstateAgency.WinUI
         {
             _resource = resource;
         }
+
         public async Task<T> GetAll<T>(object searchRequest = null)
         {
             var query = "";
@@ -64,7 +63,6 @@ namespace RealEstateAgency.WinUI
                 MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default(T);
             }
-
         }
 
         public async Task<T> Update<T>(int id, object request)
@@ -88,7 +86,6 @@ namespace RealEstateAgency.WinUI
                 MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default(T);
             }
-
         }
 
         public async Task<T> Delete<T>(int id)
@@ -112,7 +109,6 @@ namespace RealEstateAgency.WinUI
                 MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default(T);
             }
-
         }
     }
 }

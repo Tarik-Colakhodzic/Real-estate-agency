@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace RealEstateAgency.Model
 {
@@ -29,7 +27,6 @@ namespace RealEstateAgency.Model
                 return null;
             }
 
-
             JToken token = metaToken as JToken;
             if (token == null)
             {
@@ -43,7 +40,6 @@ namespace RealEstateAgency.Model
                     dict.Add("id", metaToken.ToString());
                     return dict;
                 }
-
             }
 
             if (token.HasValues)
@@ -93,8 +89,5 @@ namespace RealEstateAgency.Model
 
             return url;
         }
-
-
-
     }
 }
