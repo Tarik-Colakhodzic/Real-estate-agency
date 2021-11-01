@@ -60,9 +60,11 @@ namespace RealEstateAgency.Services
 
             foreach (var role in request.Roles)
             {
-                Database.UserRoles userRoles = new UserRoles();
-                userRoles.UserId = entity.Id;
-                userRoles.RoleId = role;
+                Database.UserRoles userRoles = new UserRoles
+                {
+                    UserId = entity.Id,
+                    RoleId = role
+                };
 
                 Context.UsersRoles.Add(userRoles);
             }
@@ -84,9 +86,11 @@ namespace RealEstateAgency.Services
             var userRoleIdsToInsert = request.Roles.Except(entity.UserRoles.Select(x => x.RoleId));
             foreach (var role in userRoleIdsToInsert)
             {
-                Database.UserRoles userRoles = new UserRoles();
-                userRoles.UserId = entity.Id;
-                userRoles.RoleId = role;
+                Database.UserRoles userRoles = new UserRoles
+                {
+                    UserId = entity.Id,
+                    RoleId = role
+                };
 
                 Context.UsersRoles.Add(userRoles);
             }

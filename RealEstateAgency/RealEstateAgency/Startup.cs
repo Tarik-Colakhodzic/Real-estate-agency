@@ -66,6 +66,7 @@ namespace RealEstateAgency
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IReadService<Model.Role, object>, BaseReadService<Model.Role, Model.Role, object>>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IAgentService, AgentService>();
 
             services.AddAuthentication("BasicAuthentication")
                     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);

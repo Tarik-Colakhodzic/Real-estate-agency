@@ -1,6 +1,7 @@
 ﻿using RealEstateAgency.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System;
 
 namespace RealEstateAgency
 {
@@ -19,6 +20,10 @@ namespace RealEstateAgency
             if(!context.Roles.Any(x => x.Name == "Agent"))
             {
                 context.Roles.Add(new Role { Name = "Agent" });
+            }
+            if (!context.Roles.Any(x => x.Name == "Client"))
+            {
+                context.Roles.Add(new Role { Name = "Client" });
             }
             context.SaveChanges();
 
@@ -206,6 +211,18 @@ namespace RealEstateAgency
                 context.Categories.Add(new Category
                 {
                     Name = "Apartman"
+                });
+            }
+            context.SaveChanges();
+
+            //Agent
+            if(!context.Agents.Any(x => x.User.Id == agentUserId))
+            {
+                context.Agents.Add(new Agent
+                {
+                    Id = agentUserId,
+                    HireDate = DateTime.Now,
+                    Salary = 1750
                 });
             }
             context.SaveChanges();

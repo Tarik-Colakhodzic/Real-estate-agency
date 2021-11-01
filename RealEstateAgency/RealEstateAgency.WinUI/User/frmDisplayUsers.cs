@@ -44,7 +44,11 @@ namespace RealEstateAgency.WinUI.User
         {
             var user = dgvUsers.SelectedRows[0].DataBoundItem;
             frmUsersDetails frm = new frmUsersDetails(user as Model.User);
-            frm.ShowDialog();
+            if(frm.ShowDialog()==DialogResult.OK)
+            {
+                dgvUsers.DataSource = null;
+                frmDisplayUsers_Load(sender, e);
+            }
         }
     }
 }

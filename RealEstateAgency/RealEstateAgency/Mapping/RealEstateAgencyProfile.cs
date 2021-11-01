@@ -13,6 +13,7 @@ namespace RealEstateAgency.Mapping
             CreateMap<Model.Requests.UserInsertRequest, Database.User>().ReverseMap();
             CreateMap<Model.Role, Database.Role>().ReverseMap();
             CreateMap<Model.UserRoles, Database.UserRoles>().ReverseMap();
+            CreateMap<Model.Agent, Database.Agent>().ReverseMap();
         }
     }
 }

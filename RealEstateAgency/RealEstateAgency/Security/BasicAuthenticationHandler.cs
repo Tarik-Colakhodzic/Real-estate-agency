@@ -28,8 +28,7 @@ namespace RealEstateAgency.Security
                 return AuthenticateResult.Fail("Missing authorization header");
             }
 
-            Model.User user = null;
-
+            Model.User user;
             try
             {
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
@@ -40,7 +39,7 @@ namespace RealEstateAgency.Security
 
                 user = await _userService.Login(username, password);
             }
-            catch (Exception ex)
+            catch
             {
                 return AuthenticateResult.Fail("Incorrect username or password");
             }
