@@ -53,16 +53,16 @@ namespace RealEstateAgency.WinUI.User
             this.lblHireDate = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblKM = new System.Windows.Forms.Label();
+            this.btnIncrease = new System.Windows.Forms.Button();
+            this.lblPercentage = new System.Windows.Forms.Label();
+            this.txtIncreaseSalaryBy = new System.Windows.Forms.TextBox();
+            this.lblIncrease = new System.Windows.Forms.Label();
             this.btnUploadImage = new System.Windows.Forms.Button();
             this.pbAgentImage = new System.Windows.Forms.PictureBox();
             this.lblNoAgent = new System.Windows.Forms.Label();
             this.btnSaveAgent = new System.Windows.Forms.Button();
             this.ofdImageUpload = new System.Windows.Forms.OpenFileDialog();
-            this.lblIncrease = new System.Windows.Forms.Label();
-            this.txtIncreaseSalaryBy = new System.Windows.Forms.TextBox();
-            this.lblPercentage = new System.Windows.Forms.Label();
-            this.btnIncrease = new System.Windows.Forms.Button();
-            this.lblKM = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -211,6 +211,7 @@ namespace RealEstateAgency.WinUI.User
             this.clbRoles.Name = "clbRoles";
             this.clbRoles.Size = new System.Drawing.Size(220, 123);
             this.clbRoles.TabIndex = 17;
+            this.clbRoles.SelectedIndexChanged += new System.EventHandler(this.clbRoles_SelectedIndexChanged);
             // 
             // lblSalary
             // 
@@ -295,6 +296,55 @@ namespace RealEstateAgency.WinUI.User
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Agent";
             // 
+            // lblKM
+            // 
+            this.lblKM.AutoSize = true;
+            this.lblKM.Location = new System.Drawing.Point(117, 63);
+            this.lblKM.Name = "lblKM";
+            this.lblKM.Size = new System.Drawing.Size(28, 17);
+            this.lblKM.TabIndex = 29;
+            this.lblKM.Text = "KM";
+            this.lblKM.Visible = false;
+            // 
+            // btnIncrease
+            // 
+            this.btnIncrease.Location = new System.Drawing.Point(218, 200);
+            this.btnIncrease.Name = "btnIncrease";
+            this.btnIncrease.Size = new System.Drawing.Size(85, 28);
+            this.btnIncrease.TabIndex = 28;
+            this.btnIncrease.Text = "Povećaj";
+            this.btnIncrease.UseVisualStyleBackColor = true;
+            this.btnIncrease.Visible = false;
+            this.btnIncrease.Click += new System.EventHandler(this.btnIncrease_Click);
+            // 
+            // lblPercentage
+            // 
+            this.lblPercentage.AutoSize = true;
+            this.lblPercentage.Location = new System.Drawing.Point(192, 206);
+            this.lblPercentage.Name = "lblPercentage";
+            this.lblPercentage.Size = new System.Drawing.Size(20, 17);
+            this.lblPercentage.TabIndex = 27;
+            this.lblPercentage.Text = "%";
+            this.lblPercentage.Visible = false;
+            // 
+            // txtIncreaseSalaryBy
+            // 
+            this.txtIncreaseSalaryBy.Location = new System.Drawing.Point(132, 203);
+            this.txtIncreaseSalaryBy.Name = "txtIncreaseSalaryBy";
+            this.txtIncreaseSalaryBy.Size = new System.Drawing.Size(54, 22);
+            this.txtIncreaseSalaryBy.TabIndex = 26;
+            this.txtIncreaseSalaryBy.Visible = false;
+            // 
+            // lblIncrease
+            // 
+            this.lblIncrease.AutoSize = true;
+            this.lblIncrease.Location = new System.Drawing.Point(10, 203);
+            this.lblIncrease.Name = "lblIncrease";
+            this.lblIncrease.Size = new System.Drawing.Size(116, 17);
+            this.lblIncrease.TabIndex = 25;
+            this.lblIncrease.Text = "Povećaj platu za:";
+            this.lblIncrease.Visible = false;
+            // 
             // btnUploadImage
             // 
             this.btnUploadImage.Location = new System.Drawing.Point(381, 203);
@@ -341,55 +391,6 @@ namespace RealEstateAgency.WinUI.User
             // ofdImageUpload
             // 
             this.ofdImageUpload.FileName = "openFileDialog1";
-            // 
-            // lblIncrease
-            // 
-            this.lblIncrease.AutoSize = true;
-            this.lblIncrease.Location = new System.Drawing.Point(10, 203);
-            this.lblIncrease.Name = "lblIncrease";
-            this.lblIncrease.Size = new System.Drawing.Size(116, 17);
-            this.lblIncrease.TabIndex = 25;
-            this.lblIncrease.Text = "Povećaj platu za:";
-            this.lblIncrease.Visible = false;
-            // 
-            // txtIncreaseSalaryBy
-            // 
-            this.txtIncreaseSalaryBy.Location = new System.Drawing.Point(132, 203);
-            this.txtIncreaseSalaryBy.Name = "txtIncreaseSalaryBy";
-            this.txtIncreaseSalaryBy.Size = new System.Drawing.Size(54, 22);
-            this.txtIncreaseSalaryBy.TabIndex = 26;
-            this.txtIncreaseSalaryBy.Visible = false;
-            // 
-            // lblPercentage
-            // 
-            this.lblPercentage.AutoSize = true;
-            this.lblPercentage.Location = new System.Drawing.Point(192, 206);
-            this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(20, 17);
-            this.lblPercentage.TabIndex = 27;
-            this.lblPercentage.Text = "%";
-            this.lblPercentage.Visible = false;
-            // 
-            // btnIncrease
-            // 
-            this.btnIncrease.Location = new System.Drawing.Point(218, 200);
-            this.btnIncrease.Name = "btnIncrease";
-            this.btnIncrease.Size = new System.Drawing.Size(85, 28);
-            this.btnIncrease.TabIndex = 28;
-            this.btnIncrease.Text = "Povećaj";
-            this.btnIncrease.UseVisualStyleBackColor = true;
-            this.btnIncrease.Visible = false;
-            this.btnIncrease.Click += new System.EventHandler(this.btnIncrease_Click);
-            // 
-            // lblKM
-            // 
-            this.lblKM.AutoSize = true;
-            this.lblKM.Location = new System.Drawing.Point(117, 63);
-            this.lblKM.Name = "lblKM";
-            this.lblKM.Size = new System.Drawing.Size(28, 17);
-            this.lblKM.TabIndex = 29;
-            this.lblKM.Text = "KM";
-            this.lblKM.Visible = false;
             // 
             // frmUsersDetails
             // 

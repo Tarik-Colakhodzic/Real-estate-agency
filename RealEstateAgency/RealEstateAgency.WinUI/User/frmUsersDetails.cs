@@ -14,6 +14,7 @@ namespace RealEstateAgency.WinUI.User
         private readonly APIService _userService = new APIService("User");
         private readonly APIService _rolesService = new APIService("Role");
         private readonly APIService _agentService = new APIService("Agent");
+        private bool _newAgent = false;
         private Model.User _user;
         private Model.Agent _agent;
 
@@ -25,7 +26,7 @@ namespace RealEstateAgency.WinUI.User
 
         private async void frmUsersDetails_Load(object sender, EventArgs e)
         {
-            lblNoAgent.Visible = true;
+            showAdminPanel(false);
             await LoadUloge();
             if (_user != null)
             {
@@ -65,11 +66,7 @@ namespace RealEstateAgency.WinUI.User
                 _agent = await _agentService.GetById<Model.Agent>(_user.Id);
                 if (_agent != null)
                 {
-                    lblSalary.Visible = lblHireDate.Visible = txtSalary.Visible = 
-                        dtpHireDate.Visible = btnSaveAgent.Visible = btnUploadImage.Visible = 
-                        pbAgentImage.Visible = lblIncrease.Visible = txtIncreaseSalaryBy.Visible = 
-                        btnIncrease.Visible = lblPercentage.Visible = lblKM.Visible = true;
-                    lblNoAgent.Visible = false;
+                    showAdminPanel(true);
                     dtpHireDate.Value = _agent.HireDate;
                     txtSalary.Text = Math.Round(_agent.Salary, 2).ToString();
                     pbAgentImage.Image = ImageHelper.FromByteToImage(_agent.Photo);
@@ -96,11 +93,37 @@ namespace RealEstateAgency.WinUI.User
 
                 if (_user == null)
                 {
-                    await _userService.Insert<Model.User>(request);
+                    var user = await _userService.Insert<Model.User>(request);
+                    if(_newAgent)
+                    {
+                        var agent = new Model.Agent
+                        {
+                            Id = user.Id,
+                            HireDate = dtpHireDate.Value,
+                            Salary = decimal.Parse(txtSalary.Text),
+                            Photo = ImageHelper.FromImageToByte(pbAgentImage.Image)
+                        };
+                        await _agentService.Insert<Model.Agent>(agent);
+                    }
                 }
                 else
                 {
                     await _userService.Update<Model.User>(_user.Id, request);
+                    if(roleList.Any(x => x.Name == "Agent"))
+                    {
+                        var agent = new Model.Agent
+                        {
+                            Id = _user.Id,
+                            HireDate = dtpHireDate.Value,
+                            Salary = decimal.Parse(txtSalary.Text),
+                            Photo = ImageHelper.FromImageToByte(pbAgentImage.Image)
+                        };
+                        await _agentService.Insert<Model.Agent>(agent);
+                    }
+                    if(!roleList.Any(x => x.Name == "Agent") && _agent != null)
+                    {
+                        await _agentService.Delete<Model.Agent>(_agent.Id);
+                    }
                 }
                 MessageBox.Show("Operacija uspješno izvršena");
                 DialogResult = DialogResult.OK;
@@ -199,6 +222,8 @@ namespace RealEstateAgency.WinUI.User
             {
                 MessageBox.Show(ex.Message);
             }
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void btnIncrease_Click(object sender, EventArgs e)
@@ -220,5 +245,48 @@ namespace RealEstateAgency.WinUI.User
             salary += Math.Round((increaseBy / 100) * salary, 2);
             txtSalary.Text = salary.ToString();
         }
+
+        private void clbRoles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItems = clbRoles.CheckedItems;
+            _newAgent = false;
+            foreach (var item in selectedItems)
+            {
+                var role = item as Model.Role;
+                if(role != null)
+                {
+                    if(role.Name == "Agent")
+                    {
+                        _newAgent = true;
+                    }
+                }
+            }
+            if(_newAgent)
+            {
+                showAdminPanel(true);
+            }
+            else
+            {
+                showAdminPanel(false);
+            }
+        }
+
+        private void showAdminPanel(bool show)
+        {
+            lblSalary.Visible = lblHireDate.Visible = txtSalary.Visible =
+            dtpHireDate.Visible = btnSaveAgent.Visible = btnUploadImage.Visible =
+            pbAgentImage.Visible = lblIncrease.Visible = txtIncreaseSalaryBy.Visible =
+            btnIncrease.Visible = lblPercentage.Visible = lblKM.Visible = show;
+            lblNoAgent.Visible = !show;
+            if(_user == null || (_user != null && _agent == null))
+            {
+                btnSaveAgent.Visible = false;
+                txtIncreaseSalaryBy.Visible = false;
+                lblPercentage.Visible = false;
+                btnIncrease.Visible = false;
+                lblIncrease.Visible = false;
+            }
+        }
+
     }
 }
