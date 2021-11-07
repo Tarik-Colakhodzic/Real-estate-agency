@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RealEstateAgency.Database;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,22 @@ namespace RealEstateAgency.Services
         public virtual IEnumerable<T> Get(TSearch search = null)
         {
             var entity = Context.Set<TDb>();
+
+            //TODO pogledati optimizaciju i kod
+            var simpleSearch = search as Model.SimpleSearchRequest;
+            if(simpleSearch != null)
+            {
+                var includeEntities = entity.AsQueryable();
+                if (simpleSearch?.IncludeList?.Length > 0)
+                {
+                    foreach (var item in simpleSearch.IncludeList)
+                    {
+                        includeEntities = includeEntities.Include(item);
+                    }
+                }
+                var result = includeEntities.ToList();
+                return _mapper.Map<List<T>>(result);
+            }
 
             var list = entity.ToList();
             return _mapper.Map<List<T>>(list);

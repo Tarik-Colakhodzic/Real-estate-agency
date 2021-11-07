@@ -40,6 +40,7 @@ namespace RealEstateAgency
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RealEstate API", Version = "v1" });
+                c.CustomSchemaIds(type => type.ToString());
 
                 c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
                 {
@@ -67,6 +68,9 @@ namespace RealEstateAgency
             services.AddScoped<IReadService<Model.Role, object>, BaseReadService<Model.Role, Model.Role, object>>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IAgentService, AgentService>();
+            services.AddScoped<IOwnerService, OwnerService>();
+            services.AddScoped<IPropertyService, PropertyService>();
+            services.AddScoped<IPropertyPhotoService, PropertyPhotoService>();
 
             services.AddAuthentication("BasicAuthentication")
                     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
