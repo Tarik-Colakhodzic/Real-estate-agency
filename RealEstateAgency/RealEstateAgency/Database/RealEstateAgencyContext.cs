@@ -17,6 +17,7 @@ namespace RealEstateAgency.Database
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<OfferType> OfferTypes { get; set; }
         public virtual DbSet<Agent> Agents { get; set; }
-
+        public virtual DbSet<Owner> Owners { get; set; }
+        public virtual DbSet<Property> Properties { get; set; }
     }
 }
