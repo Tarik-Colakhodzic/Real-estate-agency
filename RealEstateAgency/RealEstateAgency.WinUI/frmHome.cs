@@ -1,4 +1,5 @@
-﻿using RealEstateAgency.WinUI.User;
+﻿using RealEstateAgency.WinUI.Owner;
+using RealEstateAgency.WinUI.User;
 using System;
 using System.Windows.Forms;
 
@@ -107,6 +108,21 @@ namespace RealEstateAgency.WinUI
         private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUsersDetails frm = new frmUsersDetails();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void displayOwnersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDisplayOwners frm = new frmDisplayOwners();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void addOwnersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmOwnerDetails frm = new frmOwnerDetails();
             frm.MdiParent = this;
             frm.Show();
         }

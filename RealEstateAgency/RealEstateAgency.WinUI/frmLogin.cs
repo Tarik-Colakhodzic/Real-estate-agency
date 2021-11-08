@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealEstateAgency.Model;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -6,7 +7,7 @@ namespace RealEstateAgency.WinUI
 {
     public partial class frmLogin : Form
     {
-        private readonly APIService _api = new APIService("Role");
+        private readonly APIService _api = new APIService(EntityNames.Role);
 
         public frmLogin()
         {
@@ -20,7 +21,7 @@ namespace RealEstateAgency.WinUI
 
             try
             {
-                var result = await _api.GetAll<List<Model.Role>>();
+                var result = await _api.GetAll<List<Role>>();
 
                 frmHome frm = new frmHome();
                 frm.Show();

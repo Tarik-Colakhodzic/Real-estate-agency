@@ -37,6 +37,9 @@ namespace RealEstateAgency.WinUI
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.vlasniciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -45,7 +48,8 @@ namespace RealEstateAgency.WinUI
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usersToolStripMenuItem});
+            this.usersToolStripMenuItem,
+            this.vlasniciToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(843, 28);
@@ -93,6 +97,29 @@ namespace RealEstateAgency.WinUI
             this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
             this.toolStripStatusLabel.Text = "Status";
             // 
+            // vlasniciToolStripMenuItem
+            // 
+            this.vlasniciToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayOwnersToolStripMenuItem,
+            this.addOwnersToolStripMenuItem});
+            this.vlasniciToolStripMenuItem.Name = "vlasniciToolStripMenuItem";
+            this.vlasniciToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.vlasniciToolStripMenuItem.Text = "Vlasnici";
+            // 
+            // displayOwnersToolStripMenuItem
+            // 
+            this.displayOwnersToolStripMenuItem.Name = "displayOwnersToolStripMenuItem";
+            this.displayOwnersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.displayOwnersToolStripMenuItem.Text = "Pregled vlasnika";
+            this.displayOwnersToolStripMenuItem.Click += new System.EventHandler(this.displayOwnersToolStripMenuItem_Click);
+            // 
+            // addOwnersToolStripMenuItem
+            // 
+            this.addOwnersToolStripMenuItem.Name = "addOwnersToolStripMenuItem";
+            this.addOwnersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addOwnersToolStripMenuItem.Text = "Dodavanje vlasnika";
+            this.addOwnersToolStripMenuItem.Click += new System.EventHandler(this.addOwnersToolStripMenuItem_Click);
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -124,6 +151,9 @@ namespace RealEstateAgency.WinUI
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem displayUsersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vlasniciToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayOwnersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addOwnersToolStripMenuItem;
     }
 }
 

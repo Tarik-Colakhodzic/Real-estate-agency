@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealEstateAgency.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -11,9 +12,9 @@ namespace RealEstateAgency.WinUI.User
 {
     public partial class frmUsersDetails : Form
     {
-        private readonly APIService _userService = new APIService("User");
-        private readonly APIService _rolesService = new APIService("Role");
-        private readonly APIService _agentService = new APIService("Agent");
+        private readonly APIService _userService = new APIService(EntityNames.User);
+        private readonly APIService _rolesService = new APIService(EntityNames.Role);
+        private readonly APIService _agentService = new APIService(EntityNames.Agent);
         private bool _newAgent = false;
         private Model.User _user;
         private Model.Agent _agent;

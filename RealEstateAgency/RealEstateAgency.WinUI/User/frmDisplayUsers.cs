@@ -7,7 +7,7 @@ namespace RealEstateAgency.WinUI.User
 {
     public partial class frmDisplayUsers : Form
     {
-        private APIService _serviceUsers = new APIService("User");
+        private APIService _serviceUsers = new APIService(EntityNames.User);
 
         public frmDisplayUsers()
         {
