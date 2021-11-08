@@ -110,7 +110,7 @@ namespace RealEstateAgency.WinUI.User
                 else
                 {
                     await _userService.Update<Model.User>(_user.Id, request);
-                    if(roleList.Any(x => x.Name == "Agent"))
+                    if(roleList.Any(x => x.Name == "Agent") && _newAgent)
                     {
                         var agent = new Model.Agent
                         {

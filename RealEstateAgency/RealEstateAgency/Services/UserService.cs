@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstateAgency.Database;
 using RealEstateAgency.Filters;
+using RealEstateAgency.Model;
 using RealEstateAgency.Model.Requests;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace RealEstateAgency.Services
 
             foreach (var role in request.Roles)
             {
-                Database.UserRoles userRoles = new UserRoles
+                Database.UserRoles userRoles = new Database.UserRoles
                 {
                     UserId = entity.Id,
                     RoleId = role
@@ -86,7 +87,7 @@ namespace RealEstateAgency.Services
             var userRoleIdsToInsert = request.Roles.Except(entity.UserRoles.Select(x => x.RoleId));
             foreach (var role in userRoleIdsToInsert)
             {
-                Database.UserRoles userRoles = new UserRoles
+                Database.UserRoles userRoles = new Database.UserRoles
                 {
                     UserId = entity.Id,
                     RoleId = role
@@ -114,7 +115,18 @@ namespace RealEstateAgency.Services
             {
                 throw new UserException("Pogrešan username ili password");
             }
-
+            LoggedUser.Id = entity.Id;
+            foreach (var item in entity.UserRoles)
+            {
+                if (item.Role.Name == "Agent")
+                {
+                    LoggedUser.Agent = true;
+                }
+                if (item.Role.Name == "Administrator")
+                {
+                    LoggedUser.Administrator = true;
+                }
+            }
             return _mapper.Map<Model.User>(entity);
         }
 
