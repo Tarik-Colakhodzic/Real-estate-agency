@@ -38,7 +38,6 @@ namespace RealEstateAgency.WinUI.Owner
                     EntityNames.City
                 },
             };
-            var list = await _serviceOwners.GetAll<List<Model.Owner>>(searchObject);
             dgvOwners.DataSource = await _serviceOwners.GetAll<List<Model.Owner>>(searchObject);
         }
 

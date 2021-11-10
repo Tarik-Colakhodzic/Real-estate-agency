@@ -12,5 +12,6 @@
         public virtual City City { get; set; }
 
         public string CityName => City?.Name;
+        public string FullName => $"{FirstName} {LastName}";
     }
 }

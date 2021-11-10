@@ -1,4 +1,6 @@
-﻿using RealEstateAgency.WinUI.Owner;
+﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Owner;
+using RealEstateAgency.WinUI.Property;
 using RealEstateAgency.WinUI.User;
 using System;
 using System.Windows.Forms;
@@ -12,6 +14,10 @@ namespace RealEstateAgency.WinUI
         public frmHome()
         {
             InitializeComponent();
+            if(LoggedUser.Agent)
+            {
+                vlasniciToolStripMenuItem.Visible = false;
+            }
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -125,6 +131,19 @@ namespace RealEstateAgency.WinUI
             frmOwnerDetails frm = new frmOwnerDetails();
             frm.MdiParent = this;
             frm.Show();
+        }
+
+        private void pregledNekretninaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDisplayProperty frm = new frmDisplayProperty();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void dodavanjeNekrenineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

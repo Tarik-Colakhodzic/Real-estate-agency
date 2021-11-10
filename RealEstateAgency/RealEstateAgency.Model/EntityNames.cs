@@ -9,5 +9,8 @@
         public static string UserRoles = "UserRoles";
         public static string Owner = "Owner";
         public static string Agent = "Agent";
+        public static string Property = "Property";
+        public static string Category = "Category";
+        public static string OfferType = "OfferType";
     }
 }

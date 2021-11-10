@@ -23,14 +23,18 @@ namespace RealEstateAgency.Model
 
         public int CityId { get; set; }
         public virtual City City { get; set; }
+        public string CityName => City?.Name;
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+        public string CategoryName => Category?.Name;
         public int OfferTypeId { get; set; }
         public virtual OfferType OfferType { get; set; }
+        public string OfferTypeName => OfferType?.Name;
         public int AgentId { get; set; }
         public Agent Agent { get; set; }
         public int OwnerId { get; set; }
         public virtual Owner Owner { get; set; }
+        public string OwnerName => $"{Owner?.FirstName} {Owner?.LastName}";
         public virtual ICollection<PropertyPhoto> PropertyPhotos { get; set; }
     }
 }

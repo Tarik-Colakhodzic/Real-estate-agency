@@ -95,7 +95,7 @@ namespace RealEstateAgency.WinUI.User
                 if (_user == null)
                 {
                     var user = await _userService.Insert<Model.User>(request);
-                    if(_newAgent)
+                    if (_newAgent)
                     {
                         var agent = new Model.Agent
                         {
@@ -110,7 +110,7 @@ namespace RealEstateAgency.WinUI.User
                 else
                 {
                     await _userService.Update<Model.User>(_user.Id, request);
-                    if(roleList.Any(x => x.Name == "Agent") && _newAgent)
+                    if (roleList.Any(x => x.Name == "Agent") && _newAgent)
                     {
                         var agent = new Model.Agent
                         {
@@ -121,7 +121,7 @@ namespace RealEstateAgency.WinUI.User
                         };
                         await _agentService.Insert<Model.Agent>(agent);
                     }
-                    if(!roleList.Any(x => x.Name == "Agent") && _agent != null)
+                    if (!roleList.Any(x => x.Name == "Agent") && _agent != null)
                     {
                         await _agentService.Delete<Model.Agent>(_agent.Id);
                     }
@@ -206,7 +206,7 @@ namespace RealEstateAgency.WinUI.User
         {
             try
             {
-                if(!Decimal.TryParse(txtSalary.Text, out decimal salary))
+                if (!Decimal.TryParse(txtSalary.Text, out decimal salary))
                 {
                     MessageBox.Show("Plata nije isprava!");
                 }
@@ -229,17 +229,17 @@ namespace RealEstateAgency.WinUI.User
 
         private void btnIncrease_Click(object sender, EventArgs e)
         {
-            if(!decimal.TryParse(txtSalary.Text, out decimal salary))
+            if (!decimal.TryParse(txtSalary.Text, out decimal salary))
             {
                 MessageBox.Show("Plata nije ispravna!");
                 return;
             }
-            if(!decimal.TryParse(txtIncreaseSalaryBy.Text, out decimal increaseBy))
+            if (!decimal.TryParse(txtIncreaseSalaryBy.Text, out decimal increaseBy))
             {
                 MessageBox.Show("Postotak povećanja nije validan!");
                 return;
             }
-            if(increaseBy == 0)
+            if (increaseBy == 0)
             {
                 return;
             }
@@ -254,15 +254,15 @@ namespace RealEstateAgency.WinUI.User
             foreach (var item in selectedItems)
             {
                 var role = item as Model.Role;
-                if(role != null)
+                if (role != null)
                 {
-                    if(role.Name == "Agent")
+                    if (role.Name == "Agent")
                     {
                         _newAgent = true;
                     }
                 }
             }
-            if(_newAgent)
+            if (_newAgent)
             {
                 showAdminPanel(true);
             }
@@ -279,7 +279,7 @@ namespace RealEstateAgency.WinUI.User
             pbAgentImage.Visible = lblIncrease.Visible = txtIncreaseSalaryBy.Visible =
             btnIncrease.Visible = lblPercentage.Visible = lblKM.Visible = show;
             lblNoAgent.Visible = !show;
-            if(_user == null || (_user != null && _agent == null))
+            if (_user == null || (_user != null && _agent == null))
             {
                 btnSaveAgent.Visible = false;
                 txtIncreaseSalaryBy.Visible = false;
@@ -288,6 +288,5 @@ namespace RealEstateAgency.WinUI.User
                 lblIncrease.Visible = false;
             }
         }
-
     }
 }

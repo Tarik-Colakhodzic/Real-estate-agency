@@ -12,7 +12,7 @@ namespace RealEstateAgency
             //TODO popuniti podatke za sve tabele
             context.Database.Migrate();
 
-            //ROLES
+            #region ROLES
             if (!context.Roles.Any(x => x.Name == "Administrator"))
             {
                 context.Roles.Add(new Role { Name = "Administrator" });
@@ -26,8 +26,9 @@ namespace RealEstateAgency
                 context.Roles.Add(new Role { Name = "Client" });
             }
             context.SaveChanges();
+            #endregion
 
-            //USERS
+            #region USERS
             var adminRoleId = context.Roles.First(x => x.Name == "Administrator").Id;
             var agentRoleId = context.Roles.First(x => x.Name == "Agent").Id;
 
@@ -58,8 +59,9 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
+            #endregion
 
-            //USERROLES
+            #region USERROLES
             var adminUserId = context.Users.First(x => x.UserName == "Administrator").Id;
             var agentUserId = context.Users.First(x => x.UserName == "Agent").Id;
 
@@ -80,9 +82,10 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
+            #endregion
 
-            //Country
-            if(!context.Countries.Any(x => x.Name == "Bosna i Hercegovina"))
+            #region Country
+            if (!context.Countries.Any(x => x.Name == "Bosna i Hercegovina"))
             {
                 context.Countries.Add(new Country
                 {
@@ -104,8 +107,9 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
+            #endregion
 
-            //City
+            #region City
             var bosnaIHercegovinaId = context.Countries.First(x => x.Name == "Bosna i Hercegovina").Id;
             var hrvatskaId = context.Countries.First(x => x.Name == "Hrvatska").Id;
             var crnaGoraId = context.Countries.First(x => x.Name == "Crna Gora").Id;
@@ -159,9 +163,10 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
+            #endregion
 
-            //OfferType
-            if(!context.OfferTypes.Any(x => x.Name == "Prodaja"))
+            #region OfferType
+            if (!context.OfferTypes.Any(x => x.Name == "Prodaja"))
             {
                 context.OfferTypes.Add(new OfferType
                 {
@@ -176,8 +181,9 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
+            #endregion
 
-            //Category
+            #region Category
             if (!context.Categories.Any(x => x.Name == "Stan"))
             {
                 context.Categories.Add(new Category
@@ -214,9 +220,10 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
+            #endregion
 
-            //Agent
-            if(!context.Agents.Any(x => x.User.Id == agentUserId))
+            #region Agent
+            if (!context.Agents.Any(x => x.User.Id == agentUserId))
             {
                 context.Agents.Add(new Agent
                 {
@@ -226,6 +233,7 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
+            #endregion
         }
     }
 }
