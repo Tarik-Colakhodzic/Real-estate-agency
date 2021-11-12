@@ -15,6 +15,9 @@ namespace RealEstateAgency.WinUI
 
         public static string Username { get; set; }
         public static string Password { get; set; }
+        public static int LoggedUserId { get; set; }
+        public static bool Agent { get; set; }
+        public static bool Administrator { get; set; }
 
         public APIService(string resource)
         {

@@ -115,18 +115,6 @@ namespace RealEstateAgency.Services
             {
                 throw new UserException("Pogrešan username ili password");
             }
-            LoggedUser.Id = entity.Id;
-            foreach (var item in entity.UserRoles)
-            {
-                if (item.Role.Name == "Agent")
-                {
-                    LoggedUser.Agent = true;
-                }
-                if (item.Role.Name == "Administrator")
-                {
-                    LoggedUser.Administrator = true;
-                }
-            }
             return _mapper.Map<Model.User>(entity);
         }
 

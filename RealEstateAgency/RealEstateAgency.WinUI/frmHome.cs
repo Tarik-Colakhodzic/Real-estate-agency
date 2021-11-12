@@ -14,9 +14,9 @@ namespace RealEstateAgency.WinUI
         public frmHome()
         {
             InitializeComponent();
-            if(LoggedUser.Agent)
+            if(!APIService.Administrator)
             {
-                vlasniciToolStripMenuItem.Visible = false;
+                usersToolStripMenuItem.Visible = false;
             }
         }
 

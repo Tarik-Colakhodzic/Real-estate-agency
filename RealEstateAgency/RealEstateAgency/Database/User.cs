@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace RealEstateAgency.Database
 {
+    [Index(nameof(UserName), IsUnique = true)]
     public class User
     {
         public int Id { get; set; }
