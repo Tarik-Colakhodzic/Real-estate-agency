@@ -1,12 +1,6 @@
 ﻿using RealEstateAgency.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RealEstateAgency.WinUI.Owner
@@ -36,7 +30,7 @@ namespace RealEstateAgency.WinUI.Owner
                     PhoneNumber = txtPhoneNumber.Text,
                     CityId = int.Parse(cmbCity.SelectedValue.ToString())
                 };
-                if(_owner == null)
+                if (_owner == null)
                 {
                     await _ownerService.Insert<Model.Owner>(request);
                 }
@@ -60,7 +54,7 @@ namespace RealEstateAgency.WinUI.Owner
             cmbCity.DataSource = await _cityService.GetAll<List<City>>();
             cmbCity.DisplayMember = "Name";
             cmbCity.ValueMember = "Id";
-            if(_owner != null)
+            if (_owner != null)
             {
                 txtAddress.Text = _owner.Address;
                 txtEmail.Text = _owner.Email;

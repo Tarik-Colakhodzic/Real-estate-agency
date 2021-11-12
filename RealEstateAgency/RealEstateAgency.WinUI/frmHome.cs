@@ -143,7 +143,9 @@ namespace RealEstateAgency.WinUI
 
         private void dodavanjeNekrenineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmPropertyDetails frm = new frmPropertyDetails();
+            frm.MdiParent = this;
+            frm.Show();
         }
     }
 }

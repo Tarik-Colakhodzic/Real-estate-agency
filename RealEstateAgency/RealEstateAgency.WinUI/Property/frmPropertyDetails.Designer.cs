@@ -326,6 +326,7 @@ namespace RealEstateAgency.WinUI.Property
             this.btnSave.TabIndex = 29;
             this.btnSave.Text = "Sačuvaj";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtNumberOfBedRooms
             // 

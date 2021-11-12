@@ -1,12 +1,6 @@
 ﻿using RealEstateAgency.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RealEstateAgency.WinUI.Property
@@ -17,6 +11,7 @@ namespace RealEstateAgency.WinUI.Property
         private readonly APIService _categoryService = new APIService(EntityNames.Category);
         private readonly APIService _offerTypeService = new APIService(EntityNames.OfferType);
         private readonly APIService _ownerService = new APIService(EntityNames.Owner);
+        private readonly APIService _propertyService = new APIService(EntityNames.Property);
         private Model.Property _property;
 
         public frmPropertyDetails(Model.Property property = null)
@@ -25,9 +20,10 @@ namespace RealEstateAgency.WinUI.Property
             _property = property;
         }
 
-        private async void frmPropertyDetails_Load(object sender, EventArgs e)
+        private void frmPropertyDetails_Load(object sender, EventArgs e)
         {
-            if(_property != null)
+            LoadComboBox();
+            if (_property != null)
             {
                 txtTitle.Text = _property.Title;
                 txtAddress.Text = _property.Address;
@@ -41,31 +37,82 @@ namespace RealEstateAgency.WinUI.Property
                 chbElectricityConnection.Checked = _property.ElectricityConnection;
                 chbWaterConnection.Checked = _property.WaterConnection;
                 chbFinished.Checked = _property.Finished;
-                if(_property.Internet.HasValue)
+                if (_property.Internet.HasValue)
                 {
                     chbInternet.Checked = _property.Internet.Value;
                 }
-
-                cmbCity.DataSource = await _cityService.GetAll<List<City>>();
-                cmbCity.DisplayMember = "Name";
-                cmbCity.ValueMember = "Id";
                 cmbCity.SelectedIndex = cmbCity.FindStringExact(_property.City.Name);
-
-                cmbCategory.DataSource = await _categoryService.GetAll<List<Category>>();
-                cmbCategory.DisplayMember = "Name";
-                cmbCategory.ValueMember = "Id";
                 cmbCategory.SelectedIndex = cmbCategory.FindStringExact(_property.Category.Name);
-
-                cmbOfferType.DataSource = await _offerTypeService.GetAll<List<OfferType>>();
-                cmbOfferType.DisplayMember = "Name";
-                cmbOfferType.ValueMember = "Id";
                 cmbOfferType.SelectedIndex = cmbOfferType.FindStringExact(_property.OfferType.Name);
-
-                cmbOwner.DataSource = await _ownerService.GetAll<List<Model.Owner>>();
-                cmbOwner.DisplayMember = "FullName";
-                cmbOwner.ValueMember = "Id";
                 cmbOwner.SelectedIndex = cmbOwner.FindStringExact(_property.Owner.FullName);
             }
+        }
+
+        private async void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var request = new Model.Property
+                {
+                    Address = txtAddress.Text,
+                    Description = txtDescription.Text,
+                    ShortDescription = txtShortDescription.Text,
+                    ElectricityConnection = chbElectricityConnection.Checked,
+                    WaterConnection = chbWaterConnection.Checked,
+                    Title = txtTitle.Text,
+                    Finished = chbFinished.Checked,
+                    Internet = chbInternet.Checked,
+                    NumberOfBathRooms = int.Parse(txtNumberOfBathRoom.Text),
+                    NumberOfBedRooms = int.Parse(txtNumberOfBedRooms.Text),
+                    SquareMeters = int.Parse(txtSquareMeters.Text),
+                    BalconySquareMeters = int.Parse(txtBalconySquareMeters.Text),
+                    Price = decimal.Parse(txtPrice.Text),
+                    OfferTypeId = int.Parse(cmbOfferType.SelectedValue.ToString()),
+                    CityId = int.Parse(cmbCity.SelectedValue.ToString()),
+                    OwnerId = int.Parse(cmbOwner.SelectedValue.ToString()),
+                    CategoryId = int.Parse(cmbCategory.SelectedValue.ToString()),
+                };
+                //TODO
+                //Dodati AgentId
+                request.AgentId = 22;
+                if (_property == null)
+                {
+                    request.PublishDate = DateTime.Now;
+                    await _propertyService.Insert<Model.Property>(request);
+                }
+                else
+                {
+                    request.Id = _property.Id;
+                    request.PublishDate = _property.PublishDate;
+                    await _propertyService.Update<Model.Property>(_property.Id, request);
+                }
+                MessageBox.Show("Operacija uspješno izvršena");
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void LoadComboBox()
+        {
+            cmbCity.DataSource = await _cityService.GetAll<List<City>>();
+            cmbCity.DisplayMember = "Name";
+            cmbCity.ValueMember = "Id";
+
+            cmbCategory.DataSource = await _categoryService.GetAll<List<Category>>();
+            cmbCategory.DisplayMember = "Name";
+            cmbCategory.ValueMember = "Id";
+
+            cmbOfferType.DataSource = await _offerTypeService.GetAll<List<OfferType>>();
+            cmbOfferType.DisplayMember = "Name";
+            cmbOfferType.ValueMember = "Id";
+
+            cmbOwner.DataSource = await _ownerService.GetAll<List<Model.Owner>>();
+            cmbOwner.DisplayMember = "FullName";
+            cmbOwner.ValueMember = "Id";
         }
     }
 }
