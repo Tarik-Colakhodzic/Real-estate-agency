@@ -19,5 +19,6 @@ namespace RealEstateAgency.Database
         public virtual DbSet<Agent> Agents { get; set; }
         public virtual DbSet<Owner> Owners { get; set; }
         public virtual DbSet<Property> Properties { get; set; }
+        public virtual DbSet<PropertyPhoto> PropertyPhotos { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using RealEstateAgency.Model;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace RealEstateAgency.WinUI.Property
@@ -13,6 +14,7 @@ namespace RealEstateAgency.WinUI.Property
         private readonly APIService _ownerService = new APIService(EntityNames.Owner);
         private readonly APIService _propertyService = new APIService(EntityNames.Property);
         private Model.Property _property;
+        private int _imageIndex = 0;
 
         public frmPropertyDetails(Model.Property property = null)
         {
@@ -45,6 +47,14 @@ namespace RealEstateAgency.WinUI.Property
                 cmbCategory.SelectedIndex = cmbCategory.FindStringExact(_property.Category.Name);
                 cmbOfferType.SelectedIndex = cmbOfferType.FindStringExact(_property.OfferType.Name);
                 cmbOwner.SelectedIndex = cmbOwner.FindStringExact(_property.Owner.FullName);
+                foreach (var item in _property.PropertyPhotos)
+                {
+                    imgList.Images.Add(ImageHelper.FromByteToImage(item.Photo));
+                }
+                if(imgList.Images.Count > 0)
+                {
+                    pbPhotos.Image = imgList.Images[_imageIndex];
+                }
             }
             else
             {
@@ -80,6 +90,16 @@ namespace RealEstateAgency.WinUI.Property
                     OwnerId = int.Parse(cmbOwner.SelectedValue.ToString()),
                     CategoryId = int.Parse(cmbCategory.SelectedValue.ToString()),
                 };
+                var propertyPhotos = new List<PropertyPhoto>();
+                foreach (var item in imgList.Images)
+                {
+                    var image = item as Image;
+                    if (image != null)
+                    {
+                        propertyPhotos.Add(new PropertyPhoto { Photo = ImageHelper.FromImageToByte(image) });
+                    }
+                }
+                request.PropertyPhotos = propertyPhotos;
                 if (_property == null)
                 {
                     request.PublishDate = DateTime.Now;
@@ -123,6 +143,60 @@ namespace RealEstateAgency.WinUI.Property
             cmbOwner.DataSource = await _ownerService.GetAll<List<Model.Owner>>();
             cmbOwner.DisplayMember = "FullName";
             cmbOwner.ValueMember = "Id";
+        }
+
+        private void btnAddPhotos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ofdImageUpload.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (var imagePath in ofdImageUpload.FileNames)
+                    {
+                        imgList.Images.Add(Image.FromFile(imagePath));
+                    }
+                    if(imgList.Images.Count > 0)
+                    {
+                        pbPhotos.Image = imgList.Images[_imageIndex];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Grška: {ex.Message}");
+            }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if(imgList.Images.Count > 0)
+            {
+                if (_imageIndex == 0)
+                {
+                    _imageIndex = imgList.Images.Count - 1;
+                }
+                else
+                {
+                    _imageIndex--;
+                }
+                pbPhotos.Image = imgList.Images[_imageIndex];
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if(imgList.Images.Count > 0)
+            {
+                if(_imageIndex == imgList.Images.Count - 1)
+                {
+                    _imageIndex = 0;
+                }
+                else
+                {
+                    _imageIndex++;
+                }
+                pbPhotos.Image = imgList.Images[_imageIndex];
+            }
         }
     }
 }

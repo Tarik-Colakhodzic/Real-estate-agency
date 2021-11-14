@@ -25,7 +25,8 @@ namespace RealEstateAgency.WinUI.Property
                     EntityNames.City,
                     EntityNames.Owner,
                     EntityNames.Category,
-                    EntityNames.OfferType
+                    EntityNames.OfferType,
+                    EntityNames.PropertyPhotos
                 },
             };
             dgvProperties.DataSource = await _serviceOwners.GetAll<List<Model.Property>>(searchObject);

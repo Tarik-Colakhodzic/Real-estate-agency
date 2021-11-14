@@ -29,6 +29,7 @@ namespace RealEstateAgency.WinUI.Property
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.txtShortDescription = new System.Windows.Forms.TextBox();
@@ -63,6 +64,10 @@ namespace RealEstateAgency.WinUI.Property
             this.label12 = new System.Windows.Forms.Label();
             this.txtNumberOfBathRoom = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.imgList = new System.Windows.Forms.ImageList(this.components);
+            this.ofdImageUpload = new System.Windows.Forms.OpenFileDialog();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbPhotos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -305,22 +310,24 @@ namespace RealEstateAgency.WinUI.Property
             // 
             this.pbPhotos.Location = new System.Drawing.Point(943, 24);
             this.pbPhotos.Name = "pbPhotos";
-            this.pbPhotos.Size = new System.Drawing.Size(231, 244);
+            this.pbPhotos.Size = new System.Drawing.Size(256, 256);
+            this.pbPhotos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPhotos.TabIndex = 27;
             this.pbPhotos.TabStop = false;
             // 
             // btnAddPhotos
             // 
-            this.btnAddPhotos.Location = new System.Drawing.Point(943, 274);
+            this.btnAddPhotos.Location = new System.Drawing.Point(943, 318);
             this.btnAddPhotos.Name = "btnAddPhotos";
-            this.btnAddPhotos.Size = new System.Drawing.Size(231, 30);
+            this.btnAddPhotos.Size = new System.Drawing.Size(256, 30);
             this.btnAddPhotos.TabIndex = 28;
             this.btnAddPhotos.Text = "Dodaj slike";
             this.btnAddPhotos.UseVisualStyleBackColor = true;
+            this.btnAddPhotos.Click += new System.EventHandler(this.btnAddPhotos_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(1042, 381);
+            this.btnSave.Location = new System.Drawing.Point(1067, 381);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(132, 35);
             this.btnSave.TabIndex = 29;
@@ -360,11 +367,44 @@ namespace RealEstateAgency.WinUI.Property
             this.label13.TabIndex = 32;
             this.label13.Text = "Broj kupatila";
             // 
+            // imgList
+            // 
+            this.imgList.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
+            this.imgList.ImageSize = new System.Drawing.Size(256, 256);
+            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // ofdImageUpload
+            // 
+            this.ofdImageUpload.FileName = "ofdImageUpload";
+            this.ofdImageUpload.Multiselect = true;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Location = new System.Drawing.Point(943, 282);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(130, 30);
+            this.btnPrevious.TabIndex = 34;
+            this.btnPrevious.Text = "Prethodna";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(1075, 282);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(124, 30);
+            this.btnNext.TabIndex = 35;
+            this.btnNext.Text = "Sljedeća";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
             // frmPropertyDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1196, 451);
+            this.ClientSize = new System.Drawing.Size(1230, 451);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.txtNumberOfBathRoom);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtNumberOfBedRooms);
@@ -445,5 +485,9 @@ namespace RealEstateAgency.WinUI.Property
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtNumberOfBathRoom;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ImageList imgList;
+        private System.Windows.Forms.OpenFileDialog ofdImageUpload;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnNext;
     }
 }
