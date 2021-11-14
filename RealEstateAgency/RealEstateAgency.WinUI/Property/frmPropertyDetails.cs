@@ -30,7 +30,7 @@ namespace RealEstateAgency.WinUI.Property
                 txtDescription.Text = _property.Description;
                 txtShortDescription.Text = _property.ShortDescription;
                 txtPrice.Text = _property.Price.ToString();
-                txtBalconySquareMeters.Text = _property.BalconySquareMeters?.ToString();
+                txtBalconySquareMeters.Text = _property.BalconySquareMeters.ToString();
                 txtSquareMeters.Text = _property.SquareMeters.ToString();
                 txtNumberOfBathRoom.Text = _property.NumberOfBathRooms.ToString();
                 txtNumberOfBedRooms.Text = _property.NumberOfBedRooms.ToString();
@@ -45,6 +45,14 @@ namespace RealEstateAgency.WinUI.Property
                 cmbCategory.SelectedIndex = cmbCategory.FindStringExact(_property.Category.Name);
                 cmbOfferType.SelectedIndex = cmbOfferType.FindStringExact(_property.OfferType.Name);
                 cmbOwner.SelectedIndex = cmbOwner.FindStringExact(_property.Owner.FullName);
+            }
+            else
+            {
+                txtPrice.Text = "0";
+                txtBalconySquareMeters.Text = "0";
+                txtSquareMeters.Text = "0";
+                txtNumberOfBathRoom.Text = "0";
+                txtNumberOfBedRooms.Text = "0";
             }
         }
 
@@ -72,18 +80,20 @@ namespace RealEstateAgency.WinUI.Property
                     OwnerId = int.Parse(cmbOwner.SelectedValue.ToString()),
                     CategoryId = int.Parse(cmbCategory.SelectedValue.ToString()),
                 };
-                //TODO
-                //Dodati AgentId
-                request.AgentId = 22;
                 if (_property == null)
                 {
                     request.PublishDate = DateTime.Now;
+                    if(APIService.Agent)
+                    {
+                        request.AgentId = APIService.LoggedUserId;
+                    }
                     await _propertyService.Insert<Model.Property>(request);
                 }
                 else
                 {
                     request.Id = _property.Id;
                     request.PublishDate = _property.PublishDate;
+                    request.AgentId = _property.AgentId;
                     await _propertyService.Update<Model.Property>(_property.Id, request);
                 }
                 MessageBox.Show("Operacija uspješno izvršena");
