@@ -11,5 +11,6 @@ namespace RealEstateAgency.Model
         public string PhoneNumber { get; set; }
         public string Username { get; set; }
         public virtual ICollection<UserRoles> UserRoles { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
     }
 }

@@ -124,6 +124,9 @@
       <DependentUpon>frmUsersDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Validator.cs" />
+    <EmbeddedResource Include="Contract\frmContractDetails.resx">
+      <DependentUpon>frmContractDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmDisplayContracts.resx">
       <DependentUpon>frmDisplayContracts.cs</DependentUpon>
     </EmbeddedResource>
