@@ -37,12 +37,15 @@ namespace RealEstateAgency.WinUI
             this.vlasniciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addOwnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.nekretnineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pregledNekretninaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodavanjeNekrenineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ugovoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pregledUgovoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.doddavanjeUgovoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +56,8 @@ namespace RealEstateAgency.WinUI
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.usersToolStripMenuItem,
             this.vlasniciToolStripMenuItem,
-            this.nekretnineToolStripMenuItem});
+            this.nekretnineToolStripMenuItem,
+            this.ugovoriToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(843, 28);
@@ -95,34 +99,16 @@ namespace RealEstateAgency.WinUI
             // displayOwnersToolStripMenuItem
             // 
             this.displayOwnersToolStripMenuItem.Name = "displayOwnersToolStripMenuItem";
-            this.displayOwnersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.displayOwnersToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
             this.displayOwnersToolStripMenuItem.Text = "Pregled vlasnika";
             this.displayOwnersToolStripMenuItem.Click += new System.EventHandler(this.displayOwnersToolStripMenuItem_Click);
             // 
             // addOwnersToolStripMenuItem
             // 
             this.addOwnersToolStripMenuItem.Name = "addOwnersToolStripMenuItem";
-            this.addOwnersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.addOwnersToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
             this.addOwnersToolStripMenuItem.Text = "Dodavanje vlasnika";
             this.addOwnersToolStripMenuItem.Click += new System.EventHandler(this.addOwnersToolStripMenuItem_Click);
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 532);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(843, 26);
-            this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "StatusStrip";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
-            this.toolStripStatusLabel.Text = "Status";
             // 
             // nekretnineToolStripMenuItem
             // 
@@ -146,6 +132,47 @@ namespace RealEstateAgency.WinUI
             this.dodavanjeNekrenineToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
             this.dodavanjeNekrenineToolStripMenuItem.Text = "Dodavanje nekrenine";
             this.dodavanjeNekrenineToolStripMenuItem.Click += new System.EventHandler(this.dodavanjeNekrenineToolStripMenuItem_Click);
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 532);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip.Size = new System.Drawing.Size(843, 26);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "StatusStrip";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
+            this.toolStripStatusLabel.Text = "Status";
+            // 
+            // ugovoriToolStripMenuItem
+            // 
+            this.ugovoriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pregledUgovoraToolStripMenuItem,
+            this.doddavanjeUgovoraToolStripMenuItem});
+            this.ugovoriToolStripMenuItem.Name = "ugovoriToolStripMenuItem";
+            this.ugovoriToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.ugovoriToolStripMenuItem.Text = "Ugovori";
+            // 
+            // pregledUgovoraToolStripMenuItem
+            // 
+            this.pregledUgovoraToolStripMenuItem.Name = "pregledUgovoraToolStripMenuItem";
+            this.pregledUgovoraToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.pregledUgovoraToolStripMenuItem.Text = "Pregled ugovora";
+            this.pregledUgovoraToolStripMenuItem.Click += new System.EventHandler(this.pregledUgovoraToolStripMenuItem_Click);
+            // 
+            // doddavanjeUgovoraToolStripMenuItem
+            // 
+            this.doddavanjeUgovoraToolStripMenuItem.Name = "doddavanjeUgovoraToolStripMenuItem";
+            this.doddavanjeUgovoraToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.doddavanjeUgovoraToolStripMenuItem.Text = "Doddavanje ugovora";
+            this.doddavanjeUgovoraToolStripMenuItem.Click += new System.EventHandler(this.doddavanjeUgovoraToolStripMenuItem_Click);
             // 
             // frmHome
             // 
@@ -184,6 +211,9 @@ namespace RealEstateAgency.WinUI
         private System.Windows.Forms.ToolStripMenuItem nekretnineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pregledNekretninaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodavanjeNekrenineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ugovoriToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pregledUgovoraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem doddavanjeUgovoraToolStripMenuItem;
     }
 }
 

@@ -60,6 +60,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIService.cs" />
+    <Compile Include="Contract\frmContractDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmContractDetails.Designer.cs">
+      <DependentUpon>frmContractDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contract\frmDisplayContracts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contract\frmDisplayContracts.Designer.cs">
+      <DependentUpon>frmDisplayContracts.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +124,9 @@
       <DependentUpon>frmUsersDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Validator.cs" />
+    <EmbeddedResource Include="Contract\frmDisplayContracts.resx">
+      <DependentUpon>frmDisplayContracts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
     </EmbeddedResource>

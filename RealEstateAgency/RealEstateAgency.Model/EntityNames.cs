@@ -10,8 +10,11 @@
         public static string Owner = "Owner";
         public static string Agent = "Agent";
         public static string Property = "Property";
+        public static string PropertyOwner = "Property.Owner";
         public static string Category = "Category";
         public static string OfferType = "OfferType";
         public static string PropertyPhotos = "PropertyPhotos";
+        public static string Contract = "Contract";
+        public static string Client = "Client";
     }
 }

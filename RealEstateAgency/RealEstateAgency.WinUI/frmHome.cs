@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Contract;
 using RealEstateAgency.WinUI.Owner;
 using RealEstateAgency.WinUI.Property;
 using RealEstateAgency.WinUI.User;
@@ -144,6 +145,21 @@ namespace RealEstateAgency.WinUI
         private void dodavanjeNekrenineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPropertyDetails frm = new frmPropertyDetails();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void pregledUgovoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDisplayContracts frm = new frmDisplayContracts();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void doddavanjeUgovoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmContractDetails frm = new frmContractDetails();
             frm.MdiParent = this;
             frm.Show();
         }
