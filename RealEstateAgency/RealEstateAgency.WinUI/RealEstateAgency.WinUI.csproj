@@ -60,6 +60,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIService.cs" />
+    <Compile Include="BookOfComplaints\frmBookOfComplaintsDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookOfComplaints\frmBookOfComplaintsDetails.Designer.cs">
+      <DependentUpon>frmBookOfComplaintsDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookOfComplaints\frmDisplayBooksOfComplaints.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookOfComplaints\frmDisplayBooksOfComplaints.Designer.cs">
+      <DependentUpon>frmDisplayBooksOfComplaints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contract\frmContractDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +136,12 @@
       <DependentUpon>frmUsersDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Validator.cs" />
+    <EmbeddedResource Include="BookOfComplaints\frmBookOfComplaintsDetails.resx">
+      <DependentUpon>frmBookOfComplaintsDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookOfComplaints\frmDisplayBooksOfComplaints.resx">
+      <DependentUpon>frmDisplayBooksOfComplaints.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contract\frmContractDetails.resx">
       <DependentUpon>frmContractDetails.cs</DependentUpon>
     </EmbeddedResource>

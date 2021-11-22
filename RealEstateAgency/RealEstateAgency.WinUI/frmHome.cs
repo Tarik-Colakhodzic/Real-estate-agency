@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.BookOfComplaints;
 using RealEstateAgency.WinUI.Contract;
 using RealEstateAgency.WinUI.Owner;
 using RealEstateAgency.WinUI.Property;
@@ -161,6 +162,14 @@ namespace RealEstateAgency.WinUI
         {
             frmContractDetails frm = new frmContractDetails();
             frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void knjigaŽalbiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDisplayBooksOfComplaints frm = new frmDisplayBooksOfComplaints();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
     }
