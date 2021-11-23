@@ -18,5 +18,6 @@
         public static string Contract = "Contract";
         public static string Client = "Client";
         public static string BookOfComplaints = "BookOfComplaints";
+        public static string Visit = "Visit";
     }
 }

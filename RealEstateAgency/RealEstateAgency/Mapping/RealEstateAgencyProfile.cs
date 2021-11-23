@@ -23,6 +23,7 @@ namespace RealEstateAgency.Mapping
             CreateMap<Model.OfferType, Database.OfferType>().ReverseMap();
             CreateMap<Model.Contract, Database.Contract>().ReverseMap();
             CreateMap<Model.BookOfComplaints, Database.BookOfComplaints>().ReverseMap();
+            CreateMap<Model.Visit, Database.Visit>().ReverseMap();
         }
     }
 }

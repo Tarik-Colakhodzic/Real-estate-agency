@@ -136,6 +136,12 @@
       <DependentUpon>frmUsersDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Validator.cs" />
+    <Compile Include="Visit\frmVisitsDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visit\frmVisitsDisplay.Designer.cs">
+      <DependentUpon>frmVisitsDisplay.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BookOfComplaints\frmBookOfComplaintsDetails.resx">
       <DependentUpon>frmBookOfComplaintsDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User\frmUsersDetails.resx">
       <DependentUpon>frmUsersDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visit\frmVisitsDisplay.resx">
+      <DependentUpon>frmVisitsDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

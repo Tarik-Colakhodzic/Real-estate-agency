@@ -1,9 +1,9 @@
-﻿using RealEstateAgency.Model;
-using RealEstateAgency.WinUI.BookOfComplaints;
+﻿using RealEstateAgency.WinUI.BookOfComplaints;
 using RealEstateAgency.WinUI.Contract;
 using RealEstateAgency.WinUI.Owner;
 using RealEstateAgency.WinUI.Property;
 using RealEstateAgency.WinUI.User;
+using RealEstateAgency.WinUI.Visit;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +16,7 @@ namespace RealEstateAgency.WinUI
         public frmHome()
         {
             InitializeComponent();
-            if(!APIService.Administrator)
+            if (!APIService.Administrator)
             {
                 usersToolStripMenuItem.Visible = false;
             }
@@ -168,6 +168,14 @@ namespace RealEstateAgency.WinUI
         private void knjigaŽalbiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDisplayBooksOfComplaints frm = new frmDisplayBooksOfComplaints();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void posjeteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVisitsDisplay frm = new frmVisitsDisplay();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
