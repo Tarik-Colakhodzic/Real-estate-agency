@@ -1,12 +1,10 @@
-﻿using RealEstateAgency.Model;
+﻿using Flurl.Http;
+using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RealEstateAgency.WinUI.Visit
@@ -32,6 +30,25 @@ namespace RealEstateAgency.WinUI.Visit
             };
             var visits = await _visitService.GetAll<List<Model.Visit>>(searchRequest);
             dgvVisits.DataSource = visits.OrderByDescending(x => x.DateTime).ToList();
+        }
+
+        private async void dgvVisits_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                var entity = dgvVisits.SelectedRows[0].DataBoundItem as Model.Visit;
+                var url = $"{Resources.ApiUrl}{EntityNames.Visit}/{entity.Id}/{!entity.Approved}";
+                var result = await url.WithBasicAuth(APIService.Username, APIService.Password).PatchAsync().ReceiveJson<bool>();
+
+                if (result)
+                {
+                    MessageBox.Show("Operacija uspješno izvršena");
+                }
+                else
+                {
+                    MessageBox.Show("Desila se greška");
+                }
+            }
         }
     }
 }

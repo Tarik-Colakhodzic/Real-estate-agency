@@ -96,6 +96,7 @@ namespace RealEstateAgency.WinUI.Visit
             this.dgvVisits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVisits.Size = new System.Drawing.Size(762, 305);
             this.dgvVisits.TabIndex = 0;
+            this.dgvVisits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVisits_CellContentClick);
             // 
             // PropertyTitle
             // 
