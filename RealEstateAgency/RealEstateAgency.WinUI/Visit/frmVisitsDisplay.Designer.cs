@@ -38,6 +38,7 @@ namespace RealEstateAgency.WinUI.Visit
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateTimeFormated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Approved = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisits)).BeginInit();
@@ -128,11 +129,22 @@ namespace RealEstateAgency.WinUI.Visit
             this.Approved.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Approved.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(665, 445);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(117, 31);
+            this.btnDelete.TabIndex = 12;
+            this.btnDelete.Text = "Obriši";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmVisitsDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 455);
+            this.ClientSize = new System.Drawing.Size(812, 488);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmVisitsDisplay";
@@ -157,5 +169,6 @@ namespace RealEstateAgency.WinUI.Visit
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateTimeFormated;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Approved;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

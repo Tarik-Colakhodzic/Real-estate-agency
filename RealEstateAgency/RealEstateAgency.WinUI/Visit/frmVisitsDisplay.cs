@@ -50,5 +50,21 @@ namespace RealEstateAgency.WinUI.Visit
                 }
             }
         }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            var entity = dgvVisits.SelectedRows[0].DataBoundItem as Model.Visit;
+            if (entity != null)
+            {
+                var message = $"Da li ste sigurni da želite izbrisati posjetu sa klijentom {entity.ClientName}?";
+                DialogResult res = MessageBox.Show(message, "Upozorenje", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (res == DialogResult.Yes)
+                {
+                    await _visitService.Delete<Model.Visit>(entity.Id);
+                    MessageBox.Show("Operacija uspješno izvršena!");
+                    frmVisitsDisplay_Load(sender, e);
+                }
+            }
+        }
     }
 }
