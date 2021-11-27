@@ -13,5 +13,8 @@ namespace RealEstateAgency.Model
         public virtual Property Property { get; set; }
         public string Comment { get; set; }
         public DateTime DateCreated { get; set; }
+
+        public string AgentName => $"{Agent?.User?.FirstName} {Agent?.User?.LastName}";
+        public string PropertyTitle => Property?.Title;
     }
 }

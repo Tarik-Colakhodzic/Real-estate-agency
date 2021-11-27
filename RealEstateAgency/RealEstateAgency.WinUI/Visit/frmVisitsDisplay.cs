@@ -25,7 +25,8 @@ namespace RealEstateAgency.WinUI.Visit
             {
                 IncludeList = new[]
                 {
-                    EntityNames.Property
+                    EntityNames.Property,
+                    EntityNames.Client
                 }
             };
             var visits = await _visitService.GetAll<List<Model.Visit>>(searchRequest);

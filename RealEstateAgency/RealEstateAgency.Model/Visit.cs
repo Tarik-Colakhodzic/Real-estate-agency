@@ -14,7 +14,7 @@ namespace RealEstateAgency.Model
         public DateTime DateTime { get; set; }
         public bool Approved { get; set; }
 
-        public string ClientName => $"{Client.FirstName} {Client.LastName}";
+        public string ClientName => $"{Client?.FirstName} {Client?.LastName}";
         public string PropertyTitle => Property?.Title;
         public string DateTimeFormated => DateTime.ToString("dd.MM.yyy hh.mm");
     }
