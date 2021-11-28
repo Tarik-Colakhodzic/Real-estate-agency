@@ -20,8 +20,6 @@ namespace RealEstateAgency.Services
         public virtual IEnumerable<T> Get(TSearch search = null)
         {
             var entity = Context.Set<TDb>();
-
-            //TODO pogledati optimizaciju i kod
             var simpleSearch = search as Model.SimpleSearchRequest;
             if(simpleSearch != null)
             {

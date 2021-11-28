@@ -9,7 +9,6 @@ namespace RealEstateAgency
     {
         public void Init(RealEstateAgencyContext context)
         {
-            //TODO popuniti podatke za sve tabele
             context.Database.Migrate();
 
             #region ROLES
@@ -316,7 +315,6 @@ namespace RealEstateAgency
                     NumberOfBedRooms = 2,
                     Price = 1100000,
                     OfferTypeId = prodajaId,
-                    //TODO: Dodati slike
                 });
             }
             context.SaveChanges();

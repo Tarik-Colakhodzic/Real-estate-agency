@@ -19,7 +19,6 @@ namespace RealEstateAgency.Services
         {
         }
 
-        //TODO async await dodati na svim metodama
         public override IEnumerable<Model.User> Get(Model.SimpleSearchRequest search = null)
         {
             var entity = Context.Set<Database.User>().AsQueryable();
