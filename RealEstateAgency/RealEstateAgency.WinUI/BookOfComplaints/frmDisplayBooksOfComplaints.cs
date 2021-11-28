@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -19,13 +20,21 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         {
             var searchRequest = new SimpleSearchRequest
             {
+                SearchText = txtSearch.Text,
                 IncludeList = new string[]
                 {
                     EntityNames.Property,
                     EntityNames.Agent
                 }
             };
-            dgvBooksOfConstraints.DataSource = await _bookOfComplaintsService.GetAll<List<Model.BookOfComplaints>>(searchRequest);
+            try
+            {
+                dgvBooksOfConstraints.DataSource = await _bookOfComplaintsService.GetAll<List<Model.BookOfComplaints>>(searchRequest);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Resources.Error_Occured);
+            }
         }
 
         private void dgvBooksOfConstraints_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -35,23 +44,9 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             frm.Show();
         }
 
-        private async void btnDisplay_Click(object sender, EventArgs e)
+        private void btnDisplay_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtSearch.Text))
-            {
-                return;
-            }
-            var searchRequest = new SimpleSearchRequest
-            {
-                SearchText = txtSearch.Text,
-                IncludeList = new string[]
-                {
-                    EntityNames.Property,
-                    EntityNames.Agent
-                }
-            };
-            dgvBooksOfConstraints.DataSource = await _bookOfComplaintsService.GetAll<List<Model.BookOfComplaints>>(searchRequest);
-
+            frmDisplayBooksOfConstraints_Load(sender, e);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace RealEstateAgency.WinUI
             }
             catch
             {
-                MessageBox.Show("Pogrešan username ili password");
+                MessageBox.Show(Resources.Login_Faild);
             }
         }
     }

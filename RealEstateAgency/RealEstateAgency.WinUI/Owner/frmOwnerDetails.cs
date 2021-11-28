@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -51,17 +52,24 @@ namespace RealEstateAgency.WinUI.Owner
 
         private async void frmOwnerDetails_Load(object sender, EventArgs e)
         {
-            cmbCity.DataSource = await _cityService.GetAll<List<City>>();
-            cmbCity.DisplayMember = "Name";
-            cmbCity.ValueMember = "Id";
-            if (_owner != null)
+            try
             {
-                txtAddress.Text = _owner.Address;
-                txtEmail.Text = _owner.Email;
-                txtFirstName.Text = _owner.FirstName;
-                txtLastName.Text = _owner.LastName;
-                txtPhoneNumber.Text = _owner.PhoneNumber;
-                cmbCity.SelectedIndex = cmbCity.FindStringExact(_owner.City.Name);
+                cmbCity.DataSource = await _cityService.GetAll<List<City>>();
+                cmbCity.DisplayMember = "Name";
+                cmbCity.ValueMember = "Id";
+                if (_owner != null)
+                {
+                    txtAddress.Text = _owner.Address;
+                    txtEmail.Text = _owner.Email;
+                    txtFirstName.Text = _owner.FirstName;
+                    txtLastName.Text = _owner.LastName;
+                    txtPhoneNumber.Text = _owner.PhoneNumber;
+                    cmbCity.SelectedIndex = cmbCity.FindStringExact(_owner.City.Name);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Resources.Error_Occured);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -15,20 +16,9 @@ namespace RealEstateAgency.WinUI.Contract
             dgvContracts.AutoGenerateColumns = false;
         }
 
-        private async void btnDisplay_Click(object sender, EventArgs e)
+        private void btnDisplay_Click(object sender, EventArgs e)
         {
-            var searchObject = new SimpleSearchRequest
-            {
-                SearchText = txtSearch.Text,
-                IncludeList = new string[]
-                {
-                    EntityNames.Property,
-                    EntityNames.Agent,
-                    EntityNames.Client,
-                    EntityNames.PropertyOwner
-                },
-            };
-            dgvContracts.DataSource = await _serviceContracts.GetAll<List<Model.Contract>>(searchObject);
+            frmDisplayContracts_Load(sender, e);
         }
 
         private async void frmDisplayContracts_Load(object sender, EventArgs e)
@@ -44,7 +34,14 @@ namespace RealEstateAgency.WinUI.Contract
                     EntityNames.PropertyOwner
                 },
             };
-            dgvContracts.DataSource = await _serviceContracts.GetAll<List<Model.Contract>>(searchObject);
+            try
+            {
+                dgvContracts.DataSource = await _serviceContracts.GetAll<List<Model.Contract>>(searchObject);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Resources.Error_Occured);
+            }
         }
 
         private void dgvContracts_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -29,23 +30,19 @@ namespace RealEstateAgency.WinUI.Property
                     EntityNames.PropertyPhotos
                 },
             };
-            dgvProperties.DataSource = await _serviceOwners.GetAll<List<Model.Property>>(searchObject);
+            try
+            {
+                dgvProperties.DataSource = await _serviceOwners.GetAll<List<Model.Property>>(searchObject);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Resources.Error_Occured);
+            }
         }
 
-        private async void btnDisplay_Click(object sender, EventArgs e)
+        private void btnDisplay_Click(object sender, EventArgs e)
         {
-            var searchObject = new SimpleSearchRequest
-            {
-                SearchText = txtSearch.Text,
-                IncludeList = new string[]
-                {
-                    EntityNames.City,
-                    EntityNames.Owner,
-                    EntityNames.Category,
-                    EntityNames.OfferType
-                },
-            };
-            dgvProperties.DataSource = await _serviceOwners.GetAll<List<Model.Property>>(searchObject);
+            frmDisplayProperty_Load(sender, e);
         }
 
         private void dgvProperties_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,37 +42,44 @@ namespace RealEstateAgency.WinUI.User
 
         private async Task LoadUloge()
         {
-            var roles = await _rolesService.GetAll<List<Model.Role>>();
-            if (_user != null)
+            try
             {
-                foreach (var item in roles)
+                var roles = await _rolesService.GetAll<List<Model.Role>>();
+                if (_user != null)
                 {
-                    if (_user.UserRoles.Any(x => x.RoleId == item.Id))
+                    foreach (var item in roles)
                     {
-                        clbRoles.Items.Add(item, true);
+                        if (_user.UserRoles.Any(x => x.RoleId == item.Id))
+                        {
+                            clbRoles.Items.Add(item, true);
+                        }
+                        else
+                        {
+                            clbRoles.Items.Add(item, false);
+                        }
                     }
-                    else
+                }
+                else
+                {
+                    clbRoles.DataSource = roles;
+                }
+                clbRoles.DisplayMember = "Name";
+                var agentRoleId = roles.First(x => x.Name == "Agent").Id;
+                if (_user != null && _user.UserRoles.Any(x => x?.RoleId == agentRoleId))
+                {
+                    _agent = await _agentService.GetById<Model.Agent>(_user.Id);
+                    if (_agent != null)
                     {
-                        clbRoles.Items.Add(item, false);
+                        showAdminPanel(true);
+                        dtpHireDate.Value = _agent.HireDate;
+                        txtSalary.Text = Math.Round(_agent.Salary, 2).ToString();
+                        pbAgentImage.Image = ImageHelper.FromByteToImage(_agent.Photo);
                     }
                 }
             }
-            else
+            catch (Exception)
             {
-                clbRoles.DataSource = roles;
-            }
-            clbRoles.DisplayMember = "Name";
-            var agentRoleId = roles.First(x => x.Name == "Agent").Id;
-            if (_user != null && _user.UserRoles.Any(x => x?.RoleId == agentRoleId))
-            {
-                _agent = await _agentService.GetById<Model.Agent>(_user.Id);
-                if (_agent != null)
-                {
-                    showAdminPanel(true);
-                    dtpHireDate.Value = _agent.HireDate;
-                    txtSalary.Text = Math.Round(_agent.Salary, 2).ToString();
-                    pbAgentImage.Image = ImageHelper.FromByteToImage(_agent.Photo);
-                }
+                MessageBox.Show(Resources.Error_Occured);
             }
         }
 

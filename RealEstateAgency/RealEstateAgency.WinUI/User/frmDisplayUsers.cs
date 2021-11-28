@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -15,7 +16,12 @@ namespace RealEstateAgency.WinUI.User
             dgvUsers.AutoGenerateColumns = false;
         }
 
-        private async void btnDisplay_Click(object sender, EventArgs e)
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+            frmDisplayUsers_Load(sender, e);
+        }
+
+        private async void frmDisplayUsers_Load(object sender, EventArgs e)
         {
             var searchObject = new SimpleSearchRequest
             {
@@ -25,26 +31,21 @@ namespace RealEstateAgency.WinUI.User
                     EntityNames.UserRoles
                 },
             };
-            dgvUsers.DataSource = await _serviceUsers.GetAll<List<Model.User>>(searchObject);
-        }
-
-        private async void frmDisplayUsers_Load(object sender, EventArgs e)
-        {
-            var searchObject = new SimpleSearchRequest
+            try
             {
-                IncludeList = new string[]
-                {
-                    EntityNames.UserRoles
-                },
-            };
-            dgvUsers.DataSource = await _serviceUsers.GetAll<List<Model.User>>(searchObject);
+                dgvUsers.DataSource = await _serviceUsers.GetAll<List<Model.User>>(searchObject);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Resources.Error_Occured);
+            }
         }
 
         private void dgvUsers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             var user = dgvUsers.SelectedRows[0].DataBoundItem;
             frmUsersDetails frm = new frmUsersDetails(user as Model.User);
-            if(frm.ShowDialog()==DialogResult.OK)
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 dgvUsers.DataSource = null;
                 frmDisplayUsers_Load(sender, e);

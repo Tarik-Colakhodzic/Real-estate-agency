@@ -29,8 +29,15 @@ namespace RealEstateAgency.WinUI.Visit
                     EntityNames.Client
                 }
             };
-            var visits = await _visitService.GetAll<List<Model.Visit>>(searchRequest);
-            dgvVisits.DataSource = visits.OrderByDescending(x => x.DateTime).ToList();
+            try
+            {
+                var visits = await _visitService.GetAll<List<Model.Visit>>(searchRequest);
+                dgvVisits.DataSource = visits.OrderByDescending(x => x.DateTime).ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Resources.Error_Occured);
+            }
         }
 
         private async void dgvVisits_CellContentClick(object sender, DataGridViewCellEventArgs e)

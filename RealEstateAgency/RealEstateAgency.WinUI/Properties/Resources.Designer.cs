@@ -70,6 +70,24 @@ namespace RealEstateAgency.WinUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Desila se greška, kontaktirajte tim za podršku!.
+        /// </summary>
+        public static string Error_Occured {
+            get {
+                return ResourceManager.GetString("Error_Occured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pogrešan username ili password.
+        /// </summary>
+        public static string Login_Faild {
+            get {
+                return ResourceManager.GetString("Login_Faild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unesite ispravan email!.
         /// </summary>
         public static string Validation_EmailField {

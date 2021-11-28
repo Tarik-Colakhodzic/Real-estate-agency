@@ -120,6 +120,12 @@
   <data name="ApiUrl" xml:space="preserve">
     <value>https://localhost:44316/api/</value>
   </data>
+  <data name="Error_Occured" xml:space="preserve">
+    <value>Desila se greška, kontaktirajte tim za podršku!</value>
+  </data>
+  <data name="Login_Faild" xml:space="preserve">
+    <value>Pogrešan username ili password</value>
+  </data>
   <data name="Validation_EmailField" xml:space="preserve">
     <value>Unesite ispravan email!</value>
   </data>

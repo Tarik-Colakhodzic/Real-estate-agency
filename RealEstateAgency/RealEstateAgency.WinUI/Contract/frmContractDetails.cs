@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,45 +26,52 @@ namespace RealEstateAgency.WinUI.Contract
 
         private async void frmContractDetails_Load(object sender, EventArgs e)
         {
-            var contracts = await _contractService.GetAll<List<Model.Contract>>();
-            idsWithContract = contracts.Select(x => x.Id).ToList();
+            try
+            {
+                var contracts = await _contractService.GetAll<List<Model.Contract>>();
+                idsWithContract = contracts.Select(x => x.Id).ToList();
 
-            var properties = await _propertyService.GetAll<List<Model.Property>>(new SimpleSearchRequest
-            {
-                IncludeList = new string[] { EntityNames.Owner }
-            });
-            if(_contract == null)
-            {
-                cmbProperty.DataSource = properties.Where(x => !idsWithContract.Any(y => y == x.Id)).ToList();
-            }
-            else
-            {
-                cmbProperty.DataSource = properties.ToList();
-            }
-            cmbProperty.DisplayMember = "Title";
-            cmbProperty.ValueMember = "Id";
+                var properties = await _propertyService.GetAll<List<Model.Property>>(new SimpleSearchRequest
+                {
+                    IncludeList = new string[] { EntityNames.Owner }
+                });
+                if (_contract == null)
+                {
+                    cmbProperty.DataSource = properties.Where(x => !idsWithContract.Any(y => y == x.Id)).ToList();
+                }
+                else
+                {
+                    cmbProperty.DataSource = properties.ToList();
+                }
+                cmbProperty.DisplayMember = "Title";
+                cmbProperty.ValueMember = "Id";
 
-            var clients = await _userService.GetAll<List<Model.User>>(new SimpleSearchRequest
-            {
-                IncludeList = new string[] { EntityNames.UserRolesRoles }
-            });
-            cmbClient.DataSource = clients.Where(x => x.UserRoles.Any(y => y.Role.Name == "Client")).ToList();
-            cmbClient.DisplayMember = "FullName";
-            cmbClient.ValueMember = "Id";
+                var clients = await _userService.GetAll<List<Model.User>>(new SimpleSearchRequest
+                {
+                    IncludeList = new string[] { EntityNames.UserRolesRoles }
+                });
+                cmbClient.DataSource = clients.Where(x => x.UserRoles.Any(y => y.Role.Name == "Client")).ToList();
+                cmbClient.DisplayMember = "FullName";
+                cmbClient.ValueMember = "Id";
 
-            if (_contract != null)
-            {
-                txtOwner.Text = _contract.PropertyOwnerName;
-                txtDescription.Text = _contract.Description;
-                txtContractNumber.Text = _contract.ContractNumber;
-                txtPrice.Text = _contract.Price.ToString();
-                dtmDateCreated.Value = _contract.DateCreated.Date;
-                cmbClient.SelectedIndex = cmbClient.FindStringExact(_contract.Client.FullName);
-                cmbProperty.SelectedIndex = cmbProperty.FindStringExact(_contract.Property.Title);
+                if (_contract != null)
+                {
+                    txtOwner.Text = _contract.PropertyOwnerName;
+                    txtDescription.Text = _contract.Description;
+                    txtContractNumber.Text = _contract.ContractNumber;
+                    txtPrice.Text = _contract.Price.ToString();
+                    dtmDateCreated.Value = _contract.DateCreated.Date;
+                    cmbClient.SelectedIndex = cmbClient.FindStringExact(_contract.Client.FullName);
+                    cmbProperty.SelectedIndex = cmbProperty.FindStringExact(_contract.Property.Title);
+                }
+                else
+                {
+                    txtPrice.Text = "0";
+                }
             }
-            else
+            catch (Exception)
             {
-                txtPrice.Text = "0";
+                MessageBox.Show(Resources.Error_Occured);
             }
         }
 

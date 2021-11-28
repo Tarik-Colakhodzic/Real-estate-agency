@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -128,21 +129,28 @@ namespace RealEstateAgency.WinUI.Property
 
         private async void LoadComboBox()
         {
-            cmbCity.DataSource = await _cityService.GetAll<List<City>>();
-            cmbCity.DisplayMember = "Name";
-            cmbCity.ValueMember = "Id";
+            try
+            {
+                cmbCity.DataSource = await _cityService.GetAll<List<City>>();
+                cmbCity.DisplayMember = "Name";
+                cmbCity.ValueMember = "Id";
 
-            cmbCategory.DataSource = await _categoryService.GetAll<List<Category>>();
-            cmbCategory.DisplayMember = "Name";
-            cmbCategory.ValueMember = "Id";
+                cmbCategory.DataSource = await _categoryService.GetAll<List<Category>>();
+                cmbCategory.DisplayMember = "Name";
+                cmbCategory.ValueMember = "Id";
 
-            cmbOfferType.DataSource = await _offerTypeService.GetAll<List<OfferType>>();
-            cmbOfferType.DisplayMember = "Name";
-            cmbOfferType.ValueMember = "Id";
+                cmbOfferType.DataSource = await _offerTypeService.GetAll<List<OfferType>>();
+                cmbOfferType.DisplayMember = "Name";
+                cmbOfferType.ValueMember = "Id";
 
-            cmbOwner.DataSource = await _ownerService.GetAll<List<Model.Owner>>();
-            cmbOwner.DisplayMember = "FullName";
-            cmbOwner.ValueMember = "Id";
+                cmbOwner.DataSource = await _ownerService.GetAll<List<Model.Owner>>();
+                cmbOwner.DisplayMember = "FullName";
+                cmbOwner.ValueMember = "Id";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Resources.Error_Occured);
+            }
         }
 
         private void btnAddPhotos_Click(object sender, EventArgs e)
