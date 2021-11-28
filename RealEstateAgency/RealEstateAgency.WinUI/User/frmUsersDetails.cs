@@ -87,56 +87,63 @@ namespace RealEstateAgency.WinUI.User
         {
             if (this.ValidateChildren())
             {
-                var roleList = clbRoles.CheckedItems.Cast<Model.Role>();
-                var roleIds = roleList.Select(x => x.Id).ToList();
-
-                var request = new Model.Requests.UserInsertRequest();
-                request.Email = txtEmail.Text;
-                request.PhoneNumber = txtPhoneNumber.Text;
-                request.FirstName = txtFirstName.Text;
-                request.LastName = txtLastName.Text;
-                request.Username = txtUsername.Text;
-                request.Password = txtPassword.Text;
-                request.ConfirmedPassword = txtConfirmedPassword.Text;
-                request.Roles = roleIds;
-
-                if (_user == null)
+                try
                 {
-                    var user = await _userService.Insert<Model.User>(request);
-                    if (_newAgent)
+                    var roleList = clbRoles.CheckedItems.Cast<Model.Role>();
+                    var roleIds = roleList.Select(x => x.Id).ToList();
+
+                    var request = new Model.Requests.UserInsertRequest();
+                    request.Email = txtEmail.Text;
+                    request.PhoneNumber = txtPhoneNumber.Text;
+                    request.FirstName = txtFirstName.Text;
+                    request.LastName = txtLastName.Text;
+                    request.Username = txtUsername.Text;
+                    request.Password = txtPassword.Text;
+                    request.ConfirmedPassword = txtConfirmedPassword.Text;
+                    request.Roles = roleIds;
+
+                    if (_user == null)
                     {
-                        var agent = new Model.Agent
+                        var user = await _userService.Insert<Model.User>(request);
+                        if (_newAgent)
                         {
-                            Id = user.Id,
-                            HireDate = dtpHireDate.Value,
-                            Salary = decimal.Parse(txtSalary.Text),
-                            Photo = ImageHelper.FromImageToByte(pbAgentImage.Image)
-                        };
-                        await _agentService.Insert<Model.Agent>(agent);
+                            var agent = new Model.Agent
+                            {
+                                Id = user.Id,
+                                HireDate = dtpHireDate.Value,
+                                Salary = decimal.Parse(txtSalary.Text),
+                                Photo = ImageHelper.FromImageToByte(pbAgentImage.Image)
+                            };
+                            await _agentService.Insert<Model.Agent>(agent);
+                        }
                     }
+                    else
+                    {
+                        await _userService.Update<Model.User>(_user.Id, request);
+                        if (roleList.Any(x => x.Name == "Agent") && _newAgent)
+                        {
+                            var agent = new Model.Agent
+                            {
+                                Id = _user.Id,
+                                HireDate = dtpHireDate.Value,
+                                Salary = decimal.Parse(txtSalary.Text),
+                                Photo = ImageHelper.FromImageToByte(pbAgentImage.Image)
+                            };
+                            await _agentService.Insert<Model.Agent>(agent);
+                        }
+                        if (!roleList.Any(x => x.Name == "Agent") && _agent != null)
+                        {
+                            await _agentService.Delete<Model.Agent>(_agent.Id);
+                        }
+                    }
+                    MessageBox.Show("Operacija uspješno izvršena");
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-                else
+                catch (Exception)
                 {
-                    await _userService.Update<Model.User>(_user.Id, request);
-                    if (roleList.Any(x => x.Name == "Agent") && _newAgent)
-                    {
-                        var agent = new Model.Agent
-                        {
-                            Id = _user.Id,
-                            HireDate = dtpHireDate.Value,
-                            Salary = decimal.Parse(txtSalary.Text),
-                            Photo = ImageHelper.FromImageToByte(pbAgentImage.Image)
-                        };
-                        await _agentService.Insert<Model.Agent>(agent);
-                    }
-                    if (!roleList.Any(x => x.Name == "Agent") && _agent != null)
-                    {
-                        await _agentService.Delete<Model.Agent>(_agent.Id);
-                    }
+                    MessageBox.Show(Resources.Error_Occured);
                 }
-                MessageBox.Show("Operacija uspješno izvršena");
-                DialogResult = DialogResult.OK;
-                this.Close();
             }
         }
 

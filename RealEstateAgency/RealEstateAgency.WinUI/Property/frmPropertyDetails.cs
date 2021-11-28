@@ -121,9 +121,9 @@ namespace RealEstateAgency.WinUI.Property
                 DialogResult = DialogResult.OK;
                 this.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(Resources.Error_Occured);
             }
         }
 
