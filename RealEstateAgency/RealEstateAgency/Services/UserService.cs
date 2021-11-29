@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstateAgency.Database;
 using RealEstateAgency.Filters;
-using RealEstateAgency.Model;
 using RealEstateAgency.Model.Requests;
 using System;
 using System.Collections.Generic;

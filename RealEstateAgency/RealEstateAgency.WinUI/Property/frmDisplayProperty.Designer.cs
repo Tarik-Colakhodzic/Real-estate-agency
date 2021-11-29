@@ -30,6 +30,20 @@ namespace RealEstateAgency.WinUI.Property
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnClearFilters = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbUnfinished = new System.Windows.Forms.CheckBox();
+            this.cbFnished = new System.Windows.Forms.CheckBox();
+            this.cmbOfferType = new System.Windows.Forms.ComboBox();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
+            this.cmbOwner = new System.Windows.Forms.ComboBox();
+            this.cmbCity = new System.Windows.Forms.ComboBox();
+            this.cmbCountry = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnDisplay = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -51,25 +65,169 @@ namespace RealEstateAgency.WinUI.Property
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnClearFilters);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.cbUnfinished);
+            this.groupBox2.Controls.Add(this.cbFnished);
+            this.groupBox2.Controls.Add(this.cmbOfferType);
+            this.groupBox2.Controls.Add(this.cmbCategory);
+            this.groupBox2.Controls.Add(this.cmbOwner);
+            this.groupBox2.Controls.Add(this.cmbCity);
+            this.groupBox2.Controls.Add(this.cmbCountry);
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Controls.Add(this.btnDisplay);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1320, 80);
+            this.groupBox2.Size = new System.Drawing.Size(1320, 164);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pretraga";
             // 
+            // btnClearFilters
+            // 
+            this.btnClearFilters.Location = new System.Drawing.Point(1074, 108);
+            this.btnClearFilters.Name = "btnClearFilters";
+            this.btnClearFilters.Size = new System.Drawing.Size(117, 31);
+            this.btnClearFilters.TabIndex = 31;
+            this.btnClearFilters.Text = "Očisti filtere";
+            this.btnClearFilters.UseVisualStyleBackColor = true;
+            this.btnClearFilters.Click += new System.EventHandler(this.btnClearFilters_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(213, 95);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 17);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Vrsta objave";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(0, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 17);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Kategorija";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(781, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 17);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Vlasnik";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(590, 92);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 17);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Grad";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(402, 92);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 17);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Država";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Naslov";
+            // 
+            // cbUnfinished
+            // 
+            this.cbUnfinished.AutoSize = true;
+            this.cbUnfinished.Location = new System.Drawing.Point(317, 61);
+            this.cbUnfinished.Name = "cbUnfinished";
+            this.cbUnfinished.Size = new System.Drawing.Size(106, 21);
+            this.cbUnfinished.TabIndex = 22;
+            this.cbUnfinished.Text = "Nezavršene";
+            this.cbUnfinished.UseVisualStyleBackColor = true;
+            // 
+            // cbFnished
+            // 
+            this.cbFnished.AutoSize = true;
+            this.cbFnished.Location = new System.Drawing.Point(221, 60);
+            this.cbFnished.Name = "cbFnished";
+            this.cbFnished.Size = new System.Drawing.Size(90, 21);
+            this.cbFnished.TabIndex = 21;
+            this.cbFnished.Text = "Završene";
+            this.cbFnished.UseVisualStyleBackColor = true;
+            // 
+            // cmbOfferType
+            // 
+            this.cmbOfferType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOfferType.FormattingEnabled = true;
+            this.cmbOfferType.Location = new System.Drawing.Point(216, 115);
+            this.cmbOfferType.Name = "cmbOfferType";
+            this.cmbOfferType.Size = new System.Drawing.Size(183, 24);
+            this.cmbOfferType.TabIndex = 20;
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(3, 115);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(207, 24);
+            this.cmbCategory.TabIndex = 19;
+            // 
+            // cmbOwner
+            // 
+            this.cmbOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOwner.FormattingEnabled = true;
+            this.cmbOwner.Location = new System.Drawing.Point(780, 115);
+            this.cmbOwner.Name = "cmbOwner";
+            this.cmbOwner.Size = new System.Drawing.Size(176, 24);
+            this.cmbOwner.TabIndex = 14;
+            // 
+            // cmbCity
+            // 
+            this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCity.FormattingEnabled = true;
+            this.cmbCity.Location = new System.Drawing.Point(593, 115);
+            this.cmbCity.Name = "cmbCity";
+            this.cmbCity.Size = new System.Drawing.Size(181, 24);
+            this.cmbCity.TabIndex = 13;
+            // 
+            // cmbCountry
+            // 
+            this.cmbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCountry.FormattingEnabled = true;
+            this.cmbCountry.Location = new System.Drawing.Point(405, 115);
+            this.cmbCountry.Name = "cmbCountry";
+            this.cmbCountry.Size = new System.Drawing.Size(181, 24);
+            this.cmbCountry.TabIndex = 12;
+            this.cmbCountry.SelectedIndexChanged += new System.EventHandler(this.cmbCountry_SelectedIndexChanged);
+            // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(6, 38);
+            this.txtSearch.Location = new System.Drawing.Point(3, 60);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(207, 22);
             this.txtSearch.TabIndex = 11;
             // 
             // btnDisplay
             // 
-            this.btnDisplay.Location = new System.Drawing.Point(1197, 34);
+            this.btnDisplay.Location = new System.Drawing.Point(1197, 108);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(117, 31);
             this.btnDisplay.TabIndex = 1;
@@ -80,7 +238,7 @@ namespace RealEstateAgency.WinUI.Property
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvProperties);
-            this.groupBox1.Location = new System.Drawing.Point(12, 98);
+            this.groupBox1.Location = new System.Drawing.Point(12, 182);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1323, 342);
             this.groupBox1.TabIndex = 4;
@@ -202,7 +360,7 @@ namespace RealEstateAgency.WinUI.Property
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1347, 487);
+            this.ClientSize = new System.Drawing.Size(1347, 536);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmDisplayProperty";
@@ -233,5 +391,19 @@ namespace RealEstateAgency.WinUI.Property
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferTypeName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Finished;
+        private System.Windows.Forms.ComboBox cmbOwner;
+        private System.Windows.Forms.ComboBox cmbCity;
+        private System.Windows.Forms.ComboBox cmbCountry;
+        private System.Windows.Forms.ComboBox cmbOfferType;
+        private System.Windows.Forms.ComboBox cmbCategory;
+        private System.Windows.Forms.CheckBox cbUnfinished;
+        private System.Windows.Forms.CheckBox cbFnished;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnClearFilters;
     }
 }

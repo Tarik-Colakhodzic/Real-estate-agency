@@ -20,6 +20,10 @@ namespace RealEstateAgency.WinUI
             {
                 usersToolStripMenuItem.Visible = false;
             }
+            if(!APIService.Agent)
+            {
+                posjeteToolStripMenuItem.Visible = false;
+            }
         }
 
         private void ShowNewForm(object sender, EventArgs e)

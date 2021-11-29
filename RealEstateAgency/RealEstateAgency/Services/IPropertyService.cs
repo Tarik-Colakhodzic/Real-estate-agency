@@ -1,6 +1,8 @@
-﻿namespace RealEstateAgency.Services
+﻿using RealEstateAgency.Model.Requests;
+
+namespace RealEstateAgency.Services
 {
-    public interface IPropertyService : ICRUDService<Model.Property, Model.SimpleSearchRequest, Model.Property, Model.Property>
+    public interface IPropertyService : ICRUDService<Model.Property, PropertySearchRequest, Model.Property, Model.Property>
     {
     }
 }
