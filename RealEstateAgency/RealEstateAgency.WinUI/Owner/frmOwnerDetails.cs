@@ -20,33 +20,36 @@ namespace RealEstateAgency.WinUI.Owner
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            try
+            if (this.ValidateChildren())
             {
-                var request = new Model.Owner
+                try
                 {
-                    FirstName = txtFirstName.Text,
-                    LastName = txtLastName.Text,
-                    Email = txtEmail.Text,
-                    Address = txtAddress.Text,
-                    PhoneNumber = txtPhoneNumber.Text,
-                    CityId = int.Parse(cmbCity.SelectedValue.ToString())
-                };
-                if (_owner == null)
-                {
-                    await _ownerService.Insert<Model.Owner>(request);
+                    var request = new Model.Owner
+                    {
+                        FirstName = txtFirstName.Text,
+                        LastName = txtLastName.Text,
+                        Email = txtEmail.Text,
+                        Address = txtAddress.Text,
+                        PhoneNumber = txtPhoneNumber.Text,
+                        CityId = int.Parse(cmbCity.SelectedValue.ToString())
+                    };
+                    if (_owner == null)
+                    {
+                        await _ownerService.Insert<Model.Owner>(request);
+                    }
+                    else
+                    {
+                        request.Id = _owner.Id;
+                        await _ownerService.Update<Model.Owner>(_owner.Id, request);
+                    }
+                    MessageBox.Show("Operacija uspješno izvršena");
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-                else
+                catch (Exception)
                 {
-                    request.Id = _owner.Id;
-                    await _ownerService.Update<Model.Owner>(_owner.Id, request);
+                    MessageBox.Show(Resources.Error_Occured);
                 }
-                MessageBox.Show("Operacija uspješno izvršena");
-                DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(Resources.Error_Occured);
             }
         }
 
@@ -71,6 +74,31 @@ namespace RealEstateAgency.WinUI.Owner
             {
                 MessageBox.Show(Resources.Error_Occured);
             }
+        }
+
+        private void txtFirstName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredField(errorProvider, txtFirstName, e);
+        }
+
+        private void txtLastName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredField(errorProvider, txtLastName, e);
+        }
+
+        private void txtAddress_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredField(errorProvider, txtAddress, e);
+        }
+
+        private void txtPhoneNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //Validator.ValidatePhoneNumber(errorProvider, txtPhoneNumber, e);
+        }
+
+        private void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateEmail(errorProvider, txtEmail, e);
         }
     }
 }

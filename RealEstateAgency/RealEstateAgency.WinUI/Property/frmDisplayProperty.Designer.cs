@@ -364,7 +364,7 @@ namespace RealEstateAgency.WinUI.Property
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmDisplayProperty";
-            this.Text = "frmDisplayProperty";
+            this.Text = "Prikaz nekretnina";
             this.Load += new System.EventHandler(this.frmDisplayProperty_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

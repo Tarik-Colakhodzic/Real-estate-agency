@@ -29,6 +29,7 @@ namespace RealEstateAgency.WinUI.Owner
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
@@ -42,6 +43,8 @@ namespace RealEstateAgency.WinUI.Owner
             this.cmbCity = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +71,7 @@ namespace RealEstateAgency.WinUI.Owner
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(170, 22);
             this.txtFirstName.TabIndex = 2;
+            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.txtFirstName_Validating);
             // 
             // txtLastName
             // 
@@ -75,6 +79,7 @@ namespace RealEstateAgency.WinUI.Owner
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(170, 22);
             this.txtLastName.TabIndex = 3;
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtLastName_Validating);
             // 
             // txtAddress
             // 
@@ -82,6 +87,7 @@ namespace RealEstateAgency.WinUI.Owner
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(170, 22);
             this.txtAddress.TabIndex = 5;
+            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.txtAddress_Validating);
             // 
             // label3
             // 
@@ -98,6 +104,7 @@ namespace RealEstateAgency.WinUI.Owner
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(170, 22);
             this.txtPhoneNumber.TabIndex = 7;
+            this.txtPhoneNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhoneNumber_Validating);
             // 
             // label4
             // 
@@ -114,6 +121,7 @@ namespace RealEstateAgency.WinUI.Owner
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(170, 22);
             this.txtEmail.TabIndex = 9;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // label5
             // 
@@ -152,6 +160,10 @@ namespace RealEstateAgency.WinUI.Owner
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // frmOwnerDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -174,6 +186,7 @@ namespace RealEstateAgency.WinUI.Owner
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalji vlasnika";
             this.Load += new System.EventHandler(this.frmOwnerDetails_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +207,6 @@ namespace RealEstateAgency.WinUI.Owner
         private System.Windows.Forms.ComboBox cmbCity;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

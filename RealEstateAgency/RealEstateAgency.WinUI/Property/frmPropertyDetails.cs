@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.WinUI.Owner;
 using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
@@ -204,6 +205,17 @@ namespace RealEstateAgency.WinUI.Property
                     _imageIndex++;
                 }
                 pbPhotos.Image = imgList.Images[_imageIndex];
+            }
+        }
+
+        private async void btnAddOwner_Click(object sender, EventArgs e)
+        {
+            var frm = new frmOwnerDetails();
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                cmbOwner.DataSource = await _ownerService.GetAll<List<Model.Owner>>();
+                cmbOwner.DisplayMember = "FullName";
+                cmbOwner.ValueMember = "Id";
             }
         }
     }

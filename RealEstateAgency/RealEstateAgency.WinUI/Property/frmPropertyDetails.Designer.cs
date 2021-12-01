@@ -279,6 +279,7 @@ namespace RealEstateAgency.WinUI.Property
             this.btnAddOwner.TabIndex = 23;
             this.btnAddOwner.Text = "Novi vlasnik";
             this.btnAddOwner.UseVisualStyleBackColor = true;
+            this.btnAddOwner.Click += new System.EventHandler(this.btnAddOwner_Click);
             // 
             // txtBalconySquareMeters
             // 
