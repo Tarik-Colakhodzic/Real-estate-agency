@@ -136,13 +136,18 @@ namespace RealEstateAgency.WinUI.Property
             try
             {
                 var cities = await _cityService.GetAll<List<City>>();
-                cities.Insert(0, new City { Id = 0, Name = "" });
+                var categories = await _categoryService.GetAll<List<Category>>();
+                var owners = await _ownerService.GetAll<List<Model.Owner>>();
+                if (_property == null)
+                {
+                    cities.Insert(0, new City { Id = 0, Name = "" });
+                    categories.Insert(0, new Category { Id = 0, Name = "" });
+                    owners.Insert(0, new Model.Owner { Id = 0, FirstName = "", LastName = "" });
+                }
                 cmbCity.DataSource = cities;
                 cmbCity.DisplayMember = "Name";
                 cmbCity.ValueMember = "Id";
 
-                var categories = await _categoryService.GetAll<List<Category>>();
-                categories.Insert(0, new Category { Id = 0, Name = "" });
                 cmbCategory.DataSource = categories;
                 cmbCategory.DisplayMember = "Name";
                 cmbCategory.ValueMember = "Id";
@@ -151,8 +156,6 @@ namespace RealEstateAgency.WinUI.Property
                 cmbOfferType.DisplayMember = "Name";
                 cmbOfferType.ValueMember = "Id";
 
-                var owners = await _ownerService.GetAll<List<Model.Owner>>();
-                owners.Insert(0, new Model.Owner { Id = 0, FirstName = "", LastName = "" });
                 cmbOwner.DataSource = owners;
                 cmbOwner.DisplayMember = "FullName";
                 cmbOwner.ValueMember = "Id";

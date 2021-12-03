@@ -106,6 +106,10 @@ namespace RealEstateAgency.WinUI.Property
                 cmbOfferType.ValueMember = "Id";
 
                 cities = await _serviceCity.GetAll<List<Model.City>>();
+
+                cmbCity.DataSource = new List<Model.City> { new City { Id = 0, Name = "Odaberite državu" } };
+                cmbCity.DisplayMember = "Name";
+                cmbCity.ValueMember = "Id";
             }
             catch (Exception)
             {
@@ -150,8 +154,10 @@ namespace RealEstateAgency.WinUI.Property
         {
             txtSearch.Text = string.Empty;
             cmbCategory.SelectedItem = cmbCategory.Items[0];
-            cmbCity.SelectedItem = cmbCity.Items[0];
             cmbCountry.SelectedItem = cmbCountry.Items[0];
+            cmbCity.DataSource = new List<Model.City> { new City { Id = 0, Name = "Odaberite državu" } };
+            cmbCity.DisplayMember = "Name";
+            cmbCity.ValueMember = "Id";
             cmbOfferType.SelectedItem = cmbOfferType.Items[0];
             cmbOwner.SelectedItem = cmbOwner.Items[0];
             cbFnished.Checked = false;
