@@ -10,9 +10,7 @@ namespace RealEstateAgency.WinUI.Contract
 {
     public partial class frmContractDetails : Form
     {
-        private readonly APIService _agentService = new APIService(EntityNames.Agent);
         private readonly APIService _propertyService = new APIService(EntityNames.Property);
-        private readonly APIService _ownerService = new APIService(EntityNames.Owner);
         private readonly APIService _userService = new APIService(EntityNames.User);
         private readonly APIService _contractService = new APIService(EntityNames.Contract);
         private Model.Contract _contract;
@@ -31,10 +29,17 @@ namespace RealEstateAgency.WinUI.Contract
                 var contracts = await _contractService.GetAll<List<Model.Contract>>();
                 idsWithContract = contracts.Select(x => x.Id).ToList();
 
-                var properties = await _propertyService.GetAll<List<Model.Property>>(new SimpleSearchRequest
+                var propertySearchRequest = new Model.Requests.PropertySearchRequest
                 {
-                    IncludeList = new string[] { EntityNames.Owner }
-                });
+                    IncludeList = new string[] { EntityNames.Owner },
+                    Unfinished = true
+                };
+                if (APIService.Agent)
+                {
+                    propertySearchRequest.Unfinished = true;
+                }
+                var properties = await _propertyService.GetAll<List<Model.Property>>(propertySearchRequest);
+                properties.Insert(0, new Model.Property { Id = 0, Title = "" });
                 if (_contract == null)
                 {
                     cmbProperty.DataSource = properties.Where(x => !idsWithContract.Any(y => y == x.Id)).ToList();
@@ -50,7 +55,9 @@ namespace RealEstateAgency.WinUI.Contract
                 {
                     IncludeList = new string[] { EntityNames.UserRolesRoles }
                 });
-                cmbClient.DataSource = clients.Where(x => x.UserRoles.Any(y => y.Role.Name == "Client")).ToList();
+                clients = clients.Where(x => x.UserRoles.Any(y => y.Role.Name == "Client")).ToList();
+                clients.Insert(0, new Model.User { Id = 0, FirstName = "", LastName = "" });
+                cmbClient.DataSource = clients;
                 cmbClient.DisplayMember = "FullName";
                 cmbClient.ValueMember = "Id";
 
@@ -82,50 +89,73 @@ namespace RealEstateAgency.WinUI.Contract
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            try
+            if (this.ValidateChildren())
             {
-                var request = new Model.Contract
+                try
                 {
-                    Id = int.Parse(cmbProperty.SelectedValue.ToString()),
-                    AgentId = APIService.LoggedUserId,
-                    UserId = int.Parse(cmbClient.SelectedValue.ToString()),
-                    ContractNumber = txtContractNumber.Text,
-                    DateCreated = dtmDateCreated.Value,
-                    Description = txtDescription.Text,
-                    Price = decimal.Parse(txtPrice.Text)
-                };
-                if (_contract != null)
-                {
-                    if (_contract.Id != request.Id)
+                    var request = new Model.Contract
                     {
-                        if (!idsWithContract.Any(x => x == request.Id))
+                        Id = int.Parse(cmbProperty.SelectedValue.ToString()),
+                        AgentId = APIService.LoggedUserId,
+                        UserId = int.Parse(cmbClient.SelectedValue.ToString()),
+                        ContractNumber = txtContractNumber.Text,
+                        DateCreated = dtmDateCreated.Value,
+                        Description = txtDescription.Text,
+                        Price = decimal.Parse(txtPrice.Text)
+                    };
+                    if (_contract != null)
+                    {
+                        if (_contract.Id != request.Id)
                         {
-                            await _contractService.Delete<Model.Contract>(_contract.Id);
-                            await _contractService.Insert<Model.Contract>(request);
+                            if (!idsWithContract.Any(x => x == request.Id))
+                            {
+                                await _contractService.Delete<Model.Contract>(_contract.Id);
+                                await _contractService.Insert<Model.Contract>(request);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ugovor za odabranu nekretninu već postoji");
+                                return;
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Ugovor za odabranu nekretninu već postoji");
-                            return;
+                            await _contractService.Update<Model.Contract>(_contract.Id, request);
                         }
                     }
                     else
                     {
-                        await _contractService.Update<Model.Contract>(_contract.Id, request);
+                        await _contractService.Insert<Model.Contract>(request);
                     }
+                    MessageBox.Show("Operacija uspješno izvršena");
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-                else
+                catch (Exception)
                 {
-                    await _contractService.Insert<Model.Contract>(request);
+                    MessageBox.Show(Resources.Error_Occured);
                 }
-                MessageBox.Show("Operacija uspješno izvršena");
-                DialogResult = DialogResult.OK;
-                this.Close();
             }
-            catch (Exception)
-            {
-                MessageBox.Show(Resources.Error_Occured);
-            }
+        }
+
+        private void cmbProperty_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredComboBox(errorProvider, cmbProperty, e);
+        }
+
+        private void cmbClient_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredComboBox(errorProvider, cmbClient, e);
+        }
+
+        private void txtContractNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredField(errorProvider, txtContractNumber, e);
+        }
+
+        private void txtPrice_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateGreaterThanZero(errorProvider, txtPrice, e);
         }
     }
 }

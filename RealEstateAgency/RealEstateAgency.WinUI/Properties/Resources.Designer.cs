@@ -97,11 +97,29 @@ namespace RealEstateAgency.WinUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vrijednost mora biti broj veći od 0!.
+        /// </summary>
+        public static string Validation_GreaterThanZero {
+            get {
+                return ResourceManager.GetString("Validation_GreaterThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimalan broj slova je:.
         /// </summary>
         public static string Validation_MinLengthField {
             get {
                 return ResourceManager.GetString("Validation_MinLengthField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obavezno unijeti broj!.
+        /// </summary>
+        public static string Validation_MustBeANumber {
+            get {
+                return ResourceManager.GetString("Validation_MustBeANumber", resourceCulture);
             }
         }
         

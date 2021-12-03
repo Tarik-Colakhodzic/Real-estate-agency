@@ -9,16 +9,21 @@ namespace RealEstateAgency.WinUI
         public static string RequiredField = Properties.Resources.Validation_RequiredField;
         public static string MinLengthField = Properties.Resources.Validation_MinLengthField;
 
+        public static bool SetErrorAndPreventSave(Control control, string value, ErrorProvider errorProvider, CancelEventArgs e)
+        {
+            errorProvider.SetError(control, value);
+            if (e != null)
+            {
+                e.Cancel = true;
+            }
+            return false;
+        }
+
         public static bool ValidateRequiredField(ErrorProvider errorProvider, TextBox textBox, CancelEventArgs e = null)
         {
             if (string.IsNullOrEmpty(textBox.Text))
             {
-                errorProvider.SetError(textBox, RequiredField);
-                if (e != null)
-                {
-                    e.Cancel = true;
-                }
-                return false;
+                return SetErrorAndPreventSave(textBox, RequiredField, errorProvider, e);
             }
             else
             {
@@ -31,12 +36,7 @@ namespace RealEstateAgency.WinUI
         {
             if (textBox.Text.Length < minLength)
             {
-                errorProvider.SetError(textBox, MinLengthField + " " + minLength.ToString());
-                if (e != null)
-                {
-                    e.Cancel = true;
-                }
-                return false;
+                return SetErrorAndPreventSave(textBox, MinLengthField + " " + minLength.ToString(), errorProvider, e);
             }
             else
             {
@@ -67,18 +67,49 @@ namespace RealEstateAgency.WinUI
         {
             if (!Regex.IsMatch(textBox.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
             {
-                errorProvider.SetError(textBox, Properties.Resources.Validation_EmailField);
-                if (e != null)
-                {
-                    e.Cancel = true;
-                }
-                return false;
+                return SetErrorAndPreventSave(textBox, Properties.Resources.Validation_EmailField, errorProvider, e);
             }
             else
             {
                 errorProvider.SetError(textBox, null);
                 return true;
             }
+        }
+
+        public static bool ValidateRequiredComboBox(ErrorProvider errorProvider, ComboBox comboBox, CancelEventArgs e = null)
+        {
+            if(comboBox.SelectedValue.ToString() == "0")
+            {
+                return SetErrorAndPreventSave(comboBox, Properties.Resources.Validation_RequiredField, errorProvider, e);
+            }
+            else
+            {
+                errorProvider.SetError(comboBox, null);
+                return true;
+            }
+        }
+
+        public static bool ValidateGreaterThanZero(ErrorProvider errorProvider, TextBox textBox, CancelEventArgs e = null)
+        {
+            decimal result;
+            if (decimal.TryParse(textBox.Text, out result))
+            {
+                if (result <= 0)
+                {
+                    SetErrorAndPreventSave(textBox, Properties.Resources.Validation_GreaterThanZero, errorProvider, e);
+                }
+                else
+                {
+                    errorProvider.SetError(textBox, null);
+                    return true;
+                }
+            }
+            else
+            {
+                SetErrorAndPreventSave(textBox, Properties.Resources.Validation_MustBeANumber, errorProvider, e);
+                return false;
+            }
+            return false;
         }
     }
 }

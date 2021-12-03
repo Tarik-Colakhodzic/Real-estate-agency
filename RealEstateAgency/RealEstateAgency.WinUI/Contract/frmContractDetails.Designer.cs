@@ -29,6 +29,7 @@ namespace RealEstateAgency.WinUI.Contract
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cmbProperty = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtOwner = new System.Windows.Forms.TextBox();
@@ -44,6 +45,8 @@ namespace RealEstateAgency.WinUI.Contract
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbProperty
@@ -55,6 +58,7 @@ namespace RealEstateAgency.WinUI.Contract
             this.cmbProperty.Size = new System.Drawing.Size(193, 24);
             this.cmbProperty.TabIndex = 0;
             this.cmbProperty.SelectedIndexChanged += new System.EventHandler(this.cmbProperty_SelectedIndexChanged);
+            this.cmbProperty.Validating += new System.ComponentModel.CancelEventHandler(this.cmbProperty_Validating);
             // 
             // label1
             // 
@@ -99,6 +103,7 @@ namespace RealEstateAgency.WinUI.Contract
             this.cmbClient.Name = "cmbClient";
             this.cmbClient.Size = new System.Drawing.Size(193, 24);
             this.cmbClient.TabIndex = 4;
+            this.cmbClient.Validating += new System.ComponentModel.CancelEventHandler(this.cmbClient_Validating);
             // 
             // dtmDateCreated
             // 
@@ -123,6 +128,7 @@ namespace RealEstateAgency.WinUI.Contract
             this.txtContractNumber.Name = "txtContractNumber";
             this.txtContractNumber.Size = new System.Drawing.Size(200, 22);
             this.txtContractNumber.TabIndex = 8;
+            this.txtContractNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtContractNumber_Validating);
             // 
             // label4
             // 
@@ -148,6 +154,7 @@ namespace RealEstateAgency.WinUI.Contract
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(200, 22);
             this.txtPrice.TabIndex = 10;
+            this.txtPrice.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrice_Validating);
             // 
             // txtDescription
             // 
@@ -176,6 +183,10 @@ namespace RealEstateAgency.WinUI.Contract
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // frmContractDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -200,6 +211,7 @@ namespace RealEstateAgency.WinUI.Contract
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmContractDetails";
             this.Load += new System.EventHandler(this.frmContractDetails_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,5 +234,6 @@ namespace RealEstateAgency.WinUI.Contract
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

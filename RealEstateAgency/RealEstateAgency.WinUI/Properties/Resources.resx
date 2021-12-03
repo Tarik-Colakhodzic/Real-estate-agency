@@ -129,8 +129,14 @@
   <data name="Validation_EmailField" xml:space="preserve">
     <value>Unesite ispravan email!</value>
   </data>
+  <data name="Validation_GreaterThanZero" xml:space="preserve">
+    <value>Vrijednost mora biti broj veći od 0!</value>
+  </data>
   <data name="Validation_MinLengthField" xml:space="preserve">
     <value>Minimalan broj slova je:</value>
+  </data>
+  <data name="Validation_MustBeANumber" xml:space="preserve">
+    <value>Obavezno unijeti broj!</value>
   </data>
   <data name="Validation_NotEqualFields" xml:space="preserve">
     <value>Polja nisu jednaka!</value>
