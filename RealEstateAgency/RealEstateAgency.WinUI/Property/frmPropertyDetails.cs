@@ -53,7 +53,7 @@ namespace RealEstateAgency.WinUI.Property
                 {
                     imgList.Images.Add(ImageHelper.FromByteToImage(item.Photo));
                 }
-                if(imgList.Images.Count > 0)
+                if (imgList.Images.Count > 0)
                 {
                     pbPhotos.Image = imgList.Images[_imageIndex];
                 }
@@ -70,61 +70,64 @@ namespace RealEstateAgency.WinUI.Property
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            try
+            if (this.ValidateChildren())
             {
-                var request = new Model.Property
+                try
                 {
-                    Address = txtAddress.Text,
-                    Description = txtDescription.Text,
-                    ShortDescription = txtShortDescription.Text,
-                    ElectricityConnection = chbElectricityConnection.Checked,
-                    WaterConnection = chbWaterConnection.Checked,
-                    Title = txtTitle.Text,
-                    Finished = chbFinished.Checked,
-                    Internet = chbInternet.Checked,
-                    NumberOfBathRooms = int.Parse(txtNumberOfBathRoom.Text),
-                    NumberOfBedRooms = int.Parse(txtNumberOfBedRooms.Text),
-                    SquareMeters = int.Parse(txtSquareMeters.Text),
-                    BalconySquareMeters = int.Parse(txtBalconySquareMeters.Text),
-                    Price = decimal.Parse(txtPrice.Text),
-                    OfferTypeId = int.Parse(cmbOfferType.SelectedValue.ToString()),
-                    CityId = int.Parse(cmbCity.SelectedValue.ToString()),
-                    OwnerId = int.Parse(cmbOwner.SelectedValue.ToString()),
-                    CategoryId = int.Parse(cmbCategory.SelectedValue.ToString()),
-                };
-                var propertyPhotos = new List<PropertyPhoto>();
-                foreach (var item in imgList.Images)
-                {
-                    var image = item as Image;
-                    if (image != null)
+                    var request = new Model.Property
                     {
-                        propertyPhotos.Add(new PropertyPhoto { Photo = ImageHelper.FromImageToByte(image) });
-                    }
-                }
-                request.PropertyPhotos = propertyPhotos;
-                if (_property == null)
-                {
-                    request.PublishDate = DateTime.Now;
-                    if(APIService.Agent)
+                        Address = txtAddress.Text,
+                        Description = txtDescription.Text,
+                        ShortDescription = txtShortDescription.Text,
+                        ElectricityConnection = chbElectricityConnection.Checked,
+                        WaterConnection = chbWaterConnection.Checked,
+                        Title = txtTitle.Text,
+                        Finished = chbFinished.Checked,
+                        Internet = chbInternet.Checked,
+                        NumberOfBathRooms = int.Parse(txtNumberOfBathRoom.Text),
+                        NumberOfBedRooms = int.Parse(txtNumberOfBedRooms.Text),
+                        SquareMeters = int.Parse(txtSquareMeters.Text),
+                        BalconySquareMeters = int.Parse(txtBalconySquareMeters.Text),
+                        Price = decimal.Parse(txtPrice.Text),
+                        OfferTypeId = int.Parse(cmbOfferType.SelectedValue.ToString()),
+                        CityId = int.Parse(cmbCity.SelectedValue.ToString()),
+                        OwnerId = int.Parse(cmbOwner.SelectedValue.ToString()),
+                        CategoryId = int.Parse(cmbCategory.SelectedValue.ToString()),
+                    };
+                    var propertyPhotos = new List<PropertyPhoto>();
+                    foreach (var item in imgList.Images)
                     {
-                        request.AgentId = APIService.LoggedUserId;
+                        var image = item as Image;
+                        if (image != null)
+                        {
+                            propertyPhotos.Add(new PropertyPhoto { Photo = ImageHelper.FromImageToByte(image) });
+                        }
                     }
-                    await _propertyService.Insert<Model.Property>(request);
+                    request.PropertyPhotos = propertyPhotos;
+                    if (_property == null)
+                    {
+                        request.PublishDate = DateTime.Now;
+                        if (APIService.Agent)
+                        {
+                            request.AgentId = APIService.LoggedUserId;
+                        }
+                        await _propertyService.Insert<Model.Property>(request);
+                    }
+                    else
+                    {
+                        request.Id = _property.Id;
+                        request.PublishDate = _property.PublishDate;
+                        request.AgentId = _property.AgentId;
+                        await _propertyService.Update<Model.Property>(_property.Id, request);
+                    }
+                    MessageBox.Show("Operacija uspješno izvršena");
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-                else
+                catch (Exception)
                 {
-                    request.Id = _property.Id;
-                    request.PublishDate = _property.PublishDate;
-                    request.AgentId = _property.AgentId;
-                    await _propertyService.Update<Model.Property>(_property.Id, request);
+                    MessageBox.Show(Resources.Error_Occured);
                 }
-                MessageBox.Show("Operacija uspješno izvršena");
-                DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(Resources.Error_Occured);
             }
         }
 
@@ -132,11 +135,15 @@ namespace RealEstateAgency.WinUI.Property
         {
             try
             {
-                cmbCity.DataSource = await _cityService.GetAll<List<City>>();
+                var cities = await _cityService.GetAll<List<City>>();
+                cities.Insert(0, new City { Id = 0, Name = "" });
+                cmbCity.DataSource = cities;
                 cmbCity.DisplayMember = "Name";
                 cmbCity.ValueMember = "Id";
 
-                cmbCategory.DataSource = await _categoryService.GetAll<List<Category>>();
+                var categories = await _categoryService.GetAll<List<Category>>();
+                categories.Insert(0, new Category { Id = 0, Name = "" });
+                cmbCategory.DataSource = categories;
                 cmbCategory.DisplayMember = "Name";
                 cmbCategory.ValueMember = "Id";
 
@@ -144,7 +151,9 @@ namespace RealEstateAgency.WinUI.Property
                 cmbOfferType.DisplayMember = "Name";
                 cmbOfferType.ValueMember = "Id";
 
-                cmbOwner.DataSource = await _ownerService.GetAll<List<Model.Owner>>();
+                var owners = await _ownerService.GetAll<List<Model.Owner>>();
+                owners.Insert(0, new Model.Owner { Id = 0, FirstName = "", LastName = "" });
+                cmbOwner.DataSource = owners;
                 cmbOwner.DisplayMember = "FullName";
                 cmbOwner.ValueMember = "Id";
             }
@@ -164,7 +173,7 @@ namespace RealEstateAgency.WinUI.Property
                     {
                         imgList.Images.Add(Image.FromFile(imagePath));
                     }
-                    if(imgList.Images.Count > 0)
+                    if (imgList.Images.Count > 0)
                     {
                         pbPhotos.Image = imgList.Images[_imageIndex];
                     }
@@ -178,7 +187,7 @@ namespace RealEstateAgency.WinUI.Property
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            if(imgList.Images.Count > 0)
+            if (imgList.Images.Count > 0)
             {
                 if (_imageIndex == 0)
                 {
@@ -194,9 +203,9 @@ namespace RealEstateAgency.WinUI.Property
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if(imgList.Images.Count > 0)
+            if (imgList.Images.Count > 0)
             {
-                if(_imageIndex == imgList.Images.Count - 1)
+                if (_imageIndex == imgList.Images.Count - 1)
                 {
                     _imageIndex = 0;
                 }
@@ -211,12 +220,47 @@ namespace RealEstateAgency.WinUI.Property
         private async void btnAddOwner_Click(object sender, EventArgs e)
         {
             var frm = new frmOwnerDetails();
-            if(frm.ShowDialog() == DialogResult.OK)
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 cmbOwner.DataSource = await _ownerService.GetAll<List<Model.Owner>>();
                 cmbOwner.DisplayMember = "FullName";
                 cmbOwner.ValueMember = "Id";
             }
+        }
+
+        private void txtTitle_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredField(errorProvider, txtTitle, e);
+        }
+
+        private void txtSquareMeters_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateGreaterThanZero(errorProvider, txtSquareMeters, e);
+        }
+
+        private void txtPrice_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateGreaterThanZero(errorProvider, txtPrice, e);
+        }
+
+        private void cmbCity_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredComboBox(errorProvider, cmbCity, e);
+        }
+
+        private void cmbCategory_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredComboBox(errorProvider, cmbCategory, e);
+        }
+
+        private void cmbOfferType_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredComboBox(errorProvider, cmbOfferType, e);
+        }
+
+        private void cmbOwner_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.ValidateRequiredComboBox(errorProvider, cmbOwner, e);
         }
     }
 }

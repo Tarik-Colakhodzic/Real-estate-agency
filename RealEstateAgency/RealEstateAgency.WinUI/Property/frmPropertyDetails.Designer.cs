@@ -68,7 +68,9 @@ namespace RealEstateAgency.WinUI.Property
             this.ofdImageUpload = new System.Windows.Forms.OpenFileDialog();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbPhotos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -86,6 +88,7 @@ namespace RealEstateAgency.WinUI.Property
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(172, 22);
             this.txtTitle.TabIndex = 1;
+            this.txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this.txtTitle_Validating);
             // 
             // txtShortDescription
             // 
@@ -127,6 +130,7 @@ namespace RealEstateAgency.WinUI.Property
             this.txtSquareMeters.Name = "txtSquareMeters";
             this.txtSquareMeters.Size = new System.Drawing.Size(172, 22);
             this.txtSquareMeters.TabIndex = 7;
+            this.txtSquareMeters.Validating += new System.ComponentModel.CancelEventHandler(this.txtSquareMeters_Validating);
             // 
             // label4
             // 
@@ -159,6 +163,7 @@ namespace RealEstateAgency.WinUI.Property
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(172, 22);
             this.txtPrice.TabIndex = 11;
+            this.txtPrice.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrice_Validating);
             // 
             // label6
             // 
@@ -207,6 +212,7 @@ namespace RealEstateAgency.WinUI.Property
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(199, 24);
             this.cmbCity.TabIndex = 15;
+            this.cmbCity.Validating += new System.ComponentModel.CancelEventHandler(this.cmbCity_Validating);
             // 
             // label7
             // 
@@ -234,6 +240,7 @@ namespace RealEstateAgency.WinUI.Property
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(199, 24);
             this.cmbCategory.TabIndex = 17;
+            this.cmbCategory.Validating += new System.ComponentModel.CancelEventHandler(this.cmbCategory_Validating);
             // 
             // label9
             // 
@@ -252,6 +259,7 @@ namespace RealEstateAgency.WinUI.Property
             this.cmbOfferType.Name = "cmbOfferType";
             this.cmbOfferType.Size = new System.Drawing.Size(199, 24);
             this.cmbOfferType.TabIndex = 19;
+            this.cmbOfferType.Validating += new System.ComponentModel.CancelEventHandler(this.cmbOfferType_Validating);
             // 
             // label10
             // 
@@ -270,6 +278,7 @@ namespace RealEstateAgency.WinUI.Property
             this.cmbOwner.Name = "cmbOwner";
             this.cmbOwner.Size = new System.Drawing.Size(199, 24);
             this.cmbOwner.TabIndex = 21;
+            this.cmbOwner.Validating += new System.ComponentModel.CancelEventHandler(this.cmbOwner_Validating);
             // 
             // btnAddOwner
             // 
@@ -399,6 +408,10 @@ namespace RealEstateAgency.WinUI.Property
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // frmPropertyDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -445,6 +458,7 @@ namespace RealEstateAgency.WinUI.Property
             this.Text = "Podaci o nekretnini";
             this.Load += new System.EventHandler(this.frmPropertyDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbPhotos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,5 +504,6 @@ namespace RealEstateAgency.WinUI.Property
         private System.Windows.Forms.OpenFileDialog ofdImageUpload;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
