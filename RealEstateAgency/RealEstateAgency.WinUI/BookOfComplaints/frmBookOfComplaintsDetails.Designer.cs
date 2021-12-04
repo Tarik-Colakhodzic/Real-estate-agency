@@ -112,6 +112,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtProperty);
             this.Name = "frmBookOfComplaintsDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalji";
             this.ResumeLayout(false);
             this.PerformLayout();

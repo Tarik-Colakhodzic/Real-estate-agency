@@ -79,7 +79,7 @@ namespace RealEstateAgency.WinUI.Visit
             this.groupBox1.Size = new System.Drawing.Size(775, 333);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ugovori";
+            this.groupBox1.Text = "Posjete";
             // 
             // dgvVisits
             // 
@@ -148,7 +148,7 @@ namespace RealEstateAgency.WinUI.Visit
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmVisitsDisplay";
-            this.Text = "frmVisitsDisplay";
+            this.Text = "Posjete";
             this.Load += new System.EventHandler(this.frmVisitsDisplay_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
