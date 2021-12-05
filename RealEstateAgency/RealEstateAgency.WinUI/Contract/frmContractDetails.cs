@@ -31,15 +31,9 @@ namespace RealEstateAgency.WinUI.Contract
 
                 var propertySearchRequest = new Model.Requests.PropertySearchRequest
                 {
-                    IncludeList = new string[] { EntityNames.Owner },
-                    Unfinished = true
+                    IncludeList = new string[] { EntityNames.Owner }
                 };
-                if (APIService.Agent)
-                {
-                    propertySearchRequest.Unfinished = true;
-                }
                 var properties = await _propertyService.GetAll<List<Model.Property>>(propertySearchRequest);
-                properties.Insert(0, new Model.Property { Id = 0, Title = "" });
                 if (_contract == null)
                 {
                     cmbProperty.DataSource = properties.Where(x => !idsWithContract.Any(y => y == x.Id)).ToList();
@@ -56,7 +50,6 @@ namespace RealEstateAgency.WinUI.Contract
                     IncludeList = new string[] { EntityNames.UserRolesRoles }
                 });
                 clients = clients.Where(x => x.UserRoles.Any(y => y.Role.Name == "Client")).ToList();
-                clients.Insert(0, new Model.User { Id = 0, FirstName = "", LastName = "" });
                 cmbClient.DataSource = clients;
                 cmbClient.DisplayMember = "FullName";
                 cmbClient.ValueMember = "Id";
@@ -84,7 +77,7 @@ namespace RealEstateAgency.WinUI.Contract
 
         private void cmbProperty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtOwner.Text = (cmbProperty.SelectedItem as Model.Property).OwnerName;
+            txtOwner.Text = (cmbProperty.SelectedItem as Model.Property)?.OwnerName;
         }
 
         private async void btnSave_Click(object sender, EventArgs e)

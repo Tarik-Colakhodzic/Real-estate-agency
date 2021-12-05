@@ -36,9 +36,9 @@ namespace RealEstateAgency.WinUI.Contract
                     IncludeList = new string[]
                     {
                         EntityNames.Property,
-                        EntityNames.Agent,
                         EntityNames.Client,
-                        EntityNames.PropertyOwner
+                        EntityNames.PropertyOwner,
+                        EntityNames.AgentUser
                     },
                 };
                 if (cmbAgent.SelectedValue != null && cmbAgent?.SelectedValue?.ToString() != "0")

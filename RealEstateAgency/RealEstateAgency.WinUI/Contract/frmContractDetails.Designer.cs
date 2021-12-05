@@ -209,7 +209,7 @@ namespace RealEstateAgency.WinUI.Contract
             this.Controls.Add(this.cmbProperty);
             this.Name = "frmContractDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmContractDetails";
+            this.Text = "Ugovor";
             this.Load += new System.EventHandler(this.frmContractDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

@@ -29,7 +29,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
                     IncludeList = new string[]
                     {
                         EntityNames.Property,
-                        EntityNames.Agent
+                        EntityNames.AgentUser
                     }
                 };
                 if (cmbAgents.SelectedValue != null && cmbAgents.SelectedValue.ToString() != "0")
@@ -46,7 +46,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
 
         private async void loadComboBoxes()
         {
-            var agents = await _agentService.GetAll<List<Agent>>();
+            var agents = await _agentService.GetAll<List<Agent>>(new Model.SimpleSearchRequest { IncludeList = new string[] { EntityNames.User } });
             agents.Insert(0, new Agent { User = new Model.User { FirstName = "", LastName = "" } });
             cmbAgents.DataSource = agents;
             cmbAgents.DisplayMember = "FullName";

@@ -20,7 +20,7 @@ namespace RealEstateAgency.WinUI
             {
                 usersToolStripMenuItem.Visible = false;
             }
-            if(!APIService.Agent)
+            if (!APIService.Agent)
             {
                 posjeteToolStripMenuItem.Visible = false;
             }

@@ -21,7 +21,7 @@ namespace RealEstateAgency.Services
         {
             var entity = Context.Set<TDb>();
             var simpleSearch = search as Model.SimpleSearchRequest;
-            if(simpleSearch != null)
+            if (simpleSearch != null)
             {
                 var includeEntities = entity.AsQueryable();
                 if (simpleSearch?.IncludeList?.Length > 0)

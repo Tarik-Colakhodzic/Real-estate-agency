@@ -10,6 +10,7 @@
         public static string UserRolesRoles = "UserRoles.Role";
         public static string Owner = "Owner";
         public static string Agent = "Agent";
+        public static string AgentUser = "Agent.User";
         public static string Property = "Property";
         public static string PropertyOwner = "Property.Owner";
         public static string Category = "Category";

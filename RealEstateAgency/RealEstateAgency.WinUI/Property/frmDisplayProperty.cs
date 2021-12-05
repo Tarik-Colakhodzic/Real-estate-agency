@@ -40,7 +40,7 @@ namespace RealEstateAgency.WinUI.Property
                     EntityNames.Owner,
                     EntityNames.Category,
                     EntityNames.OfferType,
-                    EntityNames.PropertyPhotos
+                    EntityNames.PropertyPhotos,
                 }
             };
             if(cmbCountry.SelectedValue != null && cmbCountry?.SelectedValue?.ToString() != "0")
@@ -63,7 +63,7 @@ namespace RealEstateAgency.WinUI.Property
             {
                 searchObject.OwnerId = int.Parse(cmbOwner.SelectedValue.ToString());
             }
-            if(APIService.Agent)
+            if(APIService.Agent && !APIService.Administrator)
             {
                 searchObject.AgentId = APIService.LoggedUserId;
             }
