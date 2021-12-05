@@ -114,6 +114,10 @@ namespace RealEstateAgency.WinUI.Property
 
         private void btnDisplay_Click(object sender, EventArgs e)
         {
+            if(!cbFnished.Checked && !cbUnfinished.Checked)
+            {
+                MessageBox.Show("Jedno od polja završene ili nezavršene mora biti označeno!");
+            }
             frmDisplayProperty_Load(sender, e);
         }
 

@@ -10,9 +10,9 @@ namespace RealEstateAgency.WinUI.Contract
 {
     public partial class frmDisplayContracts : Form
     {
-        private APIService _serviceContracts = new APIService(EntityNames.Contract);
-        private APIService _serviceUsers = new APIService(EntityNames.User);
-        private APIService _serviceOwners = new APIService(EntityNames.Owner);
+        private readonly APIService _serviceContracts = new APIService(EntityNames.Contract);
+        private readonly APIService _serviceUsers = new APIService(EntityNames.User);
+        private  readonly APIService _serviceOwners = new APIService(EntityNames.Owner);
 
         public frmDisplayContracts()
         {

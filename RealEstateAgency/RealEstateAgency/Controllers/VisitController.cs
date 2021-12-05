@@ -3,7 +3,7 @@ using RealEstateAgency.Services;
 
 namespace RealEstateAgency.Controllers
 {
-    public class VisitController : BaseCRUDController<Model.Visit, Model.SimpleSearchRequest, Model.Visit, Model.Visit>
+    public class VisitController : BaseCRUDController<Model.Visit, Model.Requests.VisitSearchRequest, Model.Visit, Model.Visit>
     {
         public readonly IVisitService _visitService;
 

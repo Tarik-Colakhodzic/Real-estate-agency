@@ -30,7 +30,10 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbAgents = new System.Windows.Forms.ComboBox();
+            this.txtPropertyTitle = new System.Windows.Forms.TextBox();
             this.btnDisplay = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvBooksOfConstraints = new System.Windows.Forms.DataGridView();
@@ -45,25 +48,55 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtSearch);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.cmbAgents);
+            this.groupBox2.Controls.Add(this.txtPropertyTitle);
             this.groupBox2.Controls.Add(this.btnDisplay);
             this.groupBox2.Location = new System.Drawing.Point(13, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(775, 80);
+            this.groupBox2.Size = new System.Drawing.Size(775, 113);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pretraga";
             // 
-            // txtSearch
+            // label2
             // 
-            this.txtSearch.Location = new System.Drawing.Point(6, 38);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(207, 22);
-            this.txtSearch.TabIndex = 11;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 17);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Naslov";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(204, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Agent";
+            // 
+            // cmbAgents
+            // 
+            this.cmbAgents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAgents.FormattingEnabled = true;
+            this.cmbAgents.Location = new System.Drawing.Point(204, 56);
+            this.cmbAgents.Name = "cmbAgents";
+            this.cmbAgents.Size = new System.Drawing.Size(179, 24);
+            this.cmbAgents.TabIndex = 12;
+            // 
+            // txtPropertyTitle
+            // 
+            this.txtPropertyTitle.Location = new System.Drawing.Point(6, 56);
+            this.txtPropertyTitle.Name = "txtPropertyTitle";
+            this.txtPropertyTitle.Size = new System.Drawing.Size(192, 22);
+            this.txtPropertyTitle.TabIndex = 11;
             // 
             // btnDisplay
             // 
-            this.btnDisplay.Location = new System.Drawing.Point(652, 29);
+            this.btnDisplay.Location = new System.Drawing.Point(652, 49);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(117, 31);
             this.btnDisplay.TabIndex = 1;
@@ -74,7 +107,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvBooksOfConstraints);
-            this.groupBox1.Location = new System.Drawing.Point(13, 105);
+            this.groupBox1.Location = new System.Drawing.Point(13, 131);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(775, 333);
             this.groupBox1.TabIndex = 5;
@@ -131,7 +164,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 475);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmDisplayBooksOfComplaints";
@@ -148,7 +181,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.TextBox txtPropertyTitle;
         private System.Windows.Forms.Button btnDisplay;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvBooksOfConstraints;
@@ -156,5 +189,8 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         private System.Windows.Forms.DataGridViewTextBoxColumn AgentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateCreatedFormated;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbAgents;
     }
 }

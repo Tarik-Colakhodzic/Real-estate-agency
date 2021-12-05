@@ -1,4 +1,5 @@
 ﻿using RealEstateAgency.Model;
+using RealEstateAgency.Model.Requests;
 using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
@@ -9,32 +10,47 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
     public partial class frmDisplayBooksOfComplaints : Form
     {
         private readonly APIService _bookOfComplaintsService = new APIService(EntityNames.BookOfComplaints);
+        private readonly APIService _agentService = new APIService(EntityNames.Agent);
 
         public frmDisplayBooksOfComplaints()
         {
             InitializeComponent();
             dgvBooksOfConstraints.AutoGenerateColumns = false;
+            loadComboBoxes();
         }
 
         private async void frmDisplayBooksOfConstraints_Load(object sender, EventArgs e)
         {
-            var searchRequest = new SimpleSearchRequest
-            {
-                SearchText = txtSearch.Text,
-                IncludeList = new string[]
-                {
-                    EntityNames.Property,
-                    EntityNames.Agent
-                }
-            };
             try
             {
+                var searchRequest = new BookOfComplaintsSearchRequest
+                {
+                    PropertyTitle = txtPropertyTitle.Text,
+                    IncludeList = new string[]
+                    {
+                        EntityNames.Property,
+                        EntityNames.Agent
+                    }
+                };
+                if (cmbAgents.SelectedValue != null && cmbAgents.SelectedValue.ToString() != "0")
+                {
+                    searchRequest.AgentId = int.Parse(cmbAgents.SelectedValue.ToString());
+                }
                 dgvBooksOfConstraints.DataSource = await _bookOfComplaintsService.GetAll<List<Model.BookOfComplaints>>(searchRequest);
             }
             catch (Exception)
             {
                 MessageBox.Show(Resources.Error_Occured);
             }
+        }
+
+        private async void loadComboBoxes()
+        {
+            var agents = await _agentService.GetAll<List<Agent>>();
+            agents.Insert(0, new Agent { User = new Model.User { FirstName = "", LastName = "" } });
+            cmbAgents.DataSource = agents;
+            cmbAgents.DisplayMember = "FullName";
+            cmbAgents.ValueMember = "Id";
         }
 
         private void dgvBooksOfConstraints_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

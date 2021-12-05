@@ -32,14 +32,6 @@ namespace RealEstateAgency.Services
                 {
                     entity = entity.Where(x => !x.Finished);
                 }
-                if(search.Finished && search.Unfinished)
-                {
-                    entity = entity.Where(x => x.Finished || !x.Finished);
-                }
-                if(!search.Finished && !search.Unfinished)
-                {
-                    return new List<Model.Property>();
-                }
                 if(search.OwnerId.HasValue)
                 {
                     entity = entity.Where(x => x.OwnerId == search.OwnerId);

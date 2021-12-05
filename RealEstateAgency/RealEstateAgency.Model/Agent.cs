@@ -9,5 +9,7 @@ namespace RealEstateAgency.Model
         public decimal Salary { get; set; }
         public DateTime HireDate { get; set; }
         public byte[] Photo { get; set; }
+
+        public string FullName => User?.FullName;
     }
 }
