@@ -31,14 +31,21 @@ namespace RealEstateAgency.WinUI.Contract
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvContracts = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnDisplay = new System.Windows.Forms.Button();
             this.PropertyTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AgentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PropertyOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateCreatedFormated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtPropertyTitle = new System.Windows.Forms.TextBox();
+            this.btnDisplay = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbAgent = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbClient = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbOwner = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvContracts)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -47,9 +54,9 @@ namespace RealEstateAgency.WinUI.Contract
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvContracts);
-            this.groupBox1.Location = new System.Drawing.Point(13, 105);
+            this.groupBox1.Location = new System.Drawing.Point(13, 127);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(775, 333);
+            this.groupBox1.Size = new System.Drawing.Size(861, 333);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ugovori";
@@ -69,37 +76,9 @@ namespace RealEstateAgency.WinUI.Contract
             this.dgvContracts.RowHeadersWidth = 51;
             this.dgvContracts.RowTemplate.Height = 24;
             this.dgvContracts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvContracts.Size = new System.Drawing.Size(762, 305);
+            this.dgvContracts.Size = new System.Drawing.Size(854, 305);
             this.dgvContracts.TabIndex = 0;
             this.dgvContracts.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvContracts_CellMouseDoubleClick);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtSearch);
-            this.groupBox2.Controls.Add(this.btnDisplay);
-            this.groupBox2.Location = new System.Drawing.Point(13, 19);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(775, 80);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Pretraga";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(6, 38);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(207, 22);
-            this.txtSearch.TabIndex = 11;
-            // 
-            // btnDisplay
-            // 
-            this.btnDisplay.Location = new System.Drawing.Point(652, 29);
-            this.btnDisplay.Name = "btnDisplay";
-            this.btnDisplay.Size = new System.Drawing.Size(117, 31);
-            this.btnDisplay.TabIndex = 1;
-            this.btnDisplay.Text = "Pretraži";
-            this.btnDisplay.UseVisualStyleBackColor = true;
-            this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
             // PropertyTitle
             // 
@@ -136,11 +115,109 @@ namespace RealEstateAgency.WinUI.Contract
             this.DateCreatedFormated.MinimumWidth = 6;
             this.DateCreatedFormated.Name = "DateCreatedFormated";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.cmbOwner);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.cmbClient);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.cmbAgent);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.txtPropertyTitle);
+            this.groupBox2.Controls.Add(this.btnDisplay);
+            this.groupBox2.Location = new System.Drawing.Point(13, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(861, 102);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Pretraga";
+            // 
+            // txtPropertyTitle
+            // 
+            this.txtPropertyTitle.Location = new System.Drawing.Point(7, 59);
+            this.txtPropertyTitle.Name = "txtPropertyTitle";
+            this.txtPropertyTitle.Size = new System.Drawing.Size(133, 22);
+            this.txtPropertyTitle.TabIndex = 11;
+            // 
+            // btnDisplay
+            // 
+            this.btnDisplay.Location = new System.Drawing.Point(738, 50);
+            this.btnDisplay.Name = "btnDisplay";
+            this.btnDisplay.Size = new System.Drawing.Size(117, 31);
+            this.btnDisplay.TabIndex = 1;
+            this.btnDisplay.Text = "Pretraži";
+            this.btnDisplay.UseVisualStyleBackColor = true;
+            this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Naslov";
+            // 
+            // cmbAgent
+            // 
+            this.cmbAgent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAgent.FormattingEnabled = true;
+            this.cmbAgent.Location = new System.Drawing.Point(147, 59);
+            this.cmbAgent.Name = "cmbAgent";
+            this.cmbAgent.Size = new System.Drawing.Size(168, 24);
+            this.cmbAgent.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(147, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 17);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Agent";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(321, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 17);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Klijent";
+            // 
+            // cmbClient
+            // 
+            this.cmbClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClient.FormattingEnabled = true;
+            this.cmbClient.Location = new System.Drawing.Point(321, 59);
+            this.cmbClient.Name = "cmbClient";
+            this.cmbClient.Size = new System.Drawing.Size(158, 24);
+            this.cmbClient.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(485, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 17);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Vlasnik";
+            // 
+            // cmbOwner
+            // 
+            this.cmbOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOwner.FormattingEnabled = true;
+            this.cmbOwner.Location = new System.Drawing.Point(485, 59);
+            this.cmbOwner.Name = "cmbOwner";
+            this.cmbOwner.Size = new System.Drawing.Size(161, 24);
+            this.cmbOwner.TabIndex = 17;
+            // 
             // frmDisplayContracts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(886, 477);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmDisplayContracts";
@@ -159,12 +236,19 @@ namespace RealEstateAgency.WinUI.Contract
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvContracts;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.TextBox txtPropertyTitle;
         private System.Windows.Forms.Button btnDisplay;
         private System.Windows.Forms.DataGridViewTextBoxColumn PropertyTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn AgentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PropertyOwnerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateCreatedFormated;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbOwner;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbClient;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbAgent;
+        private System.Windows.Forms.Label label1;
     }
 }

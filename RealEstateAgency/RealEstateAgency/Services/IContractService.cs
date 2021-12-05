@@ -1,6 +1,6 @@
 ﻿namespace RealEstateAgency.Services
 {
-    public interface IContractService : ICRUDService<Model.Contract, Model.SimpleSearchRequest, Model.Contract, Model.Contract>
+    public interface IContractService : ICRUDService<Model.Contract, Model.Requests.ContractSearchRequest, Model.Contract, Model.Contract>
     {
     }
 }

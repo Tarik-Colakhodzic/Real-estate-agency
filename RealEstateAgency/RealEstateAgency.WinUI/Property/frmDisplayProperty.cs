@@ -85,31 +85,26 @@ namespace RealEstateAgency.WinUI.Property
                 countries.Insert(0, new Country { Id = 0, Name = string.Empty });
                 cmbCountry.DataSource = countries;
                 cmbCountry.DisplayMember = "Name";
-                cmbCountry.ValueMember = "Id";
 
                 var owners = await _serviceOwner.GetAll<List<Model.Owner>>();
                 owners.Insert(0, new Model.Owner { Id = 0, FirstName = string.Empty, LastName = string.Empty });
                 cmbOwner.DataSource = owners;
                 cmbOwner.DisplayMember = "FullName";
-                cmbOwner.ValueMember = "Id";
 
                 var categories = await _serviceCategory.GetAll<List<Model.Category>>();
                 categories.Insert(0, new Category { Id = 0, Name = string.Empty });
                 cmbCategory.DataSource = categories;
-                cmbCategory.DisplayMember = "Name";
-                cmbCategory.ValueMember = "Id";
 
                 var offerTypes = await _serviceOfferType.GetAll<List<Model.OfferType>>();
                 offerTypes.Insert(0, new OfferType { Id = 0, Name = string.Empty });
                 cmbOfferType.DataSource = offerTypes;
-                cmbOfferType.DisplayMember = "Name";
-                cmbOfferType.ValueMember = "Id";
 
                 cities = await _serviceCity.GetAll<List<Model.City>>();
 
                 cmbCity.DataSource = new List<Model.City> { new City { Id = 0, Name = "Odaberite državu" } };
-                cmbCity.DisplayMember = "Name";
-                cmbCity.ValueMember = "Id";
+
+                cmbCity.DisplayMember = cmbOfferType.DisplayMember = cmbCategory.DisplayMember = cmbCountry.DisplayMember = "Name";
+                cmbCity.ValueMember = cmbOfferType.ValueMember = cmbCategory.ValueMember = cmbCountry.ValueMember = cmbOwner.ValueMember = "Id";
             }
             catch (Exception)
             {

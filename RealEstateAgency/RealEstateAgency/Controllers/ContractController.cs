@@ -2,7 +2,7 @@
 
 namespace RealEstateAgency.Controllers
 {
-    public class ContractController : BaseCRUDController<Model.Contract, Model.SimpleSearchRequest, Model.Contract, Model.Contract>
+    public class ContractController : BaseCRUDController<Model.Contract, Model.Requests.ContractSearchRequest, Model.Contract, Model.Contract>
     {
         public ContractController(IContractService service) : base(service)
         {
