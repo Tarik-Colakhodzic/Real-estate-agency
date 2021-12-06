@@ -93,7 +93,7 @@ namespace RealEstateAgency.WinUI.Owner
 
         private void txtPhoneNumber_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Validator.ValidatePhoneNumber(errorProvider, txtPhoneNumber, e);
+            Validator.ValidatePhoneNumber(errorProvider, txtPhoneNumber, e);
         }
 
         private void txtEmail_Validating(object sender, System.ComponentModel.CancelEventArgs e)

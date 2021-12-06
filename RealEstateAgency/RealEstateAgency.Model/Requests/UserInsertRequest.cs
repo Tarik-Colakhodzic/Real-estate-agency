@@ -20,13 +20,9 @@ namespace RealEstateAgency.Model.Requests
         [MinLength(4)]
         public string Username { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
-        [MinLength(4)]
         [RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$")]
         public string Password { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
-        [MinLength(4)]
         [Compare("Password")]
         public string ConfirmedPassword { get; set; }
 

@@ -76,7 +76,19 @@ namespace RealEstateAgency.Services
         public override Model.User Update(int id, UserInsertRequest request)
         {
             var entity = Context.Users.Include(x => x.UserRoles).FirstOrDefault(x => x.Id == id);
+            var oldPasswordHash = entity.PasswordHash;
+            var oldPasswodSalt = entity.PasswordSalt;
             _mapper.Map(request, entity);
+            if(string.IsNullOrEmpty(request.Password))
+            {
+                entity.PasswordHash = oldPasswordHash;
+                entity.PasswordSalt = oldPasswodSalt;
+            }
+            else
+            {
+                entity.PasswordSalt = GenerateSalt();
+                entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
+            }
             Context.Users.Update(entity);
 
             var userRoleIdsToRemove = entity.UserRoles.Select(x => x.RoleId).Except(request.Roles).ToList();

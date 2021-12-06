@@ -63,6 +63,8 @@ namespace RealEstateAgency.WinUI.User
             this.lblNoAgent = new System.Windows.Forms.Label();
             this.btnSaveAgent = new System.Windows.Forms.Button();
             this.ofdImageUpload = new System.Windows.Forms.OpenFileDialog();
+            this.lblPwdFirst = new System.Windows.Forms.Label();
+            this.lblPwdSecond = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -125,9 +127,9 @@ namespace RealEstateAgency.WinUI.User
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 213);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 17);
+            this.label4.Size = new System.Drawing.Size(184, 17);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Broj telefona";
+            this.label4.Text = "Broj telefona (061-123-456)";
             // 
             // txtPhoneNumber
             // 
@@ -251,6 +253,8 @@ namespace RealEstateAgency.WinUI.User
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblPwdSecond);
+            this.groupBox1.Controls.Add(this.lblPwdFirst);
             this.groupBox1.Controls.Add(this.txtFirstName);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtLastName);
@@ -269,7 +273,7 @@ namespace RealEstateAgency.WinUI.User
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(566, 497);
+            this.groupBox1.Size = new System.Drawing.Size(566, 521);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Korisnik";
@@ -289,7 +293,7 @@ namespace RealEstateAgency.WinUI.User
             this.groupBox2.Controls.Add(this.txtSalary);
             this.groupBox2.Controls.Add(this.lblHireDate);
             this.groupBox2.Controls.Add(this.lblSalary);
-            this.groupBox2.Location = new System.Drawing.Point(12, 516);
+            this.groupBox2.Location = new System.Drawing.Point(12, 539);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(566, 305);
             this.groupBox2.TabIndex = 23;
@@ -392,11 +396,29 @@ namespace RealEstateAgency.WinUI.User
             // 
             this.ofdImageUpload.FileName = "openFileDialog1";
             // 
+            // lblPwdFirst
+            // 
+            this.lblPwdFirst.AutoSize = true;
+            this.lblPwdFirst.Location = new System.Drawing.Point(3, 470);
+            this.lblPwdFirst.Name = "lblPwdFirst";
+            this.lblPwdFirst.Size = new System.Drawing.Size(263, 17);
+            this.lblPwdFirst.TabIndex = 18;
+            this.lblPwdFirst.Text = "U slučaju da ne želite promijeniti lozinku,";
+            // 
+            // lblPwdSecond
+            // 
+            this.lblPwdSecond.AutoSize = true;
+            this.lblPwdSecond.Location = new System.Drawing.Point(3, 487);
+            this.lblPwdSecond.Name = "lblPwdSecond";
+            this.lblPwdSecond.Size = new System.Drawing.Size(204, 17);
+            this.lblPwdSecond.TabIndex = 19;
+            this.lblPwdSecond.Text = "polja za lozinku ostaviti prazna!";
+            // 
             // frmUsersDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 833);
+            this.ClientSize = new System.Drawing.Size(592, 856);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUsersDetails";
@@ -448,5 +470,7 @@ namespace RealEstateAgency.WinUI.User
         private System.Windows.Forms.TextBox txtIncreaseSalaryBy;
         private System.Windows.Forms.Label lblIncrease;
         private System.Windows.Forms.Label lblKM;
+        private System.Windows.Forms.Label lblPwdSecond;
+        private System.Windows.Forms.Label lblPwdFirst;
     }
 }

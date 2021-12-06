@@ -24,6 +24,11 @@ namespace RealEstateAgency.WinUI.User
         {
             InitializeComponent();
             _user = user;
+            if(_user == null)
+            {
+                lblPwdFirst.Visible = false;
+                lblPwdSecond.Visible = false;
+            }
         }
 
         private async void frmUsersDetails_Load(object sender, EventArgs e)
@@ -149,32 +154,36 @@ namespace RealEstateAgency.WinUI.User
 
         private void txtFirstName_Validating(object sender, CancelEventArgs e)
         {
-            Validator.ValidateRequiredField(errorProvider, txtFirstName);
+            Validator.ValidateRequiredField(errorProvider, txtFirstName, e);
         }
 
         private void txtLastName_Validating(object sender, CancelEventArgs e)
         {
-            Validator.ValidateRequiredField(errorProvider, txtLastName);
+            Validator.ValidateRequiredField(errorProvider, txtLastName, e);
         }
 
         private void txtEmail_Validating(object sender, CancelEventArgs e)
         {
-            Validator.ValidateEmail(errorProvider, txtEmail);
+            Validator.ValidateEmail(errorProvider, txtEmail, e);
         }
 
         private void txtPhoneNumber_Validating(object sender, CancelEventArgs e)
         {
-            //Validator.ValidateRequiredField(errorProvider, txtPhoneNumber);
-            //Validator.ValidatePhoneNumber(errorProvider, txtPhoneNumber);
+            Validator.ValidatePhoneNumber(errorProvider, txtPhoneNumber, e);
         }
 
         private void txtUsername_Validating(object sender, CancelEventArgs e)
         {
-            Validator.ValidateMinLength(errorProvider, txtUsername, 3);
+            Validator.ValidateMinLength(errorProvider, txtUsername, 3, e);
         }
 
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
+            if(string.IsNullOrEmpty(txtPassword.Text) && _user != null)
+            {
+                errorProvider.SetError(txtPassword, null);
+                return;
+            }
             Regex rgx = new Regex(@"^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$");
             if (!rgx.IsMatch(txtPassword.Text))
             {
@@ -189,6 +198,11 @@ namespace RealEstateAgency.WinUI.User
 
         private void txtConfirmedPassword_Validating(object sender, CancelEventArgs e)
         {
+            if(string.IsNullOrEmpty(txtPassword.Text) && _user != null)
+            {
+                errorProvider.SetError(txtConfirmedPassword, null);
+                return;
+            }
             if (txtPassword.Text != txtConfirmedPassword.Text)
             {
                 errorProvider.SetError(txtConfirmedPassword, Properties.Resources.Validation_NotEqualFields);

@@ -47,14 +47,9 @@ namespace RealEstateAgency.WinUI
 
         public static bool ValidatePhoneNumber(ErrorProvider errorProvider, TextBox textBox, CancelEventArgs e = null)
         {
-            if (!Regex.IsMatch(textBox.Text, @"/^[+] *[(]{ 0,1}[0 - 9]{ 1,4}[)]{ 0,1}[-\s\./ 0 - 9]*$/g"))
+            if (!Regex.IsMatch(textBox.Text, @"^[0-9]\d{2}-\d{3}-(\d{4}|\d{3})*$"))
             {
-                errorProvider.SetError(textBox, Properties.Resources.Validation_PhoneNumber);
-                if (e != null)
-                {
-                    e.Cancel = true;
-                }
-                return false;
+                return SetErrorAndPreventSave(textBox, Properties.Resources.Validation_PhoneNumber, errorProvider, e);
             }
             else
             {
