@@ -40,9 +40,9 @@ namespace RealEstateAgency.Services
             var set = Context.Set<TDb>();
 
             var entity = set.Find(id);
-            
+
             set.Remove(entity);
-            
+
             Context.SaveChanges();
 
             return _mapper.Map<T>(entity);

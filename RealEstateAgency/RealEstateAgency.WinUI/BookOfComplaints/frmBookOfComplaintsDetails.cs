@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace RealEstateAgency.WinUI.BookOfComplaints
 {
@@ -18,7 +10,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         {
             InitializeComponent();
             _bookOfComplaints = bookOfComplaints;
-            if(_bookOfComplaints != null)
+            if (_bookOfComplaints != null)
             {
                 txtProperty.Text = _bookOfComplaints.Property?.Title;
                 txtAgent.Text = $"{_bookOfComplaints.Agent?.User?.FirstName} {_bookOfComplaints.Agent?.User?.LastName}";

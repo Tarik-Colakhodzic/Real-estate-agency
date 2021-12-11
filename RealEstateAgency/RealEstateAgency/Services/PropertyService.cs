@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using RealEstateAgency.Database;
-using RealEstateAgency.Model;
 using RealEstateAgency.Model.Requests;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,41 +17,41 @@ namespace RealEstateAgency.Services
         {
             var entity = Context.Set<Database.Property>().AsQueryable();
 
-            if(search != null)
+            if (search != null)
             {
-                if(!string.IsNullOrEmpty(search.SearchText))
+                if (!string.IsNullOrEmpty(search.SearchText))
                 {
                     entity = entity.Where(x => x.Title.Contains(search.SearchText));
                 }
-                if(search.Finished && !search.Unfinished)
+                if (search.Finished && !search.Unfinished)
                 {
                     entity = entity.Where(x => x.Finished);
-                }    
-                if(search.Unfinished && !search.Finished)
+                }
+                if (search.Unfinished && !search.Finished)
                 {
                     entity = entity.Where(x => !x.Finished);
                 }
-                if(search.OwnerId.HasValue)
+                if (search.OwnerId.HasValue)
                 {
                     entity = entity.Where(x => x.OwnerId == search.OwnerId);
                 }
-                if(search.AgentId.HasValue)
+                if (search.AgentId.HasValue)
                 {
                     entity = entity.Where(x => x.AgentId == search.AgentId);
                 }
-                if(search.CategoryId.HasValue)
+                if (search.CategoryId.HasValue)
                 {
                     entity = entity.Where(x => x.CategoryId == search.CategoryId);
                 }
-                if(search.CityId.HasValue)
+                if (search.CityId.HasValue)
                 {
                     entity = entity.Where(x => x.CityId == search.CityId);
                 }
-                if(search.CountryId.HasValue)
+                if (search.CountryId.HasValue)
                 {
                     entity = entity.Where(x => x.City.CountryId == search.CountryId);
                 }
-                if(search.OfferTypeId.HasValue)
+                if (search.OfferTypeId.HasValue)
                 {
                     entity = entity.Where(x => x.OfferTypeId == search.OfferTypeId);
                 }
@@ -64,7 +63,7 @@ namespace RealEstateAgency.Services
                     }
                 }
             }
-            
+
             return _mapper.Map<List<Model.Property>>(entity.ToList());
         }
     }

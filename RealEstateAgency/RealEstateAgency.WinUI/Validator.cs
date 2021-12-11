@@ -73,7 +73,7 @@ namespace RealEstateAgency.WinUI
 
         public static bool ValidateRequiredComboBox(ErrorProvider errorProvider, ComboBox comboBox, CancelEventArgs e = null)
         {
-            if(comboBox.SelectedValue.ToString() == "0")
+            if (comboBox.SelectedValue.ToString() == "0")
             {
                 return SetErrorAndPreventSave(comboBox, Properties.Resources.Validation_RequiredField, errorProvider, e);
             }

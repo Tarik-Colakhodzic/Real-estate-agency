@@ -43,7 +43,7 @@ namespace RealEstateAgency.WinUI.Property
                     EntityNames.PropertyPhotos,
                 }
             };
-            if(cmbCountry.SelectedValue != null && cmbCountry?.SelectedValue?.ToString() != "0")
+            if (cmbCountry.SelectedValue != null && cmbCountry?.SelectedValue?.ToString() != "0")
             {
                 searchObject.CountryId = int.Parse(cmbCountry.SelectedValue.ToString());
             }
@@ -63,7 +63,7 @@ namespace RealEstateAgency.WinUI.Property
             {
                 searchObject.OwnerId = int.Parse(cmbOwner.SelectedValue.ToString());
             }
-            if(APIService.Agent && !APIService.Administrator)
+            if (APIService.Agent && !APIService.Administrator)
             {
                 searchObject.AgentId = APIService.LoggedUserId;
             }
@@ -114,7 +114,7 @@ namespace RealEstateAgency.WinUI.Property
 
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-            if(!cbFnished.Checked && !cbUnfinished.Checked)
+            if (!cbFnished.Checked && !cbUnfinished.Checked)
             {
                 MessageBox.Show("Jedno od polja završene ili nezavršene mora biti označeno!");
             }
@@ -135,7 +135,7 @@ namespace RealEstateAgency.WinUI.Property
         private void cmbCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             var countryId = (cmbCountry.SelectedItem as Model.Country)?.Id;
-            if(countryId != 0)
+            if (countryId != 0)
             {
                 var source = cities.Where(x => x.CountryId == countryId).ToList();
                 source.Insert(0, new City { Id = 0, Name = string.Empty });

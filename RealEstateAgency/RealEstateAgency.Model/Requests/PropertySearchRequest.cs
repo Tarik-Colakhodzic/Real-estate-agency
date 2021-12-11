@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RealEstateAgency.Model.Requests
+﻿namespace RealEstateAgency.Model.Requests
 {
     public class PropertySearchRequest
     {

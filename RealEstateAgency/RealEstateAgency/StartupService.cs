@@ -1,7 +1,7 @@
-﻿using RealEstateAgency.Database;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstateAgency.Database;
 using System;
+using System.Linq;
 
 namespace RealEstateAgency
 {
@@ -12,11 +12,12 @@ namespace RealEstateAgency
             context.Database.Migrate();
 
             #region ROLES
+
             if (!context.Roles.Any(x => x.Name == "Administrator"))
             {
                 context.Roles.Add(new Role { Name = "Administrator" });
             }
-            if(!context.Roles.Any(x => x.Name == "Agent"))
+            if (!context.Roles.Any(x => x.Name == "Agent"))
             {
                 context.Roles.Add(new Role { Name = "Agent" });
             }
@@ -25,9 +26,11 @@ namespace RealEstateAgency
                 context.Roles.Add(new Role { Name = "Client" });
             }
             context.SaveChanges();
-            #endregion
+
+            #endregion ROLES
 
             #region USERS
+
             var adminRoleId = context.Roles.First(x => x.Name == "Administrator").Id;
             var agentRoleId = context.Roles.First(x => x.Name == "Agent").Id;
             var clientRoleId = context.Roles.First(x => x.Name == "Client").Id;
@@ -45,7 +48,7 @@ namespace RealEstateAgency
                     PasswordSalt = "tyHlAlf9hHcYibxHpG01xA=="
                 });
             }
-            if(!context.Users.Any(x => x.UserName == "Agent"))
+            if (!context.Users.Any(x => x.UserName == "Agent"))
             {
                 context.Users.Add(new User
                 {
@@ -72,14 +75,16 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
-            #endregion
+
+            #endregion USERS
 
             #region USERROLES
+
             var adminUserId = context.Users.First(x => x.UserName == "Administrator").Id;
             var agentUserId = context.Users.First(x => x.UserName == "Agent").Id;
             var clientUserId = context.Users.First(x => x.UserName == "Client").Id;
 
-            if(!context.UsersRoles.Any(x => x.UserId == adminUserId && x.RoleId == adminRoleId))
+            if (!context.UsersRoles.Any(x => x.UserId == adminUserId && x.RoleId == adminRoleId))
             {
                 context.UsersRoles.Add(new UserRoles
                 {
@@ -87,7 +92,7 @@ namespace RealEstateAgency
                     UserId = adminUserId
                 });
             }
-            if(!context.UsersRoles.Any(x => x.UserId == agentUserId && x.RoleId == agentRoleId))
+            if (!context.UsersRoles.Any(x => x.UserId == agentUserId && x.RoleId == agentRoleId))
             {
                 context.UsersRoles.Add(new UserRoles
                 {
@@ -104,9 +109,11 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
-            #endregion
+
+            #endregion USERROLES
 
             #region Country
+
             if (!context.Countries.Any(x => x.Name == "Bosna i Hercegovina"))
             {
                 context.Countries.Add(new Country
@@ -132,9 +139,11 @@ namespace RealEstateAgency
             var bosnaIHercegovinaId = context.Countries.First(x => x.Name == "Bosna i Hercegovina").Id;
             var hrvatskaId = context.Countries.First(x => x.Name == "Hrvatska").Id;
             var crnaGoraId = context.Countries.First(x => x.Name == "Crna Gora").Id;
-            #endregion
+
+            #endregion Country
 
             #region City
+
             if (!context.Cities.Any(x => x.Name == "Mostar"))
             {
                 context.Cities.Add(new City
@@ -186,9 +195,11 @@ namespace RealEstateAgency
             context.SaveChanges();
             var mostarId = context.Cities.First(x => x.Name == "Mostar").Id;
             var budvaId = context.Cities.First(x => x.Name == "Budva").Id;
-            #endregion
+
+            #endregion City
 
             #region OfferType
+
             if (!context.OfferTypes.Any(x => x.Name == "Prodaja"))
             {
                 context.OfferTypes.Add(new OfferType
@@ -206,9 +217,11 @@ namespace RealEstateAgency
             context.SaveChanges();
             var prodajaId = context.OfferTypes.First(x => x.Name == "Prodaja").Id;
             var izdavanjeId = context.OfferTypes.First(x => x.Name == "Izdavanje").Id;
-            #endregion
+
+            #endregion OfferType
 
             #region Category
+
             if (!context.Categories.Any(x => x.Name == "Stan"))
             {
                 context.Categories.Add(new Category
@@ -246,9 +259,11 @@ namespace RealEstateAgency
             }
             context.SaveChanges();
             var categoryStanId = context.Categories.First(x => x.Name == "Stan").Id;
-            #endregion
+
+            #endregion Category
 
             #region Agent
+
             if (!context.Agents.Any(x => x.User.Id == agentUserId))
             {
                 context.Agents.Add(new Agent
@@ -259,10 +274,12 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
-            #endregion
+
+            #endregion Agent
 
             #region OWNER
-            if(!context.Owners.Any(x => x.FirstName == "Vlasnik" && x.LastName == "Vlasnikovic"))
+
+            if (!context.Owners.Any(x => x.FirstName == "Vlasnik" && x.LastName == "Vlasnikovic"))
             {
                 context.Owners.Add(new Owner
                 {
@@ -288,10 +305,12 @@ namespace RealEstateAgency
             }
             context.SaveChanges();
             var ownerId = context.Owners.First(x => x.FirstName == "Vlasnik").Id;
-            #endregion
+
+            #endregion OWNER
 
             #region PROPERTY
-            if(!context.Properties.Any(x => x.Title == "Dvosoban stan na Musali"))
+
+            if (!context.Properties.Any(x => x.Title == "Dvosoban stan na Musali"))
             {
                 context.Properties.Add(new Property
                 {
@@ -319,9 +338,11 @@ namespace RealEstateAgency
             }
             context.SaveChanges();
             var propertyId = context.Properties.First(x => x.Title == "Dvosoban stan na Musali").Id;
-            #endregion
+
+            #endregion PROPERTY
 
             #region CONTRACT
+
             if (!context.Contracts.Any(x => x.UserId == clientUserId && x.AgentId == agentUserId))
             {
                 context.Contracts.Add(new Contract
@@ -335,10 +356,12 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
-            #endregion
+
+            #endregion CONTRACT
 
             #region BOOKOFCOMPLAINTS
-            if(!context.BookOfComplaints.Any(x => x.Comment == "Nije došao na zakazanu posjetu!"))
+
+            if (!context.BookOfComplaints.Any(x => x.Comment == "Nije došao na zakazanu posjetu!"))
             {
                 context.BookOfComplaints.Add(new BookOfComplaints
                 {
@@ -349,10 +372,12 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
-            #endregion
+
+            #endregion BOOKOFCOMPLAINTS
 
             #region VISIT
-            if(!context.Visits.Any(x => x.UserId == clientUserId && x.PropertyId == propertyId))
+
+            if (!context.Visits.Any(x => x.UserId == clientUserId && x.PropertyId == propertyId))
             {
                 context.Add(new Visit
                 {
@@ -363,7 +388,8 @@ namespace RealEstateAgency
                 });
             }
             context.SaveChanges();
-            #endregion
+
+            #endregion VISIT
         }
     }
 }

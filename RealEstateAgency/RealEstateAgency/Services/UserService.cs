@@ -79,7 +79,7 @@ namespace RealEstateAgency.Services
             var oldPasswordHash = entity.PasswordHash;
             var oldPasswodSalt = entity.PasswordSalt;
             _mapper.Map(request, entity);
-            if(string.IsNullOrEmpty(request.Password))
+            if (string.IsNullOrEmpty(request.Password))
             {
                 entity.PasswordHash = oldPasswordHash;
                 entity.PasswordSalt = oldPasswodSalt;

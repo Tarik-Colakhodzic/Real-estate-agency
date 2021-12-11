@@ -24,7 +24,7 @@ namespace RealEstateAgency.WinUI.User
         {
             InitializeComponent();
             _user = user;
-            if(_user == null)
+            if (_user == null)
             {
                 lblPwdFirst.Visible = false;
                 lblPwdSecond.Visible = false;
@@ -179,7 +179,7 @@ namespace RealEstateAgency.WinUI.User
 
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
-            if(string.IsNullOrEmpty(txtPassword.Text) && _user != null)
+            if (string.IsNullOrEmpty(txtPassword.Text) && _user != null)
             {
                 errorProvider.SetError(txtPassword, null);
                 return;
@@ -198,7 +198,7 @@ namespace RealEstateAgency.WinUI.User
 
         private void txtConfirmedPassword_Validating(object sender, CancelEventArgs e)
         {
-            if(string.IsNullOrEmpty(txtPassword.Text) && _user != null)
+            if (string.IsNullOrEmpty(txtPassword.Text) && _user != null)
             {
                 errorProvider.SetError(txtConfirmedPassword, null);
                 return;

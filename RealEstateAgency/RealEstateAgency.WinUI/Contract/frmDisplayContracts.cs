@@ -12,7 +12,7 @@ namespace RealEstateAgency.WinUI.Contract
     {
         private readonly APIService _serviceContracts = new APIService(EntityNames.Contract);
         private readonly APIService _serviceUsers = new APIService(EntityNames.User);
-        private  readonly APIService _serviceOwners = new APIService(EntityNames.Owner);
+        private readonly APIService _serviceOwners = new APIService(EntityNames.Owner);
 
         public frmDisplayContracts()
         {

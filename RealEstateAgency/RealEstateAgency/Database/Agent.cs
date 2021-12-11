@@ -8,6 +8,7 @@ namespace RealEstateAgency.Database
     {
         [Key, ForeignKey("User")]
         public int Id { get; set; }
+
         public User User { get; set; }
         public decimal Salary { get; set; }
         public DateTime HireDate { get; set; }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using RealEstateAgency.Database;
-using RealEstateAgency.Model;
 using RealEstateAgency.Model.Requests;
 using System.Collections.Generic;
 using System.Linq;
