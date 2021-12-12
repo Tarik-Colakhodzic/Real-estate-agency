@@ -13,17 +13,34 @@ namespace RealEstateAgency.WinUI.Contract
         private readonly APIService _serviceContracts = new APIService(EntityNames.Contract);
         private readonly APIService _serviceUsers = new APIService(EntityNames.User);
         private readonly APIService _serviceOwners = new APIService(EntityNames.Owner);
+        private readonly APIService _serviceAgents = new APIService(EntityNames.Agent);
+        private bool _startDateSelected = false;
+        private bool _endDateSelected = false;
+        private bool _includeFilters = false;
 
         public frmDisplayContracts()
         {
             InitializeComponent();
             dgvContracts.AutoGenerateColumns = false;
+            if (APIService.Administrator)
+            {
+                lblAgent.Visible = cmbAgent.Visible = true;
+            }
+            else
+            {
+                lblAgent.Visible = cmbAgent.Visible = false;
+            }
             LoadComboBoxes();
+            dtpStart.CustomFormat = " ";
+            dtpStart.Format = DateTimePickerFormat.Custom;
+            dtpEnd.CustomFormat = " ";
+            dtpEnd.Format = DateTimePickerFormat.Custom;
         }
 
         private void btnDisplay_Click(object sender, EventArgs e)
         {
             frmDisplayContracts_Load(sender, e);
+            _includeFilters = true;
         }
 
         private async void frmDisplayContracts_Load(object sender, EventArgs e)
@@ -52,6 +69,18 @@ namespace RealEstateAgency.WinUI.Contract
                 if (cmbOwner.SelectedValue != null && cmbOwner?.SelectedValue?.ToString() != "0")
                 {
                     searchObject.OwnerId = int.Parse(cmbOwner.SelectedValue.ToString());
+                }
+                if (!APIService.Administrator && APIService.Agent)
+                {
+                    searchObject.AgentId = APIService.LoggedUserId;
+                }
+                if (_startDateSelected)
+                {
+                    searchObject.Start = dtpStart.Value;
+                }
+                if (_endDateSelected)
+                {
+                    searchObject.End = dtpEnd.Value;
                 }
                 dgvContracts.DataSource = await _serviceContracts.GetAll<List<Model.Contract>>(searchObject);
             }
@@ -90,6 +119,91 @@ namespace RealEstateAgency.WinUI.Contract
                 dgvContracts.DataSource = null;
                 frmDisplayContracts_Load(sender, e);
             }
+        }
+
+        private async void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            var contracts = dgvContracts.DataSource as List<Model.Contract>;
+            if (contracts != null)
+            {
+                contracts = contracts.OrderByDescending(x => x.DateCreated).ToList();
+                if (_includeFilters)
+                {
+
+                }
+                var countOfRows = contracts.Count;
+                var priceSum = contracts.Sum(x => x.Price);
+
+                var dateRange = string.Empty;
+                var agent = string.Empty;
+                var client = string.Empty;
+                var owner = string.Empty;
+                if (_includeFilters)
+                {
+                    var startFormated = dtpStart.Value.Date.ToString("dd.MM.yyyy");
+                    var endFormated = dtpEnd.Value.Date.ToString("dd.MM.yyyy");
+                    var agentFullName = (cmbAgent.SelectedItem as Model.User)?.FullName;
+                    var clientFullName = (cmbClient.SelectedItem as Model.User)?.FullName;
+                    var ownerFullName = (cmbOwner.SelectedItem as Model.Owner)?.FullName;
+                    if (!string.IsNullOrWhiteSpace(agentFullName))
+                    {
+                        agent = $"Agent: {agentFullName}";
+                    }
+                    if (!string.IsNullOrWhiteSpace(clientFullName))
+                    {
+                        client = $"Klijent: {clientFullName}";
+                    }
+                    if (!string.IsNullOrWhiteSpace(ownerFullName))
+                    {
+                        owner = $"Vlasnik: {ownerFullName}";
+                    }
+                    if (_startDateSelected && _endDateSelected)
+                    {
+                        dateRange = $"Za period od {startFormated} do {endFormated}";
+                    }
+                    if (_startDateSelected && !_endDateSelected)
+                    {
+                        dateRange = $"Za period od {startFormated}";
+                    }
+                    if (!_startDateSelected && _endDateSelected)
+                    {
+                        dateRange = $"Za period do {endFormated}";
+                    }
+                }
+                if (!APIService.Administrator && APIService.Agent)
+                {
+                    agent = $"Agent: {(await _serviceAgents.GetById<Model.Agent>(APIService.LoggedUserId)).FullName}";
+                }
+
+                frmContractReport report = new frmContractReport(contracts, agent, client, owner, countOfRows, priceSum, dateRange);
+                report.Show();
+            }
+            else
+            {
+                MessageBox.Show(Resources.Error_Occured);
+            }
+        }
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            dtpStart.CustomFormat = "dd/MM/yyyy";
+            _startDateSelected = true;
+        }
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
+            dtpEnd.CustomFormat = "dd/MM/yyyy";
+            _endDateSelected = true;
+        }
+
+        private void btnClearDates_Click(object sender, EventArgs e)
+        {
+            dtpStart.CustomFormat = " ";
+            dtpEnd.CustomFormat = " ";
+
+            _startDateSelected = false;
+            _endDateSelected = false;
+            dtpStart.Value = dtpEnd.Value = DateTime.MinValue;
         }
     }
 }

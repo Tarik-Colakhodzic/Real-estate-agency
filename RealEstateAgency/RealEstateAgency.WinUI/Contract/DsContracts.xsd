@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsContracts" targetNamespace="http://tempuri.org/DsContracts.xsd" xmlns:mstns="http://tempuri.org/DsContracts.xsd" xmlns="http://tempuri.org/DsContracts.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsContracts" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsContracts" msprop:Generator_UserDSName="DsContracts">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Contracts" msprop:Generator_TableClassName="ContractsDataTable" msprop:Generator_TableVarName="tableContracts" msprop:Generator_RowChangedName="ContractsRowChanged" msprop:Generator_TablePropName="Contracts" msprop:Generator_RowDeletingName="ContractsRowDeleting" msprop:Generator_RowChangingName="ContractsRowChanging" msprop:Generator_RowEvHandlerName="ContractsRowChangeEventHandler" msprop:Generator_RowDeletedName="ContractsRowDeleted" msprop:Generator_RowClassName="ContractsRow" msprop:Generator_UserTableName="Contracts" msprop:Generator_RowEvArgName="ContractsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrdinalNumber" msprop:Generator_ColumnVarNameInTable="columnOrdinalNumber" msprop:Generator_ColumnPropNameInRow="OrdinalNumber" msprop:Generator_ColumnPropNameInTable="OrdinalNumberColumn" msprop:Generator_UserColumnName="OrdinalNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="PropertyTitle" msprop:Generator_ColumnVarNameInTable="columnPropertyTitle" msprop:Generator_ColumnPropNameInRow="PropertyTitle" msprop:Generator_ColumnPropNameInTable="PropertyTitleColumn" msprop:Generator_UserColumnName="PropertyTitle" type="xs:string" minOccurs="0" />
+              <xs:element name="AgentName" msprop:Generator_ColumnVarNameInTable="columnAgentName" msprop:Generator_ColumnPropNameInRow="AgentName" msprop:Generator_ColumnPropNameInTable="AgentNameColumn" msprop:Generator_UserColumnName="AgentName" type="xs:string" minOccurs="0" />
+              <xs:element name="ClientName" msprop:Generator_ColumnVarNameInTable="columnClientName" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_UserColumnName="ClientName" type="xs:string" minOccurs="0" />
+              <xs:element name="OwnerName" msprop:Generator_ColumnVarNameInTable="columnOwnerName" msprop:Generator_ColumnPropNameInRow="OwnerName" msprop:Generator_ColumnPropNameInTable="OwnerNameColumn" msprop:Generator_UserColumnName="OwnerName" type="xs:string" minOccurs="0" />
+              <xs:element name="ContractNumber" msprop:Generator_ColumnVarNameInTable="columnContractNumber" msprop:Generator_ColumnPropNameInRow="ContractNumber" msprop:Generator_ColumnPropNameInTable="ContractNumberColumn" msprop:Generator_UserColumnName="ContractNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:string" minOccurs="0" />
+              <xs:element name="ContractDate" msprop:Generator_ColumnVarNameInTable="columnContractDate" msprop:Generator_ColumnPropNameInRow="ContractDate" msprop:Generator_ColumnPropNameInTable="ContractDateColumn" msprop:Generator_UserColumnName="ContractDate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

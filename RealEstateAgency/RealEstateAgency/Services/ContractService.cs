@@ -41,6 +41,14 @@ namespace RealEstateAgency.Services
                 {
                     entity = entity.Where(x => x.UserId == search.ClientId);
                 }
+                if(search.Start.HasValue)
+                {
+                    entity = entity.Where(x => x.DateCreated > search.Start);
+                }
+                if(search.End.HasValue)
+                {
+                    entity = entity.Where(x => x.DateCreated < search.End);
+                }
             }
             var list = entity.ToList();
             return _mapper.Map<IList<Model.Contract>>(list);

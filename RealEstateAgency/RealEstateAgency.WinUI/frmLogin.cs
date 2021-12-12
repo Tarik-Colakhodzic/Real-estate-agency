@@ -20,6 +20,8 @@ namespace RealEstateAgency.WinUI
         {
             APIService.Username = txtUsername.Text;
             APIService.Password = txtPassword.Text;
+            APIService.Agent = false;
+            APIService.Administrator = false;
 
             try
             {
