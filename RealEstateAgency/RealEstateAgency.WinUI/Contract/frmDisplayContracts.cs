@@ -126,14 +126,11 @@ namespace RealEstateAgency.WinUI.Contract
             var contracts = dgvContracts.DataSource as List<Model.Contract>;
             if (contracts != null)
             {
-                contracts = contracts.OrderByDescending(x => x.DateCreated).ToList();
-                if (_includeFilters)
+                if (contracts.Count == 0)
                 {
-
+                    MessageBox.Show(Resources.NoData);
+                    return;
                 }
-                var countOfRows = contracts.Count;
-                var priceSum = contracts.Sum(x => x.Price);
-
                 var dateRange = string.Empty;
                 var agent = string.Empty;
                 var client = string.Empty;
@@ -175,7 +172,7 @@ namespace RealEstateAgency.WinUI.Contract
                     agent = $"Agent: {(await _serviceAgents.GetById<Model.Agent>(APIService.LoggedUserId)).FullName}";
                 }
 
-                frmContractReport report = new frmContractReport(contracts, agent, client, owner, countOfRows, priceSum, dateRange);
+                frmContractReport report = new frmContractReport(contracts, agent, client, owner, dateRange);
                 report.Show();
             }
             else
@@ -203,7 +200,6 @@ namespace RealEstateAgency.WinUI.Contract
 
             _startDateSelected = false;
             _endDateSelected = false;
-            dtpStart.Value = dtpEnd.Value = DateTime.MinValue;
         }
     }
 }

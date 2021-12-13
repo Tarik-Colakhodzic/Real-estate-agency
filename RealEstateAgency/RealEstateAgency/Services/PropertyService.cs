@@ -55,6 +55,14 @@ namespace RealEstateAgency.Services
                 {
                     entity = entity.Where(x => x.OfferTypeId == search.OfferTypeId);
                 }
+                if(search.Start.HasValue)
+                {
+                    entity = entity.Where(x => x.PublishDate > search.Start);
+                }
+                if(search.End.HasValue)
+                {
+                    entity = entity.Where(x => x.PublishDate < search.End);
+                }
                 if (search?.IncludeList?.Length > 0)
                 {
                     foreach (var item in search.IncludeList)
@@ -64,7 +72,7 @@ namespace RealEstateAgency.Services
                 }
             }
 
-            return _mapper.Map<List<Model.Property>>(entity.ToList());
+            return _mapper.Map<List<Model.Property>>(entity.OrderByDescending(x => x.PublishDate).ToList());
         }
     }
 }

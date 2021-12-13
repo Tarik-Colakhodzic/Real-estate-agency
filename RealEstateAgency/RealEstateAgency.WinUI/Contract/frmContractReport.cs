@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Reporting.WinForms;
 
@@ -11,31 +12,28 @@ namespace RealEstateAgency.WinUI.Contract
         private string _agent;
         private string _client;
         private string _owner;
-        private string _countOfRows;
-        private string _priceSum;
         private string _dateRange;
 
-        public frmContractReport(IList<Model.Contract> contracts, string agent, string client, string owner,
-            int countOfRows, decimal priceSum, string dateRange)
+        public frmContractReport(IList<Model.Contract> contracts, string agent, string client, string owner, string dateRange)
         {
             InitializeComponent();
-            _contracts = contracts;
+            _contracts = contracts.OrderByDescending(x => x.DateCreated).ToList();
             _agent = agent;
             _client = client;
             _owner = owner;
-            _countOfRows = $"Broj sklopljenih ugovora: {countOfRows}";
-            _priceSum = $"Ukupna cijena sklopljenih ugovora: {priceSum}";
             _dateRange = dateRange;
         }
 
         private void frmContractReport_Load(object sender, EventArgs e)
         {
             ReportParameterCollection reportParameters = new ReportParameterCollection();
+            var countOfRows = _contracts.Count;
+            var priceSum = _contracts.Sum(x => x.Price);
             reportParameters.Add(new ReportParameter("Agent", _agent));
             reportParameters.Add(new ReportParameter("Client", _client));
             reportParameters.Add(new ReportParameter("Owner", _owner));
-            reportParameters.Add(new ReportParameter("CountOfRows", _countOfRows));
-            reportParameters.Add(new ReportParameter("PriceSum", _priceSum));
+            reportParameters.Add(new ReportParameter("CountOfRows", $"Broj sklopljenih ugovora: {countOfRows}"));
+            reportParameters.Add(new ReportParameter("PriceSum", $"Ukupna cijena sklopljenih ugovora: {priceSum}"));
             reportParameters.Add(new ReportParameter("DateRange", _dateRange));
 
             var reportList = new List<object>();

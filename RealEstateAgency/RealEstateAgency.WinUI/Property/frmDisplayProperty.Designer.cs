@@ -30,6 +30,11 @@ namespace RealEstateAgency.WinUI.Property
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnClearDates = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.btnClearFilters = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,6 +63,7 @@ namespace RealEstateAgency.WinUI.Property
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OfferTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Finished = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnGenerateReport = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).BeginInit();
@@ -65,6 +71,11 @@ namespace RealEstateAgency.WinUI.Property
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnClearDates);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.dtpEnd);
+            this.groupBox2.Controls.Add(this.dtpStart);
             this.groupBox2.Controls.Add(this.btnClearFilters);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
@@ -83,14 +94,58 @@ namespace RealEstateAgency.WinUI.Property
             this.groupBox2.Controls.Add(this.btnDisplay);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1320, 164);
+            this.groupBox2.Size = new System.Drawing.Size(1391, 164);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pretraga";
             // 
+            // btnClearDates
+            // 
+            this.btnClearDates.Location = new System.Drawing.Point(592, 60);
+            this.btnClearDates.Name = "btnClearDates";
+            this.btnClearDates.Size = new System.Drawing.Size(117, 23);
+            this.btnClearDates.TabIndex = 36;
+            this.btnClearDates.Text = "Očisti datume";
+            this.btnClearDates.UseVisualStyleBackColor = true;
+            this.btnClearDates.Click += new System.EventHandler(this.btnClearDates_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(405, 41);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(99, 17);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "Objavljeno do:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(216, 41);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(99, 17);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "Objavljeno od:";
+            // 
+            // dtpEnd
+            // 
+            this.dtpEnd.Location = new System.Drawing.Point(404, 61);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(182, 22);
+            this.dtpEnd.TabIndex = 33;
+            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
+            // 
+            // dtpStart
+            // 
+            this.dtpStart.Location = new System.Drawing.Point(217, 61);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(182, 22);
+            this.dtpStart.TabIndex = 32;
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
+            // 
             // btnClearFilters
             // 
-            this.btnClearFilters.Location = new System.Drawing.Point(1074, 108);
+            this.btnClearFilters.Location = new System.Drawing.Point(1145, 108);
             this.btnClearFilters.Name = "btnClearFilters";
             this.btnClearFilters.Size = new System.Drawing.Size(117, 31);
             this.btnClearFilters.TabIndex = 31;
@@ -155,7 +210,7 @@ namespace RealEstateAgency.WinUI.Property
             // cbUnfinished
             // 
             this.cbUnfinished.AutoSize = true;
-            this.cbUnfinished.Location = new System.Drawing.Point(317, 61);
+            this.cbUnfinished.Location = new System.Drawing.Point(840, 61);
             this.cbUnfinished.Name = "cbUnfinished";
             this.cbUnfinished.Size = new System.Drawing.Size(106, 21);
             this.cbUnfinished.TabIndex = 22;
@@ -165,7 +220,7 @@ namespace RealEstateAgency.WinUI.Property
             // cbFnished
             // 
             this.cbFnished.AutoSize = true;
-            this.cbFnished.Location = new System.Drawing.Point(221, 60);
+            this.cbFnished.Location = new System.Drawing.Point(744, 60);
             this.cbFnished.Name = "cbFnished";
             this.cbFnished.Size = new System.Drawing.Size(90, 21);
             this.cbFnished.TabIndex = 21;
@@ -227,7 +282,7 @@ namespace RealEstateAgency.WinUI.Property
             // 
             // btnDisplay
             // 
-            this.btnDisplay.Location = new System.Drawing.Point(1197, 108);
+            this.btnDisplay.Location = new System.Drawing.Point(1268, 108);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(117, 31);
             this.btnDisplay.TabIndex = 1;
@@ -240,7 +295,7 @@ namespace RealEstateAgency.WinUI.Property
             this.groupBox1.Controls.Add(this.dgvProperties);
             this.groupBox1.Location = new System.Drawing.Point(12, 182);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1323, 342);
+            this.groupBox1.Size = new System.Drawing.Size(1391, 342);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vlasnici";
@@ -269,7 +324,7 @@ namespace RealEstateAgency.WinUI.Property
             this.dgvProperties.RowHeadersWidth = 51;
             this.dgvProperties.RowTemplate.Height = 24;
             this.dgvProperties.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProperties.Size = new System.Drawing.Size(1317, 321);
+            this.dgvProperties.Size = new System.Drawing.Size(1385, 321);
             this.dgvProperties.TabIndex = 0;
             this.dgvProperties.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProperties_CellMouseDoubleClick);
             // 
@@ -356,11 +411,22 @@ namespace RealEstateAgency.WinUI.Property
             this.Finished.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Finished.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // btnGenerateReport
+            // 
+            this.btnGenerateReport.Location = new System.Drawing.Point(1246, 527);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(157, 31);
+            this.btnGenerateReport.TabIndex = 37;
+            this.btnGenerateReport.Text = "Generiši izvještaj";
+            this.btnGenerateReport.UseVisualStyleBackColor = true;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
+            // 
             // frmDisplayProperty
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1347, 536);
+            this.ClientSize = new System.Drawing.Size(1415, 579);
+            this.Controls.Add(this.btnGenerateReport);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "frmDisplayProperty";
@@ -405,5 +471,11 @@ namespace RealEstateAgency.WinUI.Property
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClearFilters;
+        private System.Windows.Forms.Button btnClearDates;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dtpEnd;
+        private System.Windows.Forms.DateTimePicker dtpStart;
+        private System.Windows.Forms.Button btnGenerateReport;
     }
 }

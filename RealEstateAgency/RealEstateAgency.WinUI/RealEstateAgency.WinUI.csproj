@@ -152,6 +152,12 @@
     <Compile Include="Property\frmPropertyDetails.Designer.cs">
       <DependentUpon>frmPropertyDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Property\frmPropertyReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Property\frmPropertyReport.Designer.cs">
+      <DependentUpon>frmPropertyReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="User\frmDisplayUsers.cs">
       <SubType>Form</SubType>
@@ -216,6 +222,10 @@
     <EmbeddedResource Include="Property\frmPropertyDetails.resx">
       <DependentUpon>frmPropertyDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Property\frmPropertyReport.resx">
+      <DependentUpon>frmPropertyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Property\rptProperties.rdlc" />
     <EmbeddedResource Include="User\frmDisplayUsers.resx">
       <DependentUpon>frmDisplayUsers.cs</DependentUpon>
     </EmbeddedResource>

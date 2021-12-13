@@ -16,7 +16,10 @@ namespace RealEstateAgency.WinUI.Property
         private APIService _serviceOwner = new APIService(EntityNames.Owner);
         private APIService _serviceCategory = new APIService(EntityNames.Category);
         private APIService _serviceOfferType = new APIService(EntityNames.OfferType);
-        private List<Model.City> cities = new List<City>();
+        private List<Model.City> _cities = new List<City>();
+        private bool _startDateSelected = false;
+        private bool _endDateSelected = false;
+        private bool _includeFilters = false;
 
         public frmDisplayProperty()
         {
@@ -25,6 +28,10 @@ namespace RealEstateAgency.WinUI.Property
             loadComboBoxes();
             cbUnfinished.Checked = true;
             cbFnished.Checked = false;
+            dtpStart.CustomFormat = " ";
+            dtpStart.Format = DateTimePickerFormat.Custom;
+            dtpEnd.CustomFormat = " ";
+            dtpEnd.Format = DateTimePickerFormat.Custom;
         }
 
         private async void frmDisplayProperty_Load(object sender, EventArgs e)
@@ -67,6 +74,14 @@ namespace RealEstateAgency.WinUI.Property
             {
                 searchObject.AgentId = APIService.LoggedUserId;
             }
+            if (_startDateSelected)
+            {
+                searchObject.Start = dtpStart.Value;
+            }
+            if (_endDateSelected)
+            {
+                searchObject.End = dtpEnd.Value;
+            }
             try
             {
                 dgvProperties.DataSource = await _serviceProperty.GetAll<List<Model.Property>>(searchObject);
@@ -99,7 +114,7 @@ namespace RealEstateAgency.WinUI.Property
                 offerTypes.Insert(0, new OfferType { Id = 0, Name = string.Empty });
                 cmbOfferType.DataSource = offerTypes;
 
-                cities = await _serviceCity.GetAll<List<Model.City>>();
+                _cities = await _serviceCity.GetAll<List<Model.City>>();
 
                 cmbCity.DataSource = new List<Model.City> { new City { Id = 0, Name = "Odaberite državu" } };
 
@@ -117,7 +132,9 @@ namespace RealEstateAgency.WinUI.Property
             if (!cbFnished.Checked && !cbUnfinished.Checked)
             {
                 MessageBox.Show("Jedno od polja završene ili nezavršene mora biti označeno!");
+                return;
             }
+            _includeFilters = true;
             frmDisplayProperty_Load(sender, e);
         }
 
@@ -137,7 +154,7 @@ namespace RealEstateAgency.WinUI.Property
             var countryId = (cmbCountry.SelectedItem as Model.Country)?.Id;
             if (countryId != 0)
             {
-                var source = cities.Where(x => x.CountryId == countryId).ToList();
+                var source = _cities.Where(x => x.CountryId == countryId).ToList();
                 source.Insert(0, new City { Id = 0, Name = string.Empty });
                 cmbCity.DataSource = source;
                 cmbCity.DisplayMember = "Name";
@@ -161,6 +178,82 @@ namespace RealEstateAgency.WinUI.Property
             cmbOwner.SelectedItem = cmbOwner.Items[0];
             cbFnished.Checked = false;
             cbUnfinished.Checked = true;
+            dtpStart.CustomFormat = " ";
+            dtpEnd.CustomFormat = " ";
+            _startDateSelected = false;
+            _endDateSelected = false;
+        }
+
+        private void btnClearDates_Click(object sender, EventArgs e)
+        {
+            dtpStart.CustomFormat = " ";
+            dtpEnd.CustomFormat = " ";
+
+            _startDateSelected = false;
+            _endDateSelected = false;
+        }
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            dtpStart.CustomFormat = "MM/dd/yyyy";
+            _startDateSelected = true;
+        }
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
+            dtpEnd.CustomFormat = "MM/dd/yyyy";
+            _endDateSelected = true;
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            var properties = dgvProperties.DataSource as List<Model.Property>;
+            if(properties != null)
+            {
+                if(properties.Count == 0)
+                {
+                    MessageBox.Show(Resources.NoData);
+                    return;
+                }
+                var countOfRows = properties.Count;
+                var priceSum = properties.Sum(x => x.Price);
+                var dateRange = string.Empty;
+                var country = string.Empty;
+                var city = string.Empty;
+                if(_includeFilters)
+                {
+                    var startFormated = dtpStart.Value.Date.ToString("dd.MM.yyyy");
+                    var endFormated = dtpEnd.Value.Date.ToString("dd.MM.yyyy");
+                    country = (cmbCountry.SelectedItem as Model.Country)?.Name;
+                    city = (cmbCity.SelectedItem as Model.City)?.Name;
+                    if (_startDateSelected && _endDateSelected)
+                    {
+                        dateRange = $"Za period od {startFormated} do {endFormated}";
+                    }
+                    if (_startDateSelected && !_endDateSelected)
+                    {
+                        dateRange = $"Za period od {startFormated}";
+                    }
+                    if (!_startDateSelected && _endDateSelected)
+                    {
+                        dateRange = $"Za period do {endFormated}";
+                    }
+                    if(!string.IsNullOrEmpty(country))
+                    {
+                        country = $"Država: {country}";
+                    }
+                    if(!string.IsNullOrEmpty(city))
+                    {
+                        city = $"Grad: {city}";
+                    }
+                }
+                frmPropertyReport report = new frmPropertyReport(properties, dateRange, country, city);
+                report.Show();
+            }
+            else
+            {
+                MessageBox.Show(Resources.Error_Occured);
+            }
         }
     }
 }

@@ -50,7 +50,7 @@ namespace RealEstateAgency.Services
                     entity = entity.Where(x => x.DateCreated < search.End);
                 }
             }
-            var list = entity.ToList();
+            var list = entity.OrderByDescending(x => x.DateCreated).ToList();
             return _mapper.Map<IList<Model.Contract>>(list);
         }
     }

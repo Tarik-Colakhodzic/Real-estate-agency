@@ -88,6 +88,15 @@ namespace RealEstateAgency.WinUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nema zapisa!.
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unesite ispravan email!.
         /// </summary>
         public static string Validation_EmailField {
