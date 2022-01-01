@@ -70,6 +70,7 @@ namespace RealEstateAgency.Services
                         entity = entity.Include(item);
                     }
                 }
+                entity = entity.Include("PropertyPhotos");
             }
 
             return _mapper.Map<List<Model.Property>>(entity.OrderByDescending(x => x.PublishDate).ToList());

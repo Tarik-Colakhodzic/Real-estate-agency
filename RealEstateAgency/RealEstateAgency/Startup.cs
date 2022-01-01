@@ -77,6 +77,7 @@ namespace RealEstateAgency
             services.AddScoped<IContractService, ContractService>();
             services.AddScoped<IBookOfComplaintsService, BookOfComplaintsService>();
             services.AddScoped<IVisitService, VisitService>();
+            services.AddScoped<IUserPropertiesService, UserPropertiesService>();
 
             services.AddAuthentication("BasicAuthentication")
                     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
