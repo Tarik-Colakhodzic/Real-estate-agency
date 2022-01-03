@@ -22,6 +22,10 @@ namespace RealEstateAgency.Services
             {
                 entity = entity.Where(x => x.UserId == search.UserId);
             }
+            if(search?.PropertyId != null)
+            {
+                entity = entity.Where(x => x.PropertyId == search.PropertyId);
+            }
 
             if (search?.IncludeList?.Length > 0)
             {
