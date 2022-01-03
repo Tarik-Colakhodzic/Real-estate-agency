@@ -7,5 +7,7 @@ namespace RealEstateAgency.Model.Requests
     public class UserPropertiesSearchRequest
     {
         public int? UserId { get; set; }
+
+        public string[] IncludeList { get; set; }
     }
 }

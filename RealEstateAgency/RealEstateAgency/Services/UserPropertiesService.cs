@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RealEstateAgency.Database;
 using RealEstateAgency.Model.Requests;
 using System.Collections.Generic;
@@ -20,6 +21,14 @@ namespace RealEstateAgency.Services
             if(search?.UserId != null)
             {
                 entity = entity.Where(x => x.UserId == search.UserId);
+            }
+
+            if (search?.IncludeList?.Length > 0)
+            {
+                foreach (var item in search.IncludeList)
+                {
+                    entity = entity.Include(item);
+                }
             }
 
             var list = entity.ToList();
