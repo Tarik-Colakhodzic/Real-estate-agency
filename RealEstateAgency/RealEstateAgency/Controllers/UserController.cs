@@ -1,4 +1,8 @@
 ﻿using RealEstateAgency.Services;
+using Microsoft.AspNetCore.Authorization;
+using RealEstateAgency.Model;
+using Microsoft.AspNetCore.Mvc;
+using RealEstateAgency.Model.Requests;
 
 namespace RealEstateAgency.Controllers
 {
@@ -6,6 +10,12 @@ namespace RealEstateAgency.Controllers
     {
         public UserController(IUserService service) : base(service)
         {
+        }
+
+        [AllowAnonymous]
+        public override User Insert([FromBody] UserInsertRequest request)
+        {
+            return base.Insert(request);
         }
     }
 }
