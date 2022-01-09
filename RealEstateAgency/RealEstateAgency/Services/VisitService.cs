@@ -28,6 +28,10 @@ namespace RealEstateAgency.Services
                 {
                     entity = entity.Where(x => x.Property.Title.Contains(search.PropertyTitle));
                 }
+                if(search.PropertyId.HasValue)
+                {
+                    entity = entity.Where(x => x.PropertyId == search.PropertyId);
+                }
                 if (search.ClientId.HasValue)
                 {
                     entity = entity.Where(x => x.UserId == search.ClientId);
