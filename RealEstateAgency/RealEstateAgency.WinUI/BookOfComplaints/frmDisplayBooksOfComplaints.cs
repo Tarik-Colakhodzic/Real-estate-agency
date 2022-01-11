@@ -25,7 +25,6 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             {
                 var searchRequest = new BookOfComplaintsSearchRequest
                 {
-                    PropertyTitle = txtPropertyTitle.Text,
                     IncludeList = new string[]
                     {
                         EntityNames.Property,

@@ -367,7 +367,6 @@ namespace RealEstateAgency
                 {
                     AgentId = agentUserId,
                     DateCreated = DateTime.Now.AddDays(-10),
-                    PropertyId = propertyId,
                     Comment = "Nije došao na zakazanu posjetu!",
                 });
             }

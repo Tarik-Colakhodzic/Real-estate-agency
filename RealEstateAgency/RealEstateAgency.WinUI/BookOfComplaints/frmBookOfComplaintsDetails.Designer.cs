@@ -29,8 +29,6 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtProperty = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAgent = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,27 +36,10 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             this.lblDateCreated = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtProperty
-            // 
-            this.txtProperty.Location = new System.Drawing.Point(13, 46);
-            this.txtProperty.Name = "txtProperty";
-            this.txtProperty.ReadOnly = true;
-            this.txtProperty.Size = new System.Drawing.Size(285, 22);
-            this.txtProperty.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nekretnina";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 94);
+            this.label2.Location = new System.Drawing.Point(12, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 17);
             this.label2.TabIndex = 3;
@@ -66,7 +47,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // 
             // txtAgent
             // 
-            this.txtAgent.Location = new System.Drawing.Point(13, 117);
+            this.txtAgent.Location = new System.Drawing.Point(12, 39);
             this.txtAgent.Name = "txtAgent";
             this.txtAgent.ReadOnly = true;
             this.txtAgent.Size = new System.Drawing.Size(285, 22);
@@ -75,7 +56,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 168);
+            this.label3.Location = new System.Drawing.Point(11, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 17);
             this.label3.TabIndex = 5;
@@ -83,7 +64,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // 
             // txtComment
             // 
-            this.txtComment.Location = new System.Drawing.Point(12, 191);
+            this.txtComment.Location = new System.Drawing.Point(11, 113);
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
             this.txtComment.ReadOnly = true;
@@ -93,7 +74,7 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // lblDateCreated
             // 
             this.lblDateCreated.AutoSize = true;
-            this.lblDateCreated.Location = new System.Drawing.Point(439, 416);
+            this.lblDateCreated.Location = new System.Drawing.Point(438, 338);
             this.lblDateCreated.Name = "lblDateCreated";
             this.lblDateCreated.Size = new System.Drawing.Size(84, 17);
             this.lblDateCreated.TabIndex = 6;
@@ -103,14 +84,12 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(540, 455);
+            this.ClientSize = new System.Drawing.Size(540, 381);
             this.Controls.Add(this.lblDateCreated);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtComment);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtAgent);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtProperty);
             this.Name = "frmBookOfComplaintsDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalji";
@@ -120,9 +99,6 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtProperty;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtAgent;
         private System.Windows.Forms.Label label3;

@@ -26,10 +26,6 @@ namespace RealEstateAgency.Services
                         entity = entity.Include(item);
                     }
                 }
-                if (!string.IsNullOrWhiteSpace(search.PropertyTitle))
-                {
-                    entity = entity.Where(x => x.Property.Title.Contains(search.PropertyTitle));
-                }
                 if (search.AgentId.HasValue)
                 {
                     entity = entity.Where(x => x.AgentId == search.AgentId);

@@ -30,14 +30,11 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbAgents = new System.Windows.Forms.ComboBox();
-            this.txtPropertyTitle = new System.Windows.Forms.TextBox();
             this.btnDisplay = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvBooksOfConstraints = new System.Windows.Forms.DataGridView();
-            this.PropertyTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AgentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateCreatedFormated = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,10 +45,8 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cmbAgents);
-            this.groupBox2.Controls.Add(this.txtPropertyTitle);
             this.groupBox2.Controls.Add(this.btnDisplay);
             this.groupBox2.Location = new System.Drawing.Point(13, 12);
             this.groupBox2.Name = "groupBox2";
@@ -60,19 +55,10 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pretraga";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 17);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Naslov";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(204, 33);
+            this.label1.Location = new System.Drawing.Point(7, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 13;
@@ -82,17 +68,10 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             // 
             this.cmbAgents.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAgents.FormattingEnabled = true;
-            this.cmbAgents.Location = new System.Drawing.Point(204, 56);
+            this.cmbAgents.Location = new System.Drawing.Point(7, 53);
             this.cmbAgents.Name = "cmbAgents";
             this.cmbAgents.Size = new System.Drawing.Size(179, 24);
             this.cmbAgents.TabIndex = 12;
-            // 
-            // txtPropertyTitle
-            // 
-            this.txtPropertyTitle.Location = new System.Drawing.Point(6, 56);
-            this.txtPropertyTitle.Name = "txtPropertyTitle";
-            this.txtPropertyTitle.Size = new System.Drawing.Size(192, 22);
-            this.txtPropertyTitle.TabIndex = 11;
             // 
             // btnDisplay
             // 
@@ -119,7 +98,6 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             this.dgvBooksOfConstraints.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBooksOfConstraints.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBooksOfConstraints.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PropertyTitle,
             this.AgentName,
             this.Comment,
             this.DateCreatedFormated});
@@ -131,13 +109,6 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
             this.dgvBooksOfConstraints.Size = new System.Drawing.Size(762, 305);
             this.dgvBooksOfConstraints.TabIndex = 0;
             this.dgvBooksOfConstraints.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBooksOfConstraints_CellMouseDoubleClick);
-            // 
-            // PropertyTitle
-            // 
-            this.PropertyTitle.DataPropertyName = "PropertyTitle";
-            this.PropertyTitle.HeaderText = "Naslov nekretnine";
-            this.PropertyTitle.MinimumWidth = 6;
-            this.PropertyTitle.Name = "PropertyTitle";
             // 
             // AgentName
             // 
@@ -181,16 +152,13 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtPropertyTitle;
         private System.Windows.Forms.Button btnDisplay;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvBooksOfConstraints;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PropertyTitle;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbAgents;
         private System.Windows.Forms.DataGridViewTextBoxColumn AgentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateCreatedFormated;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbAgents;
     }
 }
