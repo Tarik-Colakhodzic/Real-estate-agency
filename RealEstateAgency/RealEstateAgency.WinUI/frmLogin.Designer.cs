@@ -39,11 +39,11 @@ namespace RealEstateAgency.WinUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 66);
+            this.label1.Location = new System.Drawing.Point(18, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.Size = new System.Drawing.Size(103, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Username:";
+            this.label1.Text = "Korisničko ime:";
             // 
             // txtUsername
             // 
@@ -63,11 +63,11 @@ namespace RealEstateAgency.WinUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 122);
+            this.label2.Location = new System.Drawing.Point(60, 122);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 17);
+            this.label2.Size = new System.Drawing.Size(61, 17);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Password:";
+            this.label2.Text = "Lozinka:";
             // 
             // btnLogin
             // 
@@ -75,7 +75,7 @@ namespace RealEstateAgency.WinUI
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(94, 35);
             this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "Login";
+            this.btnLogin.Text = "Prijavi se";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -91,7 +91,7 @@ namespace RealEstateAgency.WinUI
             this.Controls.Add(this.label1);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "Prijava";
             this.ResumeLayout(false);
             this.PerformLayout();
 

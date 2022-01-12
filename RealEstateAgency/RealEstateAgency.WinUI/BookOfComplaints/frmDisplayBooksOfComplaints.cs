@@ -27,7 +27,6 @@ namespace RealEstateAgency.WinUI.BookOfComplaints
                 {
                     IncludeList = new string[]
                     {
-                        EntityNames.Property,
                         EntityNames.AgentUser
                     }
                 };

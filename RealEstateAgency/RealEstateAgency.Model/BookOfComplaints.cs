@@ -9,6 +9,7 @@ namespace RealEstateAgency.Model
         public virtual Agent Agent { get; set; }
         public string Comment { get; set; }
         public DateTime DateCreated { get; set; }
+        public string DateCreatedFormated => DateCreated.ToString("dd.MM.yyyy");
 
         public string AgentName => $"{Agent?.User?.FirstName} {Agent?.User?.LastName}";
     }

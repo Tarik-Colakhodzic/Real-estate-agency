@@ -112,6 +112,7 @@ namespace RealEstateAgency.WinUI.Contract
             this.dtmDateCreated.Name = "dtmDateCreated";
             this.dtmDateCreated.Size = new System.Drawing.Size(200, 22);
             this.dtmDateCreated.TabIndex = 6;
+            this.dtmDateCreated.ValueChanged += new System.EventHandler(this.dtmDateCreated_ValueChanged);
             // 
             // label3
             // 

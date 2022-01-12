@@ -20,6 +20,8 @@ namespace RealEstateAgency.WinUI.Contract
         {
             InitializeComponent();
             _contract = contract;
+            dtmDateCreated.CustomFormat = "MM/dd/yyyy";
+            dtmDateCreated.Format = DateTimePickerFormat.Custom;
         }
 
         private async void frmContractDetails_Load(object sender, EventArgs e)
@@ -149,6 +151,11 @@ namespace RealEstateAgency.WinUI.Contract
         private void txtPrice_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Validator.ValidateGreaterThanZero(errorProvider, txtPrice, e);
+        }
+
+        private void dtmDateCreated_ValueChanged(object sender, EventArgs e)
+        {
+            dtmDateCreated.CustomFormat = "MM/dd/yyyy";
         }
     }
 }
