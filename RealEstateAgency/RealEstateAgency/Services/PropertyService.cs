@@ -75,5 +75,21 @@ namespace RealEstateAgency.Services
 
             return _mapper.Map<List<Model.Property>>(entity.OrderByDescending(x => x.PublishDate).ToList());
         }
+
+        public bool SetFinished(int id, bool finished)
+        {
+            try
+            {
+                var entity = Context.Properties.Find(id);
+                entity.Finished = finished;
+                Context.Entry(entity).Property(x => x.Finished).IsModified = true;
+                Context.SaveChanges();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
     }
 }

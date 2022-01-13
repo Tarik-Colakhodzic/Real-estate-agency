@@ -26,7 +26,7 @@ namespace RealEstateAgency.Controllers
 
         [HttpPost]
         [Route("ProccessPayment")]
-        public async Task ProccessPayment(CreditCard creditCard)
+        public async Task<IActionResult> ProccessPayment(CreditCard creditCard)
         {
             CancellationTokenSource tokenSource = new CancellationTokenSource();
             CancellationToken token = tokenSource.Token;
@@ -38,16 +38,16 @@ namespace RealEstateAgency.Controllers
                     if (Token != null)
                         IsTransactionSuccess = MakePayment(Token);
                 });
+                if (IsTransactionSuccess)
+                {
+                    return Ok();
+                }
             }
             catch (Exception ex)
             {
+                return StatusCode(500);
             }
-            finally
-            {
-                if (IsTransactionSuccess)
-                {
-                }
-            }
+            return StatusCode(500);
         }
 
         private string CreateToken(CreditCard creditCard)
@@ -69,14 +69,10 @@ namespace RealEstateAgency.Controllers
                         AddressState = creditCard.AddressState,
                         AddressCountry = creditCard.AddressCountry,
                         AddressLine1 = creditCard.AddressLine1,
-                        //Name = "Tarik Čolakhodžić",
-                        //AddressLine1 = "18",
+                        Currency = creditCard.Currency,
                         AddressLine2 = "SpringBoard",
                         AddressCity = "Gurgoan",
                         AddressZip = "284005",
-                        //AddressState = "Mostar",
-                        //AddressCountry = "Bosnia and Herzegovina",
-                        Currency = "bam",
                     }
                 };
 
