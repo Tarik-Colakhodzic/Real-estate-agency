@@ -26,6 +26,10 @@ namespace RealEstateAgency.Services
             {
                 entity = entity.Where(x => x.PropertyId == search.PropertyId);
             }
+            if(search?.Finished != null)
+            {
+                entity = entity.Where(x => x.Property.Finished == search.Finished.Value);
+            }
 
             if (search?.IncludeList?.Length > 0)
             {

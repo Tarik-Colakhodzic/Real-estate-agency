@@ -8,6 +8,7 @@ namespace RealEstateAgency.Model.Requests
     {
         public int? UserId { get; set; }
         public int? PropertyId { get; set; }
+        public bool? Finished { get; set; }
         public string[] IncludeList { get; set; }
     }
 }
