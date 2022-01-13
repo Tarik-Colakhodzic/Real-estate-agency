@@ -13,6 +13,8 @@ namespace RealEstateAgency.Model
         public long? ExpYear { get; set; }
         [JsonProperty("number")]
         public string Number { get; set; }
+        [JsonProperty("amount")]
+        public long? Amount { get; set; }
         [JsonProperty("address_city")]
         public string AddressCity { get; set; }
         [JsonProperty("address_country")]

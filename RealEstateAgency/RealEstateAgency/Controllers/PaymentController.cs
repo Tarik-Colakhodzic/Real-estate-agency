@@ -36,7 +36,7 @@ namespace RealEstateAgency.Controllers
                 {
                     var Token = CreateToken(creditCard);
                     if (Token != null)
-                        IsTransactionSuccess = MakePayment(Token);
+                        IsTransactionSuccess = MakePayment(Token, creditCard.Amount, creditCard.Currency);
                 });
                 if (IsTransactionSuccess)
                 {
@@ -86,15 +86,15 @@ namespace RealEstateAgency.Controllers
             }
         }
 
-        private bool MakePayment(string token)
+        private bool MakePayment(string token, long? amount, string currency)
         {
             try
             {
                 StripeConfiguration.SetApiKey(StripeSecretApiKey);
                 var options = new ChargeCreateOptions
                 {
-                    Amount = (long)float.Parse("20000"),
-                    Currency = "bam",
+                    Amount = amount,
+                    Currency = currency,
                     Description = "Charge for john.doe@example.com",
                     Source = stripeToken.Id,
                     StatementDescriptor = "Custom descriptor",
