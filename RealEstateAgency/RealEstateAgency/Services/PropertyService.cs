@@ -25,7 +25,7 @@ namespace RealEstateAgency.Services
                 }
                 if(search.Finished.HasValue && search.Unfinished.HasValue)
                 {
-                    entity = entity.Where(x => x.Finished == search.Finished.Value || search.Unfinished.Value);
+                    entity = entity.Where(x => x.Finished == search.Finished.Value || x.Finished == search.Unfinished.Value);
                 }
                 if(search.Finished.HasValue && !search.Unfinished.HasValue)
                 {
