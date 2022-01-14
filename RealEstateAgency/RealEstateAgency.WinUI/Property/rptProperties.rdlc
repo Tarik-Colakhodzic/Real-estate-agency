@@ -460,7 +460,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Cijena</Value>
+                                  <Value>Cijena (KM)</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -819,7 +819,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!PriceSum.Value</Value>
+                    <Value>=Parameters!PriceSum.Value + " KM"</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>

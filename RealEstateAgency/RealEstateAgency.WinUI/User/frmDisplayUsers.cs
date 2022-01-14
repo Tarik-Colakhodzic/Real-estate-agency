@@ -2,6 +2,7 @@
 using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RealEstateAgency.WinUI.User
@@ -28,12 +29,14 @@ namespace RealEstateAgency.WinUI.User
                 SearchText = txtSearch.Text,
                 IncludeList = new string[]
                 {
-                    EntityNames.UserRoles
+                    EntityNames.UserRoles,
+                    EntityNames.UserRolesRoles
                 },
             };
             try
             {
-                dgvUsers.DataSource = await _serviceUsers.GetAll<List<Model.User>>(searchObject);
+                var users = await _serviceUsers.GetAll<List<Model.User>>(searchObject);
+                dgvUsers.DataSource = users.Where(x => !x.UserRoles.Any(y => y.Role.Name == "Administrator")).ToList();
             }
             catch (Exception)
             {
