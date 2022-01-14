@@ -61,7 +61,7 @@ namespace RealEstateAgency.WinUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://localhost:44316/api/.
+        ///   Looks up a localized string similar to http://localhost:5010/api/.
         /// </summary>
         public static string ApiUrl {
             get {
@@ -151,7 +151,7 @@ namespace RealEstateAgency.WinUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unesite ispravan broj telefona!.
+        ///   Looks up a localized string similar to Unesite ispravan broj telefona (061-111-111) !.
         /// </summary>
         public static string Validation_PhoneNumber {
             get {

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApiUrl" xml:space="preserve">
-    <value>https://localhost:44316/api/</value>
+    <value>http://localhost:5010/api/</value>
   </data>
   <data name="Error_Occured" xml:space="preserve">
     <value>Desila se greška, kontaktirajte tim za podršku!</value>
@@ -148,7 +148,7 @@
     <value>Šifra mora sadržavati 8 znakova i uključiti 3 od 4 sljedeća pravila: Velika slova (A-Z), mala slova (a-z), brojeve (0-9) i specijalne znakove (e.g. !@#$%^&amp;*)"</value>
   </data>
   <data name="Validation_PhoneNumber" xml:space="preserve">
-    <value>Unesite ispravan broj telefona!</value>
+    <value>Unesite ispravan broj telefona (061-111-111) !</value>
   </data>
   <data name="Validation_RequiredField" xml:space="preserve">
     <value>Obavezno polje!</value>
