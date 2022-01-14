@@ -343,7 +343,7 @@ namespace RealEstateAgency
 
             #region CONTRACT
 
-            if (!context.Contracts.Any(x => x.UserId == clientUserId && x.AgentId == agentUserId))
+            if (!context.Contracts.Any(x => x.UserId == clientUserId && x.AgentId == agentUserId) && !context.Contracts.Any(x => x.Id == propertyId))
             {
                 context.Contracts.Add(new Contract
                 {
