@@ -80,7 +80,8 @@ namespace RealEstateAgency.WinUI.User
                         showAdminPanel(true);
                         dtpHireDate.Value = _agent.HireDate;
                         txtSalary.Text = Math.Round(_agent.Salary, 2).ToString();
-                        pbAgentImage.Image = ImageHelper.FromByteToImage(_agent.Photo);
+                        if(_agent.Photo.Count() > 0)
+                            pbAgentImage.Image = ImageHelper.FromByteToImage(_agent.Photo);
                     }
                 }
             }
