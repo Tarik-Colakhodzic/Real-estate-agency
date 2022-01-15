@@ -24,6 +24,10 @@ namespace RealEstateAgency.WinUI
             {
                 posjeteToolStripMenuItem.Visible = false;
             }
+            if(!APIService.Agent)
+            {
+                dodavanjeNekrenineToolStripMenuItem.Visible = false;
+            }
         }
 
         private void ShowNewForm(object sender, EventArgs e)
