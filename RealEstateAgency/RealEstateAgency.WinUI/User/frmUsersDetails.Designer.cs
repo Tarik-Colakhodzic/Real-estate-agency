@@ -52,6 +52,8 @@ namespace RealEstateAgency.WinUI.User
             this.dtpHireDate = new System.Windows.Forms.DateTimePicker();
             this.lblHireDate = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblPwdSecond = new System.Windows.Forms.Label();
+            this.lblPwdFirst = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblKM = new System.Windows.Forms.Label();
             this.btnIncrease = new System.Windows.Forms.Button();
@@ -63,8 +65,6 @@ namespace RealEstateAgency.WinUI.User
             this.lblNoAgent = new System.Windows.Forms.Label();
             this.btnSaveAgent = new System.Windows.Forms.Button();
             this.ofdImageUpload = new System.Windows.Forms.OpenFileDialog();
-            this.lblPwdFirst = new System.Windows.Forms.Label();
-            this.lblPwdSecond = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -240,6 +240,7 @@ namespace RealEstateAgency.WinUI.User
             this.dtpHireDate.Size = new System.Drawing.Size(290, 22);
             this.dtpHireDate.TabIndex = 20;
             this.dtpHireDate.Visible = false;
+            this.dtpHireDate.ValueChanged += new System.EventHandler(this.dtpHireDate_ValueChanged);
             // 
             // lblHireDate
             // 
@@ -277,6 +278,24 @@ namespace RealEstateAgency.WinUI.User
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Korisnik";
+            // 
+            // lblPwdSecond
+            // 
+            this.lblPwdSecond.AutoSize = true;
+            this.lblPwdSecond.Location = new System.Drawing.Point(3, 487);
+            this.lblPwdSecond.Name = "lblPwdSecond";
+            this.lblPwdSecond.Size = new System.Drawing.Size(204, 17);
+            this.lblPwdSecond.TabIndex = 19;
+            this.lblPwdSecond.Text = "polja za lozinku ostaviti prazna!";
+            // 
+            // lblPwdFirst
+            // 
+            this.lblPwdFirst.AutoSize = true;
+            this.lblPwdFirst.Location = new System.Drawing.Point(3, 470);
+            this.lblPwdFirst.Name = "lblPwdFirst";
+            this.lblPwdFirst.Size = new System.Drawing.Size(263, 17);
+            this.lblPwdFirst.TabIndex = 18;
+            this.lblPwdFirst.Text = "U slučaju da ne želite promijeniti lozinku,";
             // 
             // groupBox2
             // 
@@ -395,24 +414,6 @@ namespace RealEstateAgency.WinUI.User
             // ofdImageUpload
             // 
             this.ofdImageUpload.FileName = "openFileDialog1";
-            // 
-            // lblPwdFirst
-            // 
-            this.lblPwdFirst.AutoSize = true;
-            this.lblPwdFirst.Location = new System.Drawing.Point(3, 470);
-            this.lblPwdFirst.Name = "lblPwdFirst";
-            this.lblPwdFirst.Size = new System.Drawing.Size(263, 17);
-            this.lblPwdFirst.TabIndex = 18;
-            this.lblPwdFirst.Text = "U slučaju da ne želite promijeniti lozinku,";
-            // 
-            // lblPwdSecond
-            // 
-            this.lblPwdSecond.AutoSize = true;
-            this.lblPwdSecond.Location = new System.Drawing.Point(3, 487);
-            this.lblPwdSecond.Name = "lblPwdSecond";
-            this.lblPwdSecond.Size = new System.Drawing.Size(204, 17);
-            this.lblPwdSecond.TabIndex = 19;
-            this.lblPwdSecond.Text = "polja za lozinku ostaviti prazna!";
             // 
             // frmUsersDetails
             // 

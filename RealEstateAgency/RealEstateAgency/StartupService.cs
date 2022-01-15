@@ -70,8 +70,8 @@ namespace RealEstateAgency
                     Email = "client@gmail.com",
                     PhoneNumber = "060 000 000",
                     UserName = "Client",
-                    PasswordHash = "qylkRtl9+mOd8UOsa4UN/VR2iNc=",
-                    PasswordSalt = "5MmCglFy/ezYLsx6QSKVlA=="
+                    PasswordHash = "OwPeQxaF4+IiAjVR1igeA7Mo2gs=",
+                    PasswordSalt = "UzPEAYXgYP9aN0tx1bfOww=="
                 });
             }
             context.SaveChanges();

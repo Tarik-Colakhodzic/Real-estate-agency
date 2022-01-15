@@ -29,6 +29,8 @@ namespace RealEstateAgency.WinUI.User
                 lblPwdFirst.Visible = false;
                 lblPwdSecond.Visible = false;
             }
+            dtpHireDate.CustomFormat = "MM/dd/yyyy";
+            dtpHireDate.Format = DateTimePickerFormat.Custom;
         }
 
         private async void frmUsersDetails_Load(object sender, EventArgs e)
@@ -316,6 +318,12 @@ namespace RealEstateAgency.WinUI.User
                 btnIncrease.Visible = false;
                 lblIncrease.Visible = false;
             }
+        }
+
+        private void dtpHireDate_ValueChanged(object sender, EventArgs e)
+        {
+            dtpHireDate.CustomFormat = "MM/dd/yyyy";
+            dtpHireDate.Format = DateTimePickerFormat.Custom;
         }
     }
 }

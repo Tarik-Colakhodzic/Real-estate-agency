@@ -28,6 +28,11 @@ namespace RealEstateAgency.WinUI
             {
                 dodavanjeNekrenineToolStripMenuItem.Visible = false;
             }
+            if(!APIService.Agent && !APIService.Administrator)
+            {
+                vlasniciToolStripMenuItem.Visible = nekretnineToolStripMenuItem.Visible
+                    = ugovoriToolStripMenuItem.Visible = knjigaŽalbiToolStripMenuItem.Visible = false;
+            }
         }
 
         private void ShowNewForm(object sender, EventArgs e)
