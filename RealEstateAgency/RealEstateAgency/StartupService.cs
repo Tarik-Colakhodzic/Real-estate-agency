@@ -194,6 +194,7 @@ namespace RealEstateAgency
             }
             context.SaveChanges();
             var mostarId = context.Cities.First(x => x.Name == "Mostar").Id;
+            var sarajevoId = context.Cities.First(x => x.Name == "Sarajevo").Id;
             var budvaId = context.Cities.First(x => x.Name == "Budva").Id;
 
             #endregion City
@@ -259,6 +260,7 @@ namespace RealEstateAgency
             }
             context.SaveChanges();
             var categoryStanId = context.Categories.First(x => x.Name == "Stan").Id;
+            var categoryApartmanId = context.Categories.First(x => x.Name == "Apartman").Id;
 
             #endregion Category
 
@@ -305,6 +307,7 @@ namespace RealEstateAgency
             }
             context.SaveChanges();
             var ownerId = context.Owners.First(x => x.FirstName == "Vlasnik").Id;
+            var gazdaId = context.Owners.First(x => x.FirstName == "Gazda").Id;
 
             #endregion OWNER
 
@@ -336,8 +339,63 @@ namespace RealEstateAgency
                     OfferTypeId = prodajaId,
                 });
             }
+            if (!context.Properties.Any(x => x.Title == "Stan na Grbavici"))
+            {
+                context.Properties.Add(new Property
+                {
+                    Title = "Stan na Grbavici",
+                    SquareMeters = 40,
+                    BalconySquareMeters = 0,
+                    ShortDescription = "Jednosoban stan na Grbavici u blizini stadiona",
+                    Address = "Grbavica 20",
+                    AgentId = agentUserId,
+                    OwnerId = ownerId,
+                    CategoryId = categoryStanId,
+                    PublishDate = DateTime.Now.AddDays(-30),
+                    CityId = sarajevoId,
+                    Description = "Stan se sastoji od hodnika, dnevnog boravka, kuhinje, kupatila i jedne sobe." +
+                    "Stan je udaljen 300 metara od stadion, te u svojoj blizini ima uređen parking.",
+                    ElectricityConnection = true,
+                    Internet = true,
+                    Finished = false,
+                    WaterConnection = true,
+                    NumberOfBathRooms = 1,
+                    NumberOfBedRooms = 1,
+                    Price = 135000,
+                    OfferTypeId = prodajaId,
+                });
+            }
+            if (!context.Properties.Any(x => x.Title == "Apartman u Budvi"))
+            {
+                context.Properties.Add(new Property
+                {
+                    Title = "Apartman u Budvi",
+                    SquareMeters = 35,
+                    BalconySquareMeters = 0,
+                    ShortDescription = "Iznajmljuje se apartman u Budvi",
+                    Address = "Budva 15",
+                    AgentId = agentUserId,
+                    OwnerId = gazdaId,
+                    CategoryId = categoryApartmanId,
+                    PublishDate = DateTime.Now.AddDays(-20),
+                    CityId = budvaId,
+                    Description = "Iznajmljuje se apartman u Budvi u blizini plaže." +
+                    "Apartman je udaljen 250m od plaže i može primiti 3 osobe." + 
+                    "U neposrednoj blizini se nalazi i tržni centar, te park i uređeno šetalište." +
+                    "Cijena se odnosi na jedno noćenje za 3 osobe.",
+                    ElectricityConnection = true,
+                    Internet = true,
+                    Finished = false,
+                    WaterConnection = true,
+                    NumberOfBathRooms = 1,
+                    NumberOfBedRooms = 1,
+                    Price = 150,
+                    OfferTypeId = izdavanjeId,
+                });
+            }
             context.SaveChanges();
             var propertyId = context.Properties.First(x => x.Title == "Dvosoban stan na Musali").Id;
+            var grbavicaId = context.Properties.First(x => x.Title == "Stan na Grbavici").Id;
 
             #endregion PROPERTY
 
@@ -370,6 +428,14 @@ namespace RealEstateAgency
                     Comment = "Nije došao na zakazanu posjetu!",
                 });
             }
+            if (!context.BookOfComplaints.Any(x => x.Comment == "Cijene stanova su previsoke!"))
+            {
+                context.BookOfComplaints.Add(new BookOfComplaints
+                {
+                    DateCreated = DateTime.Now.AddDays(-5),
+                    Comment = "Cijene stanova su previsoke!",
+                });
+            }
             context.SaveChanges();
 
             #endregion BOOKOFCOMPLAINTS
@@ -384,6 +450,16 @@ namespace RealEstateAgency
                     UserId = clientUserId,
                     DateTime = DateTime.Now.AddDays(10),
                     Approved = true
+                });
+            }
+            if (!context.Visits.Any(x => x.UserId == clientUserId && x.PropertyId == propertyId))
+            {
+                context.Add(new Visit
+                {
+                    PropertyId = grbavicaId,
+                    UserId = clientUserId,
+                    DateTime = DateTime.Now.AddDays(5),
+                    Approved = false
                 });
             }
             context.SaveChanges();

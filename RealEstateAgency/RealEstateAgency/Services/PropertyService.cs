@@ -23,17 +23,13 @@ namespace RealEstateAgency.Services
                 {
                     entity = entity.Where(x => x.Title.Contains(search.SearchText));
                 }
-                if(search.Finished.HasValue && search.Unfinished.HasValue)
+                if (search.Finished && !search.Unfinished)
                 {
-                    entity = entity.Where(x => x.Finished == search.Finished.Value || x.Finished == search.Unfinished.Value);
+                    entity = entity.Where(x => x.Finished == true);
                 }
-                if(search.Finished.HasValue && !search.Unfinished.HasValue)
+                if (!search.Finished && search.Unfinished)
                 {
-                    entity = entity.Where(x => x.Finished == search.Finished.Value);
-                }
-                if(!search.Finished.HasValue && search.Unfinished.HasValue)
-                {
-                    entity = entity.Where(x => x.Finished == search.Unfinished.Value);
+                    entity = entity.Where(x => x.Finished == false);
                 }
                 if (search.OwnerId.HasValue)
                 {
