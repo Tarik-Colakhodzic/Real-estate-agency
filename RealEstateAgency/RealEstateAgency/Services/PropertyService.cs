@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstateAgency.Database;
 using RealEstateAgency.Model.Requests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -70,10 +71,11 @@ namespace RealEstateAgency.Services
                         entity = entity.Include(item);
                     }
                 }
-                entity = entity.Include("PropertyPhotos");
+                entity = entity.Include(Model.EntityNames.PropertyPhotos);
+                entity = entity.Include(Model.EntityNames.UserProperties);
             }
 
-            return _mapper.Map<List<Model.Property>>(entity.OrderByDescending(x => x.PublishDate).ToList());
+            return OrderPropertiesByRecommentedSystem(entity);
         }
 
         public bool SetFinished(int id, bool finished)
@@ -86,10 +88,22 @@ namespace RealEstateAgency.Services
                 Context.SaveChanges();
                 return true;
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return false;
             }
+        }
+
+        public IEnumerable<Model.Property> OrderPropertiesByRecommentedSystem(IQueryable<Property> properties)
+        {
+            var propertiesRating = new List<Tuple<int, Property>>();
+            foreach (var item in properties)
+            {
+                propertiesRating.Add(Tuple.Create(item.UserProperties.Count, item));
+            }
+            propertiesRating = propertiesRating.OrderByDescending(x => x.Item1).ToList();
+            var orderedList = propertiesRating.Select(x => x.Item2);
+            return _mapper.Map<List<Model.Property>>(orderedList);
         }
     }
 }

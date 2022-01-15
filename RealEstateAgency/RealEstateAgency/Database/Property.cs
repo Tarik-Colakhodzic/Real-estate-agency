@@ -32,5 +32,6 @@ namespace RealEstateAgency.Database
         public int OwnerId { get; set; }
         public virtual Owner Owner { get; set; }
         public virtual ICollection<PropertyPhoto> PropertyPhotos { get; set; }
+        public virtual ICollection<UserProperties> UserProperties { get; set; }
     }
 }

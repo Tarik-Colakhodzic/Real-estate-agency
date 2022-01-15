@@ -13,6 +13,7 @@
         public static string AgentUser = "Agent.User";
         public static string Property = "Property";
         public static string PropertyOwner = "Property.Owner";
+        public static string UserProperties = "UserProperties";
         public static string Category = "Category";
         public static string OfferType = "OfferType";
         public static string PropertyPhotos = "PropertyPhotos";
