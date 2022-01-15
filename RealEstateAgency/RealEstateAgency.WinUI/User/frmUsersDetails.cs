@@ -119,24 +119,27 @@ namespace RealEstateAgency.WinUI.User
                             {
                                 Id = user.Id,
                                 HireDate = dtpHireDate.Value,
-                                Salary = decimal.Parse(txtSalary.Text),
-                                Photo = ImageHelper.FromImageToByte(pbAgentImage.Image)
+                                Salary = decimal.Parse(txtSalary.Text)
                             };
+                            if (pbAgentImage.Image != null)
+                                agent.Photo = ImageHelper.FromImageToByte(pbAgentImage.Image);
                             await _agentService.Insert<Model.Agent>(agent);
                         }
                     }
                     else
                     {
                         await _userService.Update<Model.User>(_user.Id, request);
-                        if (roleList.Any(x => x.Name == "Agent") && _newAgent)
+                        if (roleList.Any(x => x.Name == "Agent") && _newAgent && _agent == null)
                         {
                             var agent = new Model.Agent
                             {
                                 Id = _user.Id,
-                                HireDate = dtpHireDate.Value,
-                                Salary = decimal.Parse(txtSalary.Text),
-                                Photo = ImageHelper.FromImageToByte(pbAgentImage.Image)
+                                HireDate = dtpHireDate.Value
                             };
+                            if (!string.IsNullOrEmpty(txtSalary.Text))
+                                agent.Salary = decimal.Parse(txtSalary.Text);
+                            if (pbAgentImage.Image != null)
+                                agent.Photo = ImageHelper.FromImageToByte(pbAgentImage.Image);
                             await _agentService.Insert<Model.Agent>(agent);
                         }
                         if (!roleList.Any(x => x.Name == "Agent") && _agent != null)
