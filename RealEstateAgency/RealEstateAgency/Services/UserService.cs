@@ -45,6 +45,11 @@ namespace RealEstateAgency.Services
 
         public override Model.User Insert(UserInsertRequest request)
         {
+            var users = Context.Set<Database.User>().AsQueryable();
+            if(users.Any(x => x.UserName == request.Username))
+            {
+                return null;
+            }
             var entity = _mapper.Map<Database.User>(request);
             Context.Add(entity);
             if (request.Password != request.ConfirmedPassword)

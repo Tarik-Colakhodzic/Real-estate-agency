@@ -4,6 +4,7 @@ using RealEstateAgency.WinUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RealEstateAgency.WinUI.Property
@@ -24,9 +25,9 @@ namespace RealEstateAgency.WinUI.Property
             _property = property;
         }
 
-        private void frmPropertyDetails_Load(object sender, EventArgs e)
+        private async void frmPropertyDetails_LoadAsync(object sender, EventArgs e)
         {
-            LoadComboBox();
+            await LoadComboBox();
             if (_property != null)
             {
                 txtTitle.Text = _property.Title;
@@ -131,7 +132,7 @@ namespace RealEstateAgency.WinUI.Property
             }
         }
 
-        private async void LoadComboBox()
+        private async Task<bool> LoadComboBox()
         {
             try
             {
@@ -163,7 +164,9 @@ namespace RealEstateAgency.WinUI.Property
             catch (Exception)
             {
                 MessageBox.Show(Resources.Error_Occured);
+                return false;
             }
+            return true;
         }
 
         private void btnAddPhotos_Click(object sender, EventArgs e)

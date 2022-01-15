@@ -23,10 +23,8 @@ namespace RealEstateAgency.WinUI
             if (!APIService.Agent)
             {
                 posjeteToolStripMenuItem.Visible = false;
-            }
-            if(!APIService.Agent)
-            {
                 dodavanjeNekrenineToolStripMenuItem.Visible = false;
+                doddavanjeUgovoraToolStripMenuItem.Visible = false;
             }
             if(!APIService.Agent && !APIService.Administrator)
             {

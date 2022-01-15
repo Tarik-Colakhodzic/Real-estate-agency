@@ -113,6 +113,11 @@ namespace RealEstateAgency.WinUI.User
                     if (_user == null)
                     {
                         var user = await _userService.Insert<Model.User>(request);
+                        if(user == null)
+                        {
+                            MessageBox.Show("Korisnik sa istim korisničkim imenom već postoji, molimo da ga promijenite!");
+                            return;
+                        }
                         if (_newAgent)
                         {
                             var agent = new Model.Agent
@@ -140,11 +145,8 @@ namespace RealEstateAgency.WinUI.User
                                 agent.Salary = decimal.Parse(txtSalary.Text);
                             if (pbAgentImage.Image != null)
                                 agent.Photo = ImageHelper.FromImageToByte(pbAgentImage.Image);
-                            await _agentService.Insert<Model.Agent>(agent);
-                        }
-                        if (!roleList.Any(x => x.Name == "Agent") && _agent != null)
-                        {
-                            await _agentService.Delete<Model.Agent>(_agent.Id);
+                            if(await _agentService.GetById<Model.Agent>(_user.Id) == null)
+                                await _agentService.Insert<Model.Agent>(agent);
                         }
                     }
                     MessageBox.Show("Operacija uspješno izvršena");
@@ -247,7 +249,8 @@ namespace RealEstateAgency.WinUI.User
                 }
                 _agent.Salary = salary;
                 _agent.HireDate = dtpHireDate.Value;
-                _agent.Photo = ImageHelper.FromImageToByte(pbAgentImage.Image);
+                if(pbAgentImage.Image != null)
+                    _agent.Photo = ImageHelper.FromImageToByte(pbAgentImage.Image);
 
                 await _agentService.Update<Model.Agent>(_agent.Id, _agent);
                 MessageBox.Show("Operacija uspješno izvršena");

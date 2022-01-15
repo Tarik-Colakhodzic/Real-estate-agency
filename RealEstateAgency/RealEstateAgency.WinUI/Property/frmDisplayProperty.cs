@@ -226,6 +226,8 @@ namespace RealEstateAgency.WinUI.Property
                     var endFormated = dtpEnd.Value.Date.ToString("dd.MM.yyyy");
                     country = (cmbCountry.SelectedItem as Model.Country)?.Name;
                     city = (cmbCity.SelectedItem as Model.City)?.Name;
+                    if (city == "Odaberite državu")
+                        city = "";
                     if (_startDateSelected && _endDateSelected)
                     {
                         dateRange = $"Za period od {startFormated} do {endFormated}";

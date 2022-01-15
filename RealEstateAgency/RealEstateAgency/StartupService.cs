@@ -42,7 +42,7 @@ namespace RealEstateAgency
                     FirstName = "Admin",
                     LastName = "Admin",
                     Email = "admin@gmail.com",
-                    PhoneNumber = "060 000 000",
+                    PhoneNumber = "060-000-000",
                     UserName = "Administrator",
                     PasswordHash = "lR1OXReev+1K6c7/yJx9wKXOi9k=",
                     PasswordSalt = "tyHlAlf9hHcYibxHpG01xA=="
@@ -55,7 +55,7 @@ namespace RealEstateAgency
                     FirstName = "Agent",
                     LastName = "Agent",
                     Email = "agent@gmail.com",
-                    PhoneNumber = "060 000 000",
+                    PhoneNumber = "060-000-000",
                     UserName = "Agent",
                     PasswordHash = "qylkRtl9+mOd8UOsa4UN/VR2iNc=",
                     PasswordSalt = "5MmCglFy/ezYLsx6QSKVlA=="
@@ -68,7 +68,7 @@ namespace RealEstateAgency
                     FirstName = "Client",
                     LastName = "Client",
                     Email = "client@gmail.com",
-                    PhoneNumber = "060 000 000",
+                    PhoneNumber = "060-000-000",
                     UserName = "Client",
                     PasswordHash = "OwPeQxaF4+IiAjVR1igeA7Mo2gs=",
                     PasswordSalt = "UzPEAYXgYP9aN0tx1bfOww=="

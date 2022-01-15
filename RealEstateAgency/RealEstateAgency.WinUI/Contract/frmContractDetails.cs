@@ -100,6 +100,7 @@ namespace RealEstateAgency.WinUI.Contract
                     };
                     if (_contract != null)
                     {
+                        request.AgentId = _contract.AgentId;
                         if (_contract.Id != request.Id)
                         {
                             if (!idsWithContract.Any(x => x == request.Id))

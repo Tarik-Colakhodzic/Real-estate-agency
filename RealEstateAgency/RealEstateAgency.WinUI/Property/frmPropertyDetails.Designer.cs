@@ -456,7 +456,7 @@ namespace RealEstateAgency.WinUI.Property
             this.Name = "frmPropertyDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Podaci o nekretnini";
-            this.Load += new System.EventHandler(this.frmPropertyDetails_Load);
+            this.Load += new System.EventHandler(this.frmPropertyDetails_LoadAsync);
             ((System.ComponentModel.ISupportInitialize)(this.pbPhotos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
