@@ -17,5 +17,11 @@ namespace RealEstateAgency.Controllers
         {
             return base.Insert(request);
         }
+
+        [Authorize(Roles = "Administrator")]
+        public override User Update(int id, [FromBody] UserInsertRequest request)
+        {
+            return base.Update(id, request);
+        }
     }
 }
