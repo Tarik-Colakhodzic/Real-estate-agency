@@ -13,9 +13,9 @@ Seminarski rad iz predmeta Razvoj softvera II na temu agencije za nektrenine.
 * Automapper https://code-maze.com/automapper-net-core/
 
 * Pristupni podaci:
-    Administrator -> Username: Administrator, Password: Adm1n1strat0r
-    Agent -> Username: Agent, Password: Agent0007
-    Klijent -> Username: Client, Password: Client12#
+*   Administrator -> Username: Administrator, Password: Adm1n1strat0r
+*   Agent -> Username: Agent, Password: Agent0007
+*   Klijent -> Username: Client, Password: Client12#
 
 * Podaci za stripe payment servis:
     Broj krediten kartice: 4242424242424242 (ili bilo koji drug broj kartice sa stranice https://stripe.com/docs/testing)
