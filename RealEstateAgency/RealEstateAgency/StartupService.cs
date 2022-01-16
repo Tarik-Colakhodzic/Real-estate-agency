@@ -289,7 +289,7 @@ namespace RealEstateAgency
                     LastName = "Vlasnikovic",
                     Email = "vlasnik@gmail.com",
                     CityId = context.Cities.First(x => x.Name == "Mostar").Id,
-                    PhoneNumber = "061 460 555",
+                    PhoneNumber = "061-460-555",
                     Address = "Musala 22"
                 });
             }
@@ -301,7 +301,7 @@ namespace RealEstateAgency
                     LastName = "Gazdic",
                     Email = "gazda@gmail.com",
                     CityId = context.Cities.First(x => x.Name == "Mostar").Id,
-                    PhoneNumber = "061 460 544",
+                    PhoneNumber = "061-460-544",
                     Address = "Musala 20"
                 });
             }

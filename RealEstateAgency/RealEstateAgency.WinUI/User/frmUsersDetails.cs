@@ -113,19 +113,33 @@ namespace RealEstateAgency.WinUI.User
                     if (_user == null)
                     {
                         var user = await _userService.Insert<Model.User>(request);
-                        if(user == null)
+                        if (user == null)
                         {
                             MessageBox.Show("Korisnik sa istim korisničkim imenom već postoji, molimo da ga promijenite!");
                             return;
+                        }
+                        var selectedItems = clbRoles.CheckedItems;
+                        _newAgent = false;
+                        foreach (var item in selectedItems)
+                        {
+                            var role = item as Model.Role;
+                            if (role != null)
+                            {
+                                if (role.Name == "Agent")
+                                {
+                                    _newAgent = true;
+                                }
+                            }
                         }
                         if (_newAgent)
                         {
                             var agent = new Model.Agent
                             {
                                 Id = user.Id,
-                                HireDate = dtpHireDate.Value,
-                                Salary = decimal.Parse(txtSalary.Text)
+                                HireDate = dtpHireDate.Value
                             };
+                            if (!string.IsNullOrEmpty(txtSalary.Text))
+                                agent.Salary = decimal.Parse(txtSalary.Text);
                             if (pbAgentImage.Image != null)
                                 agent.Photo = ImageHelper.FromImageToByte(pbAgentImage.Image);
                             await _agentService.Insert<Model.Agent>(agent);
