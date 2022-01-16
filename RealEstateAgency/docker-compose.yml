@@ -18,7 +18,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=realestate-sql,1433;Database=RealEstate;User=sa;Password=RealEstate2021;ConnectRetryCount=0
+      - ConnectionStrings:DefaultConnection=Server=realestate-sql,1433;Database=180004;User=sa;Password=RealEstate2021;ConnectRetryCount=0
     ports:
       - 5010:5010
     networks:
