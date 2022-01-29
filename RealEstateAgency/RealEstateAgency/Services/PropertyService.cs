@@ -80,18 +80,11 @@ namespace RealEstateAgency.Services
 
         public bool SetFinished(int id, bool finished)
         {
-            try
-            {
-                var entity = Context.Properties.Find(id);
-                entity.Finished = finished;
-                Context.Entry(entity).Property(x => x.Finished).IsModified = true;
-                Context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var entity = Context.Properties.Find(id);
+            entity.Finished = finished;
+            Context.Entry(entity).Property(x => x.Finished).IsModified = true;
+            Context.SaveChanges();
+            return true;
         }
 
         public IEnumerable<Model.Property> OrderPropertiesByRecommentedSystem(IQueryable<Property> properties)

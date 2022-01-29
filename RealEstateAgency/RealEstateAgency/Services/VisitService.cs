@@ -51,18 +51,11 @@ namespace RealEstateAgency.Services
 
         public bool SetApproved(int id, bool approved)
         {
-            try
-            {
-                var entity = Context.Visits.Find(id);
-                entity.Approved = approved;
-                Context.Entry(entity).Property(x => x.Approved).IsModified = true;
-                Context.SaveChanges();
-                return true;
-            }
-            catch (System.Exception)
-            {
-                return false;
-            }
+            var entity = Context.Visits.Find(id);
+            entity.Approved = approved;
+            Context.Entry(entity).Property(x => x.Approved).IsModified = true;
+            Context.SaveChanges();
+            return true;
         }
     }
 }
