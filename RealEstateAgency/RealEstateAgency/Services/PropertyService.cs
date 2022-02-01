@@ -64,6 +64,10 @@ namespace RealEstateAgency.Services
                 {
                     entity = entity.Where(x => x.PublishDate < search.End);
                 }
+                if (search.Paid.HasValue)
+                {
+                    entity = entity.Where(x => x.Paid == search.Paid);
+                }
                 if (search?.IncludeList?.Length > 0)
                 {
                     foreach (var item in search.IncludeList)

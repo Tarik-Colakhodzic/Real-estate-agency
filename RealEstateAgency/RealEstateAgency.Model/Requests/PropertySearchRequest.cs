@@ -13,6 +13,7 @@ namespace RealEstateAgency.Model.Requests
         public int? OfferTypeId { get; set; }
         public bool Finished { get; set; }
         public bool Unfinished { get; set; }
+        public bool? Paid { get; set; }
         public DateTime? Start { get; set; }
         public DateTime? End { get; set; }
         public string[] IncludeList { get; set; }

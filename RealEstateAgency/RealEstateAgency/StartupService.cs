@@ -337,6 +337,7 @@ namespace RealEstateAgency
                     NumberOfBedRooms = 2,
                     Price = 1100000,
                     OfferTypeId = prodajaId,
+                    Paid = false
                 });
             }
             if (!context.Properties.Any(x => x.Title == "Stan na Grbavici"))
@@ -363,6 +364,7 @@ namespace RealEstateAgency
                     NumberOfBedRooms = 1,
                     Price = 135000,
                     OfferTypeId = prodajaId,
+                    Paid = false
                 });
             }
             if (!context.Properties.Any(x => x.Title == "Apartman u Budvi"))
@@ -391,6 +393,7 @@ namespace RealEstateAgency
                     NumberOfBedRooms = 1,
                     Price = 150,
                     OfferTypeId = izdavanjeId,
+                    Paid = false
                 });
             }
             context.SaveChanges();

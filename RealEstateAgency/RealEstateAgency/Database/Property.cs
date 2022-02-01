@@ -20,6 +20,9 @@ namespace RealEstateAgency.Database
         public int? NumberOfBathRooms { get; set; }
         public int? BalconySquareMeters { get; set; }
         public bool? Internet { get; set; }
+        public bool Paid { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public string ChargeId { get; set; }
 
         public int CityId { get; set; }
         public virtual City City { get; set; }
