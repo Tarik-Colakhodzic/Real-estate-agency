@@ -64,6 +64,7 @@ namespace RealEstateAgency.WinUI.Property
             this.OfferTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Finished = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnGenerateReport = new System.Windows.Forms.Button();
+            this.cbPaid = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).BeginInit();
@@ -71,6 +72,7 @@ namespace RealEstateAgency.WinUI.Property
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbPaid);
             this.groupBox2.Controls.Add(this.btnClearDates);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
@@ -421,6 +423,16 @@ namespace RealEstateAgency.WinUI.Property
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
+            // cbPaid
+            // 
+            this.cbPaid.AutoSize = true;
+            this.cbPaid.Location = new System.Drawing.Point(952, 60);
+            this.cbPaid.Name = "cbPaid";
+            this.cbPaid.Size = new System.Drawing.Size(101, 26);
+            this.cbPaid.TabIndex = 37;
+            this.cbPaid.Text = "Plaćene";
+            this.cbPaid.UseVisualStyleBackColor = true;
+            // 
             // frmDisplayProperty
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -477,5 +489,6 @@ namespace RealEstateAgency.WinUI.Property
         private System.Windows.Forms.DateTimePicker dtpEnd;
         private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.Button btnGenerateReport;
+        private System.Windows.Forms.CheckBox cbPaid;
     }
 }

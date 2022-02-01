@@ -41,6 +41,7 @@ namespace RealEstateAgency.WinUI.Property
                 SearchText = txtSearch.Text,
                 Finished = cbFnished.Checked,
                 Unfinished = cbUnfinished.Checked,
+                Paid = cbPaid.Checked,
                 IncludeList = new string[]
                 {
                     EntityNames.City,
@@ -177,6 +178,7 @@ namespace RealEstateAgency.WinUI.Property
             cmbOfferType.SelectedItem = cmbOfferType.Items[0];
             cmbOwner.SelectedItem = cmbOwner.Items[0];
             cbFnished.Checked = false;
+            cbPaid.Checked = false;
             cbUnfinished.Checked = true;
             dtpStart.CustomFormat = " ";
             dtpEnd.CustomFormat = " ";
