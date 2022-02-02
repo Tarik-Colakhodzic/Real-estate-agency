@@ -30,6 +30,7 @@ namespace RealEstateAgency.WinUI.Property
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbPaid = new System.Windows.Forms.CheckBox();
             this.btnClearDates = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,7 +65,6 @@ namespace RealEstateAgency.WinUI.Property
             this.OfferTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Finished = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnGenerateReport = new System.Windows.Forms.Button();
-            this.cbPaid = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).BeginInit();
@@ -100,6 +100,16 @@ namespace RealEstateAgency.WinUI.Property
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pretraga";
+            // 
+            // cbPaid
+            // 
+            this.cbPaid.AutoSize = true;
+            this.cbPaid.Location = new System.Drawing.Point(952, 60);
+            this.cbPaid.Name = "cbPaid";
+            this.cbPaid.Size = new System.Drawing.Size(81, 21);
+            this.cbPaid.TabIndex = 37;
+            this.cbPaid.Text = "Plaćene";
+            this.cbPaid.UseVisualStyleBackColor = true;
             // 
             // btnClearDates
             // 
@@ -176,7 +186,7 @@ namespace RealEstateAgency.WinUI.Property
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(781, 92);
+            this.label4.Location = new System.Drawing.Point(841, 89);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 17);
             this.label4.TabIndex = 26;
@@ -185,7 +195,7 @@ namespace RealEstateAgency.WinUI.Property
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(590, 92);
+            this.label3.Location = new System.Drawing.Point(629, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 17);
             this.label3.TabIndex = 25;
@@ -194,7 +204,7 @@ namespace RealEstateAgency.WinUI.Property
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(402, 92);
+            this.label2.Location = new System.Drawing.Point(405, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 17);
             this.label2.TabIndex = 24;
@@ -251,27 +261,27 @@ namespace RealEstateAgency.WinUI.Property
             // 
             this.cmbOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOwner.FormattingEnabled = true;
-            this.cmbOwner.Location = new System.Drawing.Point(780, 115);
+            this.cmbOwner.Location = new System.Drawing.Point(840, 112);
             this.cmbOwner.Name = "cmbOwner";
-            this.cmbOwner.Size = new System.Drawing.Size(176, 24);
+            this.cmbOwner.Size = new System.Drawing.Size(193, 24);
             this.cmbOwner.TabIndex = 14;
             // 
             // cmbCity
             // 
             this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCity.FormattingEnabled = true;
-            this.cmbCity.Location = new System.Drawing.Point(593, 115);
+            this.cmbCity.Location = new System.Drawing.Point(632, 112);
             this.cmbCity.Name = "cmbCity";
-            this.cmbCity.Size = new System.Drawing.Size(181, 24);
+            this.cmbCity.Size = new System.Drawing.Size(202, 24);
             this.cmbCity.TabIndex = 13;
             // 
             // cmbCountry
             // 
             this.cmbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCountry.FormattingEnabled = true;
-            this.cmbCountry.Location = new System.Drawing.Point(405, 115);
+            this.cmbCountry.Location = new System.Drawing.Point(408, 112);
             this.cmbCountry.Name = "cmbCountry";
-            this.cmbCountry.Size = new System.Drawing.Size(181, 24);
+            this.cmbCountry.Size = new System.Drawing.Size(218, 24);
             this.cmbCountry.TabIndex = 12;
             this.cmbCountry.SelectedIndexChanged += new System.EventHandler(this.cmbCountry_SelectedIndexChanged);
             // 
@@ -422,16 +432,6 @@ namespace RealEstateAgency.WinUI.Property
             this.btnGenerateReport.Text = "Generiši izvještaj";
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
-            // 
-            // cbPaid
-            // 
-            this.cbPaid.AutoSize = true;
-            this.cbPaid.Location = new System.Drawing.Point(952, 60);
-            this.cbPaid.Name = "cbPaid";
-            this.cbPaid.Size = new System.Drawing.Size(101, 26);
-            this.cbPaid.TabIndex = 37;
-            this.cbPaid.Text = "Plaćene";
-            this.cbPaid.UseVisualStyleBackColor = true;
             // 
             // frmDisplayProperty
             // 

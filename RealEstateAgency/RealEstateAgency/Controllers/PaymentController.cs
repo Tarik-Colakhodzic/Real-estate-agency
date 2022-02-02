@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RealEstateAgency.Model;
+using RealEstateAgency.Services;
 using Stripe;
 using System;
 using System.Threading;
@@ -11,8 +13,9 @@ namespace RealEstateAgency.Controllers
     [Route("api/[controller]")]
     public class PaymentController : ControllerBase
     {
-        public PaymentController()
+        public PaymentController(IPropertyService propertyService)
         {
+            _propertyService = propertyService;
         }
 
         private Token stripeToken;
@@ -20,6 +23,7 @@ namespace RealEstateAgency.Controllers
 
         private string StripePublishableApiKey = "pk_test_51KHCfLKRDUcIdarPfWjv1ZqwVDuKGgtd4bYviOunkt7XhtCLraqnotJenARYF733rIGY87lHizALkgdQ3i17zi5S00OumoDJjK";
         private string StripeSecretApiKey = "sk_test_51KHCfLKRDUcIdarPZRvw4oXWN2CxEaUkbvynLqsI74RJXtIK5gtgrioWFAXM0zPgTxlnRlpgaMyGb59oTn5x6xW100FocD0BTS";
+        private IPropertyService _propertyService;
 
         public bool IsTransactionSuccess { get; set; }
 
@@ -35,7 +39,7 @@ namespace RealEstateAgency.Controllers
                 {
                     var Token = CreateToken(creditCard);
                     if (Token != null)
-                        IsTransactionSuccess = MakePayment(Token, creditCard.Amount, creditCard.Currency);
+                        IsTransactionSuccess = MakePayment(Token, creditCard.Amount, creditCard.Currency, creditCard.PropertyId);
                 });
                 if (IsTransactionSuccess)
                 {
@@ -85,7 +89,7 @@ namespace RealEstateAgency.Controllers
             }
         }
 
-        private bool MakePayment(string token, long? amount, string currency)
+        private bool MakePayment(string token, long? amount, string currency, int propertyId)
         {
             try
             {
@@ -104,12 +108,23 @@ namespace RealEstateAgency.Controllers
                 //Make Payment
                 var service = new ChargeService();
                 Charge charge = service.Create(options);
+                _propertyService.SetPaid(propertyId, true, charge.Id);
                 return true;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetCharges()
+        {
+            StripeConfiguration.SetApiKey(StripeSecretApiKey);
+            var service = new ChargeService();
+            var response = await service.ListAsync();
+            return Ok(response);
         }
     }
 }

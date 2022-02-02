@@ -91,6 +91,17 @@ namespace RealEstateAgency.Services
             return true;
         }
 
+        public bool SetPaid(int id, bool paid, string chargeId)
+        {
+            var entity = Context.Properties.Find(id);
+            entity.Paid = paid;
+            entity.ChargeId = chargeId;
+            Context.Entry(entity).Property(x => x.Paid).IsModified = true;
+            Context.Entry(entity).Property(x => x.ChargeId).IsModified = true;
+            Context.SaveChanges();
+            return true;
+        }
+
         public IEnumerable<Model.Property> OrderPropertiesByRecommentedSystem(IQueryable<Property> properties)
         {
             var propertiesRating = new List<Tuple<int, Property>>();
