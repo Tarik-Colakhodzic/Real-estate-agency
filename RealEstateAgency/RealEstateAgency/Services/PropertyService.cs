@@ -96,8 +96,10 @@ namespace RealEstateAgency.Services
             var entity = Context.Properties.Find(id);
             entity.Paid = paid;
             entity.ChargeId = chargeId;
+            entity.PaymentDate = DateTime.Now;
             Context.Entry(entity).Property(x => x.Paid).IsModified = true;
             Context.Entry(entity).Property(x => x.ChargeId).IsModified = true;
+            Context.Entry(entity).Property(x => x.PaymentDate).IsModified = true;
             Context.SaveChanges();
             return true;
         }
