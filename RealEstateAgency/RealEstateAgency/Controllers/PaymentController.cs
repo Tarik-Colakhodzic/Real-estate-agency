@@ -33,20 +33,17 @@ namespace RealEstateAgency.Controllers
         {
             CancellationTokenSource tokenSource = new CancellationTokenSource();
             CancellationToken token = tokenSource.Token;
-            try
+            await Task.Run(() =>
             {
-                await Task.Run(() =>
-                {
-                    var Token = CreateToken(creditCard);
-                    if (Token != null)
-                        IsTransactionSuccess = MakePayment(Token, creditCard.Amount, creditCard.Currency, creditCard.PropertyId);
-                });
-                if (IsTransactionSuccess)
-                {
-                    return Ok();
-                }
+                var Token = CreateToken(creditCard);
+                if (Token != null)
+                    IsTransactionSuccess = MakePayment(Token, creditCard.Amount, creditCard.Currency, creditCard.PropertyId, creditCard.Description);
+            });
+            if (IsTransactionSuccess)
+            {
+                return Ok();
             }
-            catch (Exception ex)
+            else
             {
                 return StatusCode(500);
             }
@@ -89,7 +86,7 @@ namespace RealEstateAgency.Controllers
             }
         }
 
-        private bool MakePayment(string token, long? amount, string currency, int propertyId)
+        private bool MakePayment(string token, long? amount, string currency, int propertyId, string description)
         {
             try
             {
@@ -98,7 +95,7 @@ namespace RealEstateAgency.Controllers
                 {
                     Amount = amount,
                     Currency = currency,
-                    Description = "Charge for john.doe@example.com",
+                    Description = description,
                     Source = stripeToken.Id,
                     StatementDescriptor = "Custom descriptor",
                     Capture = true,

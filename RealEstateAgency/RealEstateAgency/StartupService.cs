@@ -335,7 +335,7 @@ namespace RealEstateAgency
                     WaterConnection = true,
                     NumberOfBathRooms = 1,
                     NumberOfBedRooms = 2,
-                    Price = 1100000,
+                    Price = 110000,
                     OfferTypeId = prodajaId,
                     Paid = false
                 });

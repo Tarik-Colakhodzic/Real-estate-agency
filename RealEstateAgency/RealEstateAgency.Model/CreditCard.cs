@@ -39,5 +39,7 @@ namespace RealEstateAgency.Model
         public string IssuingCardId { get; set; }
         [JsonProperty("propertyId")]
         public int PropertyId { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
     }
 }
