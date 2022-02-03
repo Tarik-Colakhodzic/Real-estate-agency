@@ -10,6 +10,7 @@ namespace RealEstateAgency.WinUI.Payments
     public partial class frmPayments : Form
     {
         private APIService _servicePayment = new APIService("Payment");
+        List<Model.Payment> payments = new List<Model.Payment>();
 
         public frmPayments()
         {
@@ -21,7 +22,7 @@ namespace RealEstateAgency.WinUI.Payments
         {
             try
             {
-                var payments = await _servicePayment.GetAll<List<Model.Payment>>();
+                payments = await _servicePayment.GetAll<List<Model.Payment>>();
                 dgvPayments.DataSource = payments;
                 lblUkupno.Text += payments.Where(x => x.Status == "succeeded").Sum(x => x.Amount).ToString() + " KM";
             }
@@ -29,6 +30,20 @@ namespace RealEstateAgency.WinUI.Payments
             {
                 MessageBox.Show(Resources.Error_Occured);
             }
+        }
+
+        private void btnTrazi_Click(object sender, EventArgs e)
+        {
+            var query = payments.AsQueryable();
+            if (!string.IsNullOrEmpty(txtChargeId.Text))
+            {
+                query = query.Where(x => x.Id == txtChargeId.Text);
+            }
+            if (!string.IsNullOrEmpty(txtCustomerOrTitle.Text))
+            {
+                query = query.Where(x => x.Description.Contains(txtCustomerOrTitle.Text));
+            }
+            dgvPayments.DataSource = query.ToList();
         }
     }
 }
