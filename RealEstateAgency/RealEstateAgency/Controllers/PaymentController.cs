@@ -123,7 +123,10 @@ namespace RealEstateAgency.Controllers
         {
             StripeConfiguration.SetApiKey(StripeSecretApiKey);
             var service = new ChargeService();
-            var response = await service.ListAsync();
+            ChargeListOptions options = new ChargeListOptions();
+            //Maksimalan broj koji Api vraća
+            options.Limit = 100;
+            var response = await service.ListAsync(options);
             return Ok(response);
         }
     }

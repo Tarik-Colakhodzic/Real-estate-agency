@@ -1,6 +1,7 @@
 ﻿using RealEstateAgency.WinUI.BookOfComplaints;
 using RealEstateAgency.WinUI.Contract;
 using RealEstateAgency.WinUI.Owner;
+using RealEstateAgency.WinUI.Payments;
 using RealEstateAgency.WinUI.Property;
 using RealEstateAgency.WinUI.User;
 using RealEstateAgency.WinUI.Visit;
@@ -19,6 +20,7 @@ namespace RealEstateAgency.WinUI
             if (!APIService.Administrator)
             {
                 usersToolStripMenuItem.Visible = false;
+                uplateToolStripMenuItem.Visible = false;
             }
             if (!APIService.Agent)
             {
@@ -187,6 +189,14 @@ namespace RealEstateAgency.WinUI
         private void posjeteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmVisitsDisplay frm = new frmVisitsDisplay();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void uplateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPayments frm = new frmPayments();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
