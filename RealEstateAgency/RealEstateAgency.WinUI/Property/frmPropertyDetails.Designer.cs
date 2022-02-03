@@ -69,6 +69,9 @@ namespace RealEstateAgency.WinUI.Property
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbPaid = new System.Windows.Forms.CheckBox();
+            this.txtChargeId = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbPhotos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -121,7 +124,7 @@ namespace RealEstateAgency.WinUI.Property
             this.txtDescription.Location = new System.Drawing.Point(503, 134);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(387, 136);
+            this.txtDescription.Size = new System.Drawing.Size(387, 87);
             this.txtDescription.TabIndex = 5;
             // 
             // txtSquareMeters
@@ -197,7 +200,7 @@ namespace RealEstateAgency.WinUI.Property
             // chbFinished
             // 
             this.chbFinished.AutoSize = true;
-            this.chbFinished.Location = new System.Drawing.Point(754, 339);
+            this.chbFinished.Location = new System.Drawing.Point(754, 341);
             this.chbFinished.Name = "chbFinished";
             this.chbFinished.Size = new System.Drawing.Size(136, 21);
             this.chbFinished.TabIndex = 14;
@@ -412,11 +415,42 @@ namespace RealEstateAgency.WinUI.Property
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // cbPaid
+            // 
+            this.cbPaid.AutoSize = true;
+            this.cbPaid.Enabled = false;
+            this.cbPaid.Location = new System.Drawing.Point(809, 250);
+            this.cbPaid.Name = "cbPaid";
+            this.cbPaid.Size = new System.Drawing.Size(81, 21);
+            this.cbPaid.TabIndex = 36;
+            this.cbPaid.Text = "Plaćeno";
+            this.cbPaid.UseVisualStyleBackColor = true;
+            // 
+            // txtChargeId
+            // 
+            this.txtChargeId.Location = new System.Drawing.Point(503, 248);
+            this.txtChargeId.Name = "txtChargeId";
+            this.txtChargeId.ReadOnly = true;
+            this.txtChargeId.Size = new System.Drawing.Size(300, 22);
+            this.txtChargeId.TabIndex = 38;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(500, 227);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(91, 17);
+            this.label14.TabIndex = 37;
+            this.label14.Text = "Id transakcije";
+            // 
             // frmPropertyDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1230, 451);
+            this.Controls.Add(this.txtChargeId);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.cbPaid);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.txtNumberOfBathRoom);
@@ -505,5 +539,8 @@ namespace RealEstateAgency.WinUI.Property
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.CheckBox cbPaid;
+        private System.Windows.Forms.TextBox txtChargeId;
+        private System.Windows.Forms.Label label14;
     }
 }

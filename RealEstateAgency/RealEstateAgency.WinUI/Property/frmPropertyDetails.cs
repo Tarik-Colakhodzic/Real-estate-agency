@@ -42,6 +42,8 @@ namespace RealEstateAgency.WinUI.Property
                 chbElectricityConnection.Checked = _property.ElectricityConnection;
                 chbWaterConnection.Checked = _property.WaterConnection;
                 chbFinished.Checked = _property.Finished;
+                cbPaid.Checked = _property.Paid;
+                txtChargeId.Text = _property.ChargeId;
                 if (_property.Internet.HasValue)
                 {
                     chbInternet.Checked = _property.Internet.Value;
@@ -94,6 +96,8 @@ namespace RealEstateAgency.WinUI.Property
                         CityId = int.Parse(cmbCity.SelectedValue.ToString()),
                         OwnerId = int.Parse(cmbOwner.SelectedValue.ToString()),
                         CategoryId = int.Parse(cmbCategory.SelectedValue.ToString()),
+                        Paid = cbPaid.Checked,
+                        ChargeId = txtChargeId.Text
                     };
                     var propertyPhotos = new List<PropertyPhoto>();
                     foreach (var item in imgList.Images)
